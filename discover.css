@@ -9,7 +9,6 @@ div.youtube-vid > iframe {
   border: none;
 }
 
-.timeTD {
-  text-align: right;
-  vertical-align: top;
+ul.modal-ul > li {
+  font-size: 16;
 }
