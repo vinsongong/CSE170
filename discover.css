@@ -8,3 +8,8 @@ div.youtube-vid > iframe {
   height: 50%;
   border: none;
 }
+
+.timeTD {
+  text-align: right;
+  vertical-align: top;
+}
