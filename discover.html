@@ -3,51 +3,104 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
       <link href="nav.css" rel="stylesheet">
+      <link href="discover.css" rel="stylesheet">
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
       <script src="https://use.fontawesome.com/a42ce1c3c0.js"></script>
+      <script src="discover.js"></script>
       <title>Discover Exercises - Personal Trainer</title>
     </head>
     <body>
-      <center>
-        <nav class="navbar navbar-inverse navbar-fixed-top" id="topNav">
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="#">
-                  <i class="fa fa-search" aria-hidden="true"></i>
-                  <br />
-                  Discover Exercises
-                </a></li>
-                <li><a href="create.html">
-                  <i class="fa fa-plus-circle" aria-hidden="true"> </i>
-                  <br />
-                  Create Exercises
-                </a></li>
-                <li><a href="schedule.html">
-                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                  <br />
-                  Schedule Exercises
-                </a></li>
-                <li><a href="mySchedule.html">
-                  <i class="fa fa-tasks" aria-hidden="true"></i>
-                  <br />
-                  My Schedule
-                </a></li>
-              </ul>
-        </nav>
+      <nav class="navbar navbar-inverse navbar-fixed-top" id="topNav">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <br />
+                Discover Exercises
+              </a></li>
+              <li><a href="create.html">
+                <i class="fa fa-plus-circle" aria-hidden="true"> </i>
+                <br />
+                Create Exercises
+              </a></li>
+              <li><a href="schedule.html">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                <br />
+                Schedule Exercises
+              </a></li>
+              <li><a href="mySchedule.html">
+                <i class="fa fa-tasks" aria-hidden="true"></i>
+                <br />
+                My Schedule
+              </a></li>
+            </ul>
+      </nav>
 
-        <nav class="navbar navbar-default navbar-xs navbar-fixed-bottom" id="bottomNav">
-          <ul class="nav navbar-nav">
-            <li><a href="index.html">
-              <i class="fa fa-sign-out" aria-hidden="true"></i>
-              Logout
-            </a></li>
-            <li><a href="#">
-              <i class="fa fa-cog" aria-hidden="true"></i>
-              Settings
-            </a></li>
-          </ul>
-        </nav>
-      </center>
+      <nav class="navbar navbar-default navbar-xs navbar-fixed-bottom" id="bottomNav">
+        <ul class="nav navbar-nav">
+          <li><a href="index.html">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+            Logout
+          </a></li>
+          <li><a href="#">
+            <i class="fa fa-cog" aria-hidden="true"></i>
+            Settings
+          </a></li>
+        </ul>
+      </nav>
+
+      <div class="container">
+        <div class="list-group">
+          <a data-toggle="modal" href="#shoulderRaisesModal" class="list-group-item">
+            <span class="badge badge-default badge-pill">
+              Distraction: Medium<br />
+              Duration: 10 min
+            </span>
+            <h4 class="list-group-item-heading">Shoulder Raises</h4>
+            <p class="list-group-item-text">Recommended</p>
+          </a>
+          <a href="#" class="list-group-item">
+            <span class="badge badge-default badge-pill">
+              Distraction: High<br />
+              Duration: 15 min
+            </span>
+            <h4 class="list-group-item-heading">Jumping Jacks</h4>
+            <p class="list-group-item-text">Recommended</p>
+          </a>
+          <a href="#" class="list-group-item">
+            <span class="badge badge-default badge-pill">
+              Distraction: Low<br />
+              Duration: 1 hr
+            </span>
+            <h4 class="list-group-item-heading">Standing</h4>
+            <p class="list-group-item-text">Custom</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- Shoulder Raises Modal -->
+      <div class="modal fade" id="shoulderRaisesModal" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Shoulder Raises</h4>
+            </div>
+            <div class="modal-body">
+              <div class="youtube-vid">
+                <iframe id="cartoonVideo" src="https://www.youtube.com/embed/q5sNYB1Q6aM" frameborder="0" allowfullscreen class="second-row"></iframe>
+              </div>
+              <!-- <iframe id="cartoonVideo" width="560" height="315" src="https://youtu.be/q5sNYB1Q6aM" frameborder="0" allowfullscreen></iframe> -->
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </body>
 </html>

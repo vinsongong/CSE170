@@ -1,6 +1,6 @@
 body {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 90px;
+  padding-bottom: 40px;
   background-color: #eee;
 }
 #topNav {
@@ -35,4 +35,16 @@ body {
     float:none;
     display:table-cell;
     text-align:center;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 90px;
+  }
+}
+
+@media (max-width: 549px) {
+  body {
+    padding-top: 110px;
+  }
 }
