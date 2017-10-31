@@ -38,11 +38,13 @@ $(document).ready(function(){
   $("button.modify").click(modifyDetails);
   $("button.cancel").click(cancelDetails);
   $("button.save").click(saveDetails);
+  $("button.delete").click(deleteExercise);
 });
 
 function modifyDetails(e) {
   e.preventDefault();
   $(this).hide();
+  $(this).parent().find(".delete").show();
   $(this).parent().find(".save").show();
   $(this).parent().find(".cancel").show();
   var modalUL = $(this).parents().eq(1).find(".modal-ul").children('li');
@@ -79,6 +81,7 @@ function modifyDetails(e) {
 function cancelDetails(e) {
   e.preventDefault();
   $(this).hide();
+  $(this).parent().find(".delete").hide();
   $(this).parent().find(".save").hide();
   $(this).parent().find(".modify").show();
   $(this).parents().eq(1).find(".textBoxDiv").remove();
@@ -115,6 +118,7 @@ function saveDetails(e) {
 
   //Show only relevent buttons
   $(this).hide();
+  $(this).parent().find(".delete").hide();
   $(this).parent().find(".cancel").hide();
   $(this).parent().find(".modify").show();
 
@@ -139,4 +143,17 @@ function saveDetails(e) {
   item.appendChild(document.createTextNode("Time: " + timeVal + " " + timeUnits));
   newUL.appendChild(item);
   modalBody.append(newUL);
+}
+
+function deleteExercise(e) {
+  e.preventDefault();
+  if (confirm("Are you sure you want to delete this exercise?")) {
+    var modal = $(this).parents().eq(3);
+    var modalID = modal.attr('id');
+    modal.modal('hide').on('hidden.bs.modal', function() {
+      $(this).remove();
+    });
+    $("a[href='#" + modalID + "']").remove();
+  }
+  return false;
 }
