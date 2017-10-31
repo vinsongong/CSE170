@@ -62,7 +62,7 @@ function modifyDetails(e) {
   //Time
   var timeText = modalUL.eq(modalUL.length - 1).text();
   var timeBox = "<div class='timeDiv'>Takes:<br /><input type='number' class='timeDeets form-control' " +
-    "placeholder='' value='" +
+    "placeholder='' min='1' value='" +
     parseInt(timeText.replace(/[^0-9\.]/g, ''), 10) + "'></input>";
   var timeDropdown = "<select class='timeDrop form-control'>" +
   "<option value='seconds'>seconds</option>" +
@@ -75,8 +75,6 @@ function modifyDetails(e) {
   var timeUnits = timeTextSplit[timeTextSplit.length-1];
   $(".timeDrop option[value=" + timeUnits+ "]").attr("selected", true);
 }
-
-
 
 function cancelDetails(e) {
   e.preventDefault();
