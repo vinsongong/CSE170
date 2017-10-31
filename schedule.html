@@ -1,51 +1,106 @@
 <html>
-    <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-      <link href="nav.css" rel="stylesheet">
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-      <script src="https://use.fontawesome.com/a42ce1c3c0.js"></script>
-      <title>Schedule Exercises - Personal Trainer</title>
-    </head>
-    <body>
-      <nav class="navbar navbar-inverse navbar-fixed-top" id="topNav">
-            <ul class="nav navbar-nav">
-              <li><a href="discover.html">
-                <i class="fa fa-search" aria-hidden="true"></i>
-                <br />
-                Discover Exercises
-              </a></li>
-              <li><a href="create.html">
-                <i class="fa fa-plus-circle" aria-hidden="true"> </i>
-                <br />
-                Create Exercises
-              </a></li>
-              <li class="active"><a href="#">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                <br />
-                Schedule Exercises
-              </a></li>
-              <li><a href="mySchedule.html">
-                <i class="fa fa-tasks" aria-hidden="true"></i>
-                <br />
-                My Schedule
-              </a></li>
-            </ul>
-      </nav>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="nav.css" rel="stylesheet">
+  <link href="schedule.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://use.fontawesome.com/a42ce1c3c0.js"></script>
+  <title>Schedule Exercises - Personal Trainer</title>
+</head>
+<body>
+  <nav id="topNav" class="navbar navbar-inverse navbar-fixed-top">
+    <ul class="nav navbar-nav">
+      <li><a href="discover.html">
+        <i class="fa fa-search" aria-hidden="true"></i>
+        <br />
+        Discover Exercises
+      </a></li>
+      <li><a href="create.html">
+        <i class="fa fa-plus-circle" aria-hidden="true"> </i>
+        <br />
+        Create Exercises
+      </a></li>
+      <li class="active"><a href="#">
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        <br />
+        Schedule Exercises
+      </a></li>
+      <li><a href="mySchedule.html">
+        <i class="fa fa-tasks" aria-hidden="true"></i>
+        <br />
+        My Schedule
+      </a></li>
+    </ul>
+  </nav>
 
-      <nav class="navbar navbar-default navbar-xs navbar-fixed-bottom" id="bottomNav">
-        <ul class="nav navbar-nav">
-          <li><a href="index.html">
-            <i class="fa fa-sign-out" aria-hidden="true"></i>
-            Logout
-          </a></li>
-          <li><a href="#">
-            <i class="fa fa-cog" aria-hidden="true"></i>
-            Settings
-          </a></li>
-        </ul>
-      </nav>
-    </body>
+  <div class="container">
+    <div class="form-group col-sm-2" >
+      <label for="select-exercise">Exercise Name:</label>
+    </div>
+    <div class = "form-group col-sm-10">
+      <select id="select-exercise" class="form-control">
+        <option selected>Select Exercise</option>
+        <option value="1">Shoulder Raises</option>
+        <option value="2">Jumping Jacks</option>
+        <option value="3">Standing</option>
+      </select>
+    </div>
+
+    <div class="form-group col-sm-2">
+      <label for="repeat-interval">Repeat Every:</label>
+    </div>
+
+    <div class="form-group col-sm-10">
+      <input class="form-control timeInput"  type="number" id="repeat-interval" min="1" max="60">
+      <select id ="repeat-timeUnit" class="form-control timeDrop">
+        <option value='minutes'>Minutes</option>
+        <option value='hours'>Hours</option>
+        <option value='days'>Days</option>
+      </select>
+    </div>
+
+    <div class="form-group col-sm-2">
+      <label for="exercise-interval">Exercise Interval:</label>
+    </div>
+    <div class="form-group col-sm-10">
+      <input class="form-control timeInput"  type="number" id="exercise-interval" min="1" max="60">
+      <select id ="exercise-timeUnit" class="form-control timeDrop">
+        <option value='minutes'>Minutes</option>
+        <option value='hours'>Hours</option>
+        <option value='days'>Days</option>
+      </select>
+    </div>
+
+    <div class="form-group col-sm-2">
+      <label for="start-time">Starting Time: </label>
+    </div>
+
+    <div class="form-group col-sm-10">
+      <input class="form-control"  type="time" id="start-time">
+    </div>
+
+    <div class="col-sm-12 text-center">
+      <button class="btn btn-success save">Add</button>
+    </div>
+  </div>
+
+  <nav id="bottomNav" class="navbar navbar-default navbar-xs navbar-fixed-bottom">
+    <ul class="nav navbar-nav">
+      <li><a href="index.html">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+        Logout
+      </a></li>
+      <li><a href="#">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+        Settings
+      </a></li>
+    </ul>
+  </nav>
+
+
+</body>
 </html>
