@@ -12,3 +12,27 @@ div.youtube-vid > iframe {
 ul.modal-ul > li {
   font-size: 16;
 }
+
+textarea {
+  display: block;
+  width: 100%;
+  border: solid 2px;
+  resize: none;
+}
+
+.timeDeets {
+  display: inline;
+  width: 20%;
+  border: solid 2px;
+}
+
+.timeDiv {
+  margin-top: 10px;
+}
+
+.timeDrop {
+  display: inline;
+  width: 35%;
+  border: solid 2px;
+  margin-left: 5px;
+}

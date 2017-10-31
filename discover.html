@@ -60,7 +60,7 @@
           <a data-toggle="modal" href="#shoulderRaisesModal" class="list-group-item">
             <span class="badge badge-default badge-pill">
               Distraction: Medium<br />
-              Duration: 10 min
+              Duration: 10 minutes
             </span>
             <h4 class="list-group-item-heading">Shoulder Raises</h4>
             <p class="list-group-item-text">Recommended</p>
@@ -68,15 +68,15 @@
           <a data-toggle="modal" href="#jumpingJacksModal" class="list-group-item">
             <span class="badge badge-default badge-pill">
               Distraction: High<br />
-              Duration: 15 min
+              Duration: 15 minutes
             </span>
             <h4 class="list-group-item-heading">Jumping Jacks</h4>
             <p class="list-group-item-text">Recommended</p>
           </a>
-          <a href="#" class="list-group-item">
+          <a data-toggle="modal" href="#standingModal" class="list-group-item">
             <span class="badge badge-default badge-pill">
               Distraction: Low<br />
-              Duration: 1 hr
+              Duration: 1 hours
             </span>
             <h4 class="list-group-item-heading">Standing</h4>
             <p class="list-group-item-text">Custom</p>
@@ -86,7 +86,7 @@
       <!-- END Discover Exercises List -->
 
       <!-- Shoulder Raises Modal -->
-      <div class="modal fade" id="shoulderRaisesModal" role="dialog">
+      <div class="modal fade discover" id="shoulderRaisesModal" role="dialog">
         <div class="modal-dialog">
           <!-- Modal content-->
           <div class="modal-content">
@@ -97,8 +97,8 @@
             <div class="modal-body">
               <div class="youtube-vid">
                 <iframe id="shoulderRaisesVideo" src="https://www.youtube.com/embed/q5sNYB1Q6aM" frameborder="0" allowfullscreen></iframe>
+                <br />
               </div>
-              <br />
               <ul class="modal-ul">
                 <li>Do 2 sets of 10</li>
                 <li>Equipment: Weights or Dumbells</li>
@@ -115,7 +115,7 @@
       <!--END Shoulder Raises Modal -->
 
       <!-- Jumping Jacks Modal -->
-      <div class="modal fade" id="jumpingJacksModal" role="dialog">
+      <div class="modal fade discover" id="jumpingJacksModal" role="dialog">
         <div class="modal-dialog">
           <!-- Modal content-->
           <div class="modal-content">
@@ -126,8 +126,8 @@
             <div class="modal-body">
               <div class="youtube-vid">
                 <iframe id="jumpingJacksVideo" src="https://www.youtube.com/embed/UpH7rm0cYbM" frameborder="0" allowfullscreen></iframe>
+                <br />
               </div>
-              <br />
               <ul class="modal-ul">
                 <li>Do 3 sets of 15</li>
                 <li>Equipment: None</li>
@@ -143,5 +143,36 @@
       </div>
       <!--END Jumping Jacks Modal -->
 
+      <!-- Standing Modal -->
+      <div class="modal fade discover" id="standingModal" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Standing</h4>
+            </div>
+            <div class="modal-body">
+              <div class="youtube-vid">
+                <iframe id="standingVideo" src="" frameborder="0" allowfullscreen class="noVideo"></iframe>
+                <br />
+              </div>
+              <ul class="modal-ul">
+                <li>Standing up while working</li>
+                <li>Equipment: None</li>
+                <li>Can work while studying</li>
+                <li>Takes: 1 hours</li>
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-default pull-left modify">Modify</button>
+              <button class="btn btn-default pull-left save" style="display:none;">Save</button>
+              <button class="btn btn-default pull-left cancel" style="display:none;">Cancel</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--END Standing Modal -->
     </body>
 </html>
