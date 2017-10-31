@@ -1,0 +1,14 @@
+.timeDrop {
+  display: inline;
+  width: 40%;
+}
+
+.timeInput {
+  width: 30%;
+  display: inline;
+}
+
+.modal-body {
+    text-align: center;
+    font-size: 1.1em;
+}
