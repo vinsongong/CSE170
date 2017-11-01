@@ -39,12 +39,10 @@
     </ul>
   </nav>
 
-  <div class="container">
-    <div class="form-group col-sm-2" >
-      <label for="select-exercise">Exercise Name:</label>
-    </div>
-    <div class = "form-group col-sm-10">
-      <select id="select-exercise" class="form-control">
+<form class="container" id="needs-validation" onsubmit= "addExercise()" validate>
+    <div class="form-group form-inline">
+    <label for="select-exercise">Exercise Name:</label>
+    <select id="select-exercise" class="form-control" required>
         <option selected disabled>Select Exercise</option>
         <option value="1">Shoulder Raises</option>
         <option value="2">Jumping Jacks</option>
@@ -52,43 +50,35 @@
       </select>
     </div>
 
-    <div class="form-group col-sm-2">
+    <div class="form-group form-inline">
       <label for="repeat-interval">Repeat Every:</label>
-    </div>
-
-    <div class="form-group col-sm-10">
-      <input class="form-control timeInput"  type="number" id="repeat-interval" min="1" max="60">
-      <select id ="repeat-timeUnit" class="form-control timeDrop">
+      <input class="form-control"  type="number" id="repeat-interval" min="1" max="60" required>
+      <select id ="repeat-timeUnit" class="form-control" required>
         <option value='minutes'>Minutes</option>
         <option value='hours'>Hours</option>
         <option value='days'>Days</option>
       </select>
     </div>
 
-    <div class="form-group col-sm-2">
+    <div class="form-group form-inline">
       <label for="exercise-interval">Exercise Interval:</label>
-    </div>
-    <div class="form-group col-sm-10">
-      <input class="form-control timeInput"  type="number" id="exercise-interval" min="1" max="60">
-      <select id ="exercise-timeUnit" class="form-control timeDrop">
+      <input class="form-control"  type="number" id="exercise-interval" min="1" max="60" required>
+      <select id ="exercise-timeUnit" class="form-control" required>
         <option value='minutes'>Minutes</option>
         <option value='hours'>Hours</option>
         <option value='days'>Days</option>
       </select>
     </div>
 
-    <div class="form-group col-sm-2">
+    <div class="form-group form-inline">
       <label for="start-time">Starting Time: </label>
+      <input class="form-control"  type="time" id="start-time" required>
     </div>
 
-    <div class="form-group col-sm-10">
-      <input class="form-control"  type="time" id="start-time">
+    <div class="text-center">
+      <button class="btn btn-success save" type="submit">Add</button>
     </div>
-
-    <div class="col-sm-12 text-center">
-      <button class="btn btn-success save">Add</button>
-    </div>
-  </div>
+</form>
 
   <nav id="bottomNav" class="navbar navbar-default navbar-xs navbar-fixed-bottom">
     <ul class="nav navbar-nav">
