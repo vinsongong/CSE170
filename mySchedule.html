@@ -3,6 +3,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
       <link href="nav.css" rel="stylesheet">
+      <link href="css/modal.css" rel="stylesheet">
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -35,17 +36,47 @@
             </ul>
       </nav>
 
-      <nav class="navbar navbar-default navbar-xs navbar-fixed-bottom" id="bottomNav">
+      <div class="container text-center">
+        Coming Soon
+      </div>
+
+      <!-- Setting Modal -->
+      <div class="modal fade discover" id="settingModal" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Setting</h4>
+            </div>
+            <div class="modal-body">
+              This is a setting page. Coming Soon:)
+            </div>
+            <div class="modal-footer">
+              <!-- <button class="btn btn-default pull-left modify">Modify</button>
+              <button class="btn btn-danger pull-left delete" style="display:none;">Delete</button>
+              <button class="btn btn-success pull-left save" style="display:none;">Save</button>
+              <button class="btn btn-default pull-left cancel" style="display:none;">Cancel</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--END Setting Modal -->
+
+      <nav id="bottomNav" class="navbar navbar-default navbar-xs navbar-fixed-bottom">
         <ul class="nav navbar-nav">
           <li><a href="index.html">
             <i class="fa fa-sign-out" aria-hidden="true"></i>
             Logout
           </a></li>
-          <li><a href="#">
+          <li><a data-toggle="modal" href="#settingModal">
             <i class="fa fa-cog" aria-hidden="true"></i>
             Settings
           </a></li>
         </ul>
       </nav>
+
     </body>
 </html>
