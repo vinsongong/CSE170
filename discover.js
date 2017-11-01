@@ -13,7 +13,7 @@ $(document).ready(function(){
     $("#jumpingJacksVideo").attr('src', '');
   });
   $("#standingModal").on('hide.bs.modal', function(){
-    var timeStrArr = $(this).find(".modal-ul li:last").text().split(" ");
+    var timeStrArr = $(this).find(".modal-interval").text().split(" ");
     var timeVal = parseInt(timeStrArr[1], 10);
     var timeUnit = timeStrArr[2];
     $("a[href='#standingModal']").find(".badge")
@@ -31,7 +31,7 @@ $(document).ready(function(){
 
   $(".discover").on('show.bs.modal', function(){
     if($("iframe", this).hasClass("noVideo")) {
-      $(".youtube-vid", this).remove();
+      $(".youtube-vid", this).hide();
     }
   });
 
@@ -48,22 +48,32 @@ function modifyDetails(e) {
   $(this).parent().find(".save").show();
   $(this).parent().find(".cancel").show();
   var modalUL = $(this).parents().eq(1).find(".modal-ul").children('li');
-  modalUL.hide();
+  var modalDetailsDiv = $(this).parents().eq(1).find(".modal-details");
+  modalDetailsDiv.hide();
 
-  //Textbox
   var modalBody = $(this).parents().eq(1).find(".modal-body");
-  var textBox = "<div class='textBoxDiv'>Details:<textarea class='textBoxDeets form-control'rows='"+ (modalUL.length + 4) +"' cols='40'" +
-    " placeholder='Details about the exercise...' autofocus required>";
-  for(i = 0; i < modalUL.length - 1; i++) {
-    textBox += modalUL.eq(i).text() + "\n";
-  }
-  modalBody.append(textBox+"</textarea></div>");
+
+  //Insert new ul
+  // var newUL = document.createElement('ul');
+  // newUL.className = "modal-ul";
+  // for(var i = 0; i < texts.length; i++) {
+  //   var item = document.createElement('li');
+  //   item.appendChild(document.createTextNode(texts[i]));
+  //   newUL.appendChild(item);
+  // }
+  // modalBody.append(newUL);
+  //Exercise Name
+  var exerciseName = $(this).parents().eq(1).find(".modal-title").text();
+  var exerciseCode = "<div class='exerciseNameDiv'>Exercise Name:<br /><input" +
+    " type='text' class='exerciseNameInput form-control' value='" +
+    exerciseName + "' /></div>";
+  
 
   //Time
-  var timeText = modalUL.eq(modalUL.length - 1).text();
-  var timeBox = "<div class='timeDiv'>Takes:<br /><input type='number' class='timeDeets form-control' " +
-    "placeholder='' min='1' value='" +
-    parseInt(timeText.replace(/[^0-9\.]/g, ''), 10) + "'></input>";
+  var timeText = $(this).parents().eq(1).find(".modal-interval").text();
+  var timeBox = "<div class='timeDiv'>Interval:<br /><input type='number' class='timeDeets form-control' " +
+    "placeholder='' min='1' max='60' value='" +
+    parseInt(timeText.replace(/[^0-9\.]/g, ''), 10) + "' />";
   var timeDropdown = "<select class='timeDrop form-control'>" +
   "<option value='seconds'>seconds</option>" +
   "<option value='minutes'>minutes</option>" +
@@ -74,6 +84,14 @@ function modifyDetails(e) {
   var timeTextSplit = timeText.split(" ");
   var timeUnits = timeTextSplit[timeTextSplit.length-1];
   $(".timeDrop option[value=" + timeUnits+ "]").attr("selected", true);
+
+  //Textbox
+  var textBox = "<div class='textBoxDiv'>Description:<textarea class='textBoxDeets form-control'rows='"+ (modalUL.length + 4) +"' cols='40'" +
+    " placeholder='Details about the exercise...' autofocus required>";
+  for(i = 0; i < modalUL.length; i++) {
+    textBox += modalUL.eq(i).text() + "\n";
+  }
+  modalBody.append(textBox+"</textarea></div>");
 }
 
 function cancelDetails(e) {
@@ -84,7 +102,7 @@ function cancelDetails(e) {
   $(this).parent().find(".modify").show();
   $(this).parents().eq(1).find(".textBoxDiv").remove();
   $(this).parents().eq(1).find(".timeDiv").remove();
-  $(this).parents().eq(1).find(".modal-ul").children('li').show();
+  $(this).parents().eq(1).find(".modal-details").show();
 }
 
 function saveDetails(e) {
@@ -120,16 +138,30 @@ function saveDetails(e) {
   $(this).parent().find(".cancel").hide();
   $(this).parent().find(".modify").show();
 
+  //Remove old interval
+  var modalInteval = $(this).parents().eq(1).find(".modal-interval");
+  modalInteval.remove();
+
   //Remove old textarea and ul
   $(this).parents().eq(1).find(".textBoxDiv").remove();
   var modalUL = $(this).parents().eq(1).find(".modal-ul").children('li');
   modalUL.remove();
 
-  //Remove old timeDiv
+  //Remove timeDiv
+  var newTimeVal = $(this).parents().eq(1).find(".timeDeets").val();
+  var newTimeUnits = $(this).parents().eq(1).find(".timeDrop option:selected").val();
   $(this).parents().eq(1).find(".timeDiv").remove();
 
+  var modalBody = $(this).parents().eq(1).find(".modal-details");
+  modalBody.show();
+
+  //Insert new interval
+  var newInterval = document.createElement('h5');
+  newInterval.className = "modal-interval";
+  newInterval.appendChild(document.createTextNode("Interval: " + newTimeVal + " " + newTimeUnits));
+  modalBody.append(newInterval);
+
   //Insert new ul
-  var modalBody = $(this).parents().eq(1).find(".modal-body")
   var newUL = document.createElement('ul');
   newUL.className = "modal-ul";
   for(var i = 0; i < texts.length; i++) {
@@ -137,9 +169,6 @@ function saveDetails(e) {
     item.appendChild(document.createTextNode(texts[i]));
     newUL.appendChild(item);
   }
-  var item = document.createElement('li');
-  item.appendChild(document.createTextNode("Time: " + timeVal + " " + timeUnits));
-  newUL.appendChild(item);
   modalBody.append(newUL);
 }
 
