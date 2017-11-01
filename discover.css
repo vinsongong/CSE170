@@ -42,3 +42,19 @@ textarea {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.distractionDrop {
+  border: solid 2px;
+}
+
+.exerciseNameInput {
+  border: solid 2px;
+}
+
+.textBoxDeets {
+  border: solid 2px;
+}
+
+.youtubeLinkInput {
+  border: solid 2px;
+}

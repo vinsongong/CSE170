@@ -3,6 +3,7 @@ $(document).ready(function(){
   and store it in a variable */
   var shoulderRaisesURL = $("#shoulderRaisesVideo").attr('src');
   var jumpingJacksURL = $("#jumpingJacksVideo").attr('src');
+  var standingURL = $("#standingVideo").attr('src');
 
   /* Assign empty url value to the iframe src attribute when
   modal hide, which stop the video playing */
@@ -20,6 +21,8 @@ $(document).ready(function(){
     $("a[href='#standingModal']").find(".badge")
       .html("Distraction: " + distractionVal + "<br /> Duration: " + timeVal + " " + timeUnit);
     $("a[href='#standingModal']").find("h4").html($(this).find(".modal-title").text());
+    standingURL = $("#standingVideo").attr('src');
+    $("#standingVideo").attr('src', '');
   });
 
   /* Assign the initially stored url back to the iframe src
@@ -30,9 +33,12 @@ $(document).ready(function(){
   $("#jumpingJacksModal").on('show.bs.modal', function(){
     $("#jumpingJacksVideo").attr('src', jumpingJacksURL);
   });
+  $("#standingModal").on('show.bs.modal', function(){
+    $("#standingVideo").attr('src', standingURL);
+  });
 
   $(".discover").on('show.bs.modal', function(){
-    if($("iframe", this).hasClass("noVideo")) {
+    if($("iframe", this).attr("src").trim() == "") {
       $(".youtube-vid", this).hide();
     }
   });
@@ -52,6 +58,7 @@ function modifyDetails(e) {
   var modalUL = $(this).parents().eq(1).find(".modal-ul").children('li');
   var modalDetailsDiv = $(this).parents().eq(1).find(".modal-details");
   modalDetailsDiv.hide();
+  $(this).parents().eq(1).find(".youtube-vid").hide();
 
   var modalBody = $(this).parents().eq(1).find(".modal-body");
 
@@ -96,6 +103,14 @@ function modifyDetails(e) {
     textBox += modalUL.eq(i).text() + "\n";
   }
   modalBody.append(textBox + "</textarea></div>");
+
+  //Youtube Link
+  var youtubeLink = $(this).parents().eq(1).find("iframe").attr("src");
+  $(this).parents().eq(1).find("iframe").attr('src', "#" + youtubeLink); //To stop video from playing
+  var youtubeLinkCode = "<div class='youtubeLinkDiv'>Youtube Link:" +
+    "<input type='text' class='youtubeLinkInput form-control' value='" +
+    youtubeLink + "' /></div>";
+  modalBody.append(youtubeLinkCode);
 }
 
 function cancelDetails(e) {
@@ -108,6 +123,14 @@ function cancelDetails(e) {
   $(this).parents().eq(1).find(".textBoxDiv").remove();
   $(this).parents().eq(1).find(".timeDiv").remove();
   $(this).parents().eq(1).find(".distractionDiv").remove();
+  $(this).parents().eq(1).find(".youtubeLinkDiv").remove();
+  //Show Youtube video
+  var stoppedYoutubeLink = $(this).parents().eq(1).find("iframe").attr("src").trim();
+  $(this).parents().eq(1).find("iframe").attr('src', stoppedYoutubeLink.substr(1)); //To add video back in
+  if($(this).parents().eq(1).find("iframe").attr("src").trim() != "") {
+    $(this).parents().eq(1).find(".youtube-vid").show();
+  }
+  //Show modal description
   $(this).parents().eq(1).find(".modal-details").show();
 }
 
@@ -173,6 +196,10 @@ function saveDetails(e) {
   var newDistractionLevel = $(this).parents().eq(1).find(".distractionDrop option:selected").val();
   $(this).parents().eq(1).find(".distractionDiv").remove();
 
+  //Remove youtubeLinkDiv
+  var newYoutubeLink = $(this).parents().eq(1).find(".youtubeLinkInput").val();
+  $(this).parents().eq(1).find(".youtubeLinkDiv").remove();
+
   var modalBody = $(this).parents().eq(1).find(".modal-details");
   modalBody.show();
 
@@ -198,6 +225,14 @@ function saveDetails(e) {
     newUL.appendChild(item);
   }
   modalBody.append(newUL);
+
+  //Insert Youtube link
+  $(this).parents().eq(1).find("iframe").attr("src", newYoutubeLink);
+
+  //Show new Youtube video
+  if($(this).parents().eq(1).find("iframe").attr("src").trim() != "") {
+    $(this).parents().eq(1).find(".youtube-vid").show();
+  }
 }
 
 function deleteExercise(e) {
