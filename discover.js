@@ -227,7 +227,12 @@ function saveDetails(e) {
   modalBody.append(newUL);
 
   //Insert Youtube link
-  $(this).parents().eq(1).find("iframe").attr("src", newYoutubeLink);
+  var youtubeVideoID = getYoutubeId(newYoutubeLink);
+  var embedYoutubeLink = youtubeVideoID;
+  if(youtubeVideoID != "") {
+      embedYoutubeLink = embedYoutubeLink.replace(/^/,"https://www.youtube.com/embed/");
+  }
+  $(this).parents().eq(1).find("iframe").attr("src", embedYoutubeLink);
 
   //Show new Youtube video
   if($(this).parents().eq(1).find("iframe").attr("src").trim() != "") {
@@ -246,4 +251,15 @@ function deleteExercise(e) {
     $("a[href='#" + modalID + "']").remove();
   }
   return false;
+}
+
+function getYoutubeId(url) {
+    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    var match = url.match(regExp);
+
+    if (match && match[2].length == 11) {
+        return match[2];
+    } else {
+        return "";
+    }
 }
