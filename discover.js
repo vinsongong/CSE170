@@ -16,8 +16,10 @@ $(document).ready(function(){
     var timeStrArr = $(this).find(".modal-interval").text().split(" ");
     var timeVal = parseInt(timeStrArr[1], 10);
     var timeUnit = timeStrArr[2];
+    var distractionVal = $(this).find(".modal-distraction").text();
     $("a[href='#standingModal']").find(".badge")
-      .html("Distraction: Low <br /> Duration: " + timeVal + " " + timeUnit);
+      .html("Distraction: " + distractionVal + "<br /> Duration: " + timeVal + " " + timeUnit);
+    $("a[href='#standingModal']").find("h4").html($(this).find(".modal-title").text());
   });
 
   /* Assign the initially stored url back to the iframe src
@@ -53,23 +55,14 @@ function modifyDetails(e) {
 
   var modalBody = $(this).parents().eq(1).find(".modal-body");
 
-  //Insert new ul
-  // var newUL = document.createElement('ul');
-  // newUL.className = "modal-ul";
-  // for(var i = 0; i < texts.length; i++) {
-  //   var item = document.createElement('li');
-  //   item.appendChild(document.createTextNode(texts[i]));
-  //   newUL.appendChild(item);
-  // }
-  // modalBody.append(newUL);
   //Exercise Name
   var exerciseName = $(this).parents().eq(1).find(".modal-title").text();
   var exerciseCode = "<div class='exerciseNameDiv'>Exercise Name:<br /><input" +
     " type='text' class='exerciseNameInput form-control' value='" +
-    exerciseName + "' /></div>";
-  
+    exerciseName + "' autofocus required/></div>";
+  modalBody.append(exerciseCode);
 
-  //Time
+  //Interval
   var timeText = $(this).parents().eq(1).find(".modal-interval").text();
   var timeBox = "<div class='timeDiv'>Interval:<br /><input type='number' class='timeDeets form-control' " +
     "placeholder='' min='1' max='60' value='" +
@@ -85,13 +78,24 @@ function modifyDetails(e) {
   var timeUnits = timeTextSplit[timeTextSplit.length-1];
   $(".timeDrop option[value=" + timeUnits+ "]").attr("selected", true);
 
+  //Distraction Level
+  var distractionLevel = $(this).parents().eq(1).find(".modal-distraction").text();
+  var distrationCode = "<div class='distractionDiv'>Distraction Level:" +
+    "<select class='distractionDrop form-control'>" +
+    "<option value='Low'>Low</option>" +
+    "<option value='Medium'>Medium</option>" +
+    "<option value='High'>High</option>" +
+    "</select></div>";
+    modalBody.append(distrationCode);
+    $(".distractionDrop option[value=" + distractionLevel+ "]").attr("selected", true);
+
   //Textbox
   var textBox = "<div class='textBoxDiv'>Description:<textarea class='textBoxDeets form-control'rows='"+ (modalUL.length + 4) +"' cols='40'" +
-    " placeholder='Details about the exercise...' autofocus required>";
+    " placeholder='Details about the exercise...' required>";
   for(i = 0; i < modalUL.length; i++) {
     textBox += modalUL.eq(i).text() + "\n";
   }
-  modalBody.append(textBox+"</textarea></div>");
+  modalBody.append(textBox + "</textarea></div>");
 }
 
 function cancelDetails(e) {
@@ -100,8 +104,10 @@ function cancelDetails(e) {
   $(this).parent().find(".delete").hide();
   $(this).parent().find(".save").hide();
   $(this).parent().find(".modify").show();
+  $(this).parents().eq(1).find(".exerciseNameDiv").remove();
   $(this).parents().eq(1).find(".textBoxDiv").remove();
   $(this).parents().eq(1).find(".timeDiv").remove();
+  $(this).parents().eq(1).find(".distractionDiv").remove();
   $(this).parents().eq(1).find(".modal-details").show();
 }
 
@@ -122,13 +128,20 @@ function saveDetails(e) {
   var timeVal = $(this).parents().eq(1).find(".timeDeets").val();
   var timeUnits = $(this).parents().eq(1).find(".timeDrop option:selected").val();
 
+  //Parse out new exercise name
+  var newExerciseName = $(this).parents().eq(1).find(".exerciseNameInput").val();
+
   //Error Check
-  if(!texts.length) {
-    alert("Details must be filled in!");
+  if(!newExerciseName.length) {
+    alert("Exercise name must be filled in!");
     return;
   }
   if(!timeVal.length || timeVal < 1) {
     alert("Enter positive integer value for how long this exercise takes!");
+    return;
+  }
+  if(!texts.length) {
+    alert("Description must be filled in!");
     return;
   }
 
@@ -137,6 +150,10 @@ function saveDetails(e) {
   $(this).parent().find(".delete").hide();
   $(this).parent().find(".cancel").hide();
   $(this).parent().find(".modify").show();
+
+  //Remove old exercise name div
+  var modalExerciseNameDiv = $(this).parents().eq(1).find(".exerciseNameDiv");
+  modalExerciseNameDiv.remove();
 
   //Remove old interval
   var modalInteval = $(this).parents().eq(1).find(".modal-interval");
@@ -152,14 +169,25 @@ function saveDetails(e) {
   var newTimeUnits = $(this).parents().eq(1).find(".timeDrop option:selected").val();
   $(this).parents().eq(1).find(".timeDiv").remove();
 
+  //Remove distractionDiv
+  var newDistractionLevel = $(this).parents().eq(1).find(".distractionDrop option:selected").val();
+  $(this).parents().eq(1).find(".distractionDiv").remove();
+
   var modalBody = $(this).parents().eq(1).find(".modal-details");
   modalBody.show();
+
+  //Insert new exercise name
+  var modalTitle = $(this).parents().eq(1).find(".modal-title");
+  modalTitle.html(newExerciseName);
 
   //Insert new interval
   var newInterval = document.createElement('h5');
   newInterval.className = "modal-interval";
   newInterval.appendChild(document.createTextNode("Interval: " + newTimeVal + " " + newTimeUnits));
   modalBody.append(newInterval);
+
+  //Modify distraction level in badge of list
+  $(this).parents().eq(1).find(".modal-distraction").html(newDistractionLevel);
 
   //Insert new ul
   var newUL = document.createElement('ul');

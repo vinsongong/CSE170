@@ -37,3 +37,8 @@ textarea {
   border: solid 2px;
   margin-left: 5px;
 }
+
+.distractionDiv {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
