@@ -10,10 +10,10 @@ $(document).ready(function(){
 	$("#exercise").append(optionHtml);
 
 	var form = $("form#needs-validation");
-	$(form).submit(addExercise);
+	$(form).submit(scheduleExercise);
 });
 
-function addExercise(e) {
+function scheduleExercise(e) {
 	e.preventDefault();
 
 	var exercise = {
@@ -27,8 +27,11 @@ function addExercise(e) {
 			time:this.exerciseInterval.value,
 			unit:this.exerciseTimeUnit.value
 		},
-		startTime:startTime
+		/*Military Time Format*/ 
+		startTime:this.startTime.value
 	}
+
+	console.log(exercise);
 
 	/* Append the item to scheduleData (localStorage) */
 	var retrievedObject = localStorage.getItem('scheduleData');
@@ -41,4 +44,6 @@ function addExercise(e) {
 		message: "Your new exercise has been scheduled!",
 		backdrop: true
 	});
+
+	//window.location.replace("mySchedule.html");
 }
