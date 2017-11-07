@@ -6,7 +6,7 @@ $(document).ready(function(){
 function creatExercise(e) {
   e.preventDefault();
 
-  var id = lowercaseFirstLetter(this.exercise.value).replace(/\s/g, '');
+  var id = lowercaseFirstLetter(this.exercise.value).replace(/\n/g, " ");
 
   var exercise = {
   	exerciseId:id,
@@ -18,11 +18,11 @@ function creatExercise(e) {
    },
    type:"Custom",
    isCustom:true,
-   description: (this.description.value).match(/[^\s]+/g),
+   description: (this.description.value).match(/[^\n]+/g),
    equipment: this.equipment.value,
    youtubeLink: this.youtubeLink.value
  }
- 
+
  /* Append the item to exerciseData (localStorage) */
  var retrievedObject = localStorage.getItem('exerciseData');
  var exerciseArray = JSON.parse(retrievedObject);
