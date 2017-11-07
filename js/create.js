@@ -9,7 +9,7 @@ function creatExercise(e) {
   var id = lowercaseFirstLetter(this.exercise.value).replace(/\s/g, '');
 
   var exercise = {
-  		exerciseId:id,
+  	exerciseId:id,
 		exerciseName: this.exercise.value,
 		distraction: this.distractionLevel.value,
 		duration:{
@@ -23,7 +23,7 @@ function creatExercise(e) {
 		youtubeLink: this.youtubeLink.value
   }
   
-
+  /* Append the item to exerciseData (localStorage) */
   var retrievedObject = localStorage.getItem('exerciseData');
   var exerciseArray = JSON.parse(retrievedObject);
   exerciseArray.exercises.push(exercise);

@@ -16,7 +16,7 @@
   <title>Schedule Exercises - Personal Trainer</title>
 </head>
 <body>
-  
+
   <nav id="topNav" class="navbar navbar-inverse navbar-fixed-top">
     <ul class="nav navbar-nav">
       <li><a href="discover.html">
@@ -44,35 +44,35 @@
 
   <form class="container" id="needs-validation" validate>
     <div class="form-group form-inline">
-      <label for="select-exercise">Exercise Name&#42;</label>
-      <select id="select-exercise" class="form-control" required>
+      <label for="exercise">Exercise Name&#42;</label>
+      <select id="exercise" class="form-control" required>
         <option value=""hidden selected disabled>Select Exercise</option>
       </select>
     </div>
 
     <div class="form-group form-inline">
-      <label for="repeat-interval">Repeat Every&#42;</label>
-      <input class="form-control"  type="number" id="repeat-interval" min="1" max="60" required>
-      <select id ="repeat-timeUnit" class="form-control" required>
-        <option value='minutes'>Minutes</option>
-        <option value='hours'>Hours</option>
-        <option value='days'>Days</option>
+      <label for="repeatInterval">Repeat Every&#42;</label>
+      <input class="form-control"  type="number" id="repeatInterval" min="1" max="60" required>
+      <select id ="repeatTimeUnit" class="form-control" required>
+        <option value='Minutes'>Minutes</option>
+        <option value='Hours'>Hours</option>
+        <option value='Days'>Days</option>
       </select>
     </div>
 
     <div class="form-group form-inline">
-      <label for="exercise-interval">Exercise Interval&#42;</label>
-      <input class="form-control"  type="number" id="exercise-interval" min="1" max="60" required>
-      <select id ="exercise-timeUnit" class="form-control" required>
-        <option value='minutes'>Minutes</option>
-        <option value='hours'>Hours</option>
-        <option value='days'>Days</option>
+      <label for="exerciseInterval">Exercise Interval&#42;</label>
+      <input class="form-control"  type="number" id="exerciseInterval" min="1" max="60" required>
+      <select id ="exerciseTimeUnit" class="form-control" required>
+        <option value='Minutes'>Minutes</option>
+        <option value='Hours'>Hours</option>
+        <option value='Days'>Days</option>
       </select>
     </div>
 
     <div class="form-group form-inline">
-      <label for="start-time">Starting Time&#42;</label>
-      <input class="form-control"  type="time" id="start-time" required>
+      <label for="startTime">Starting Time&#42;</label>
+      <input class="form-control"  type="time" id="startTime" required>
     </div>
 
     <div class="text-center">
@@ -80,12 +80,12 @@
     </div>
   </form>
 
-<!--HandleBars List template --> 
-<script id="option-template" type="text/x-handlebars-template">
+  <!--HandleBars Option template --> 
+  <script id="option-template" type="text/x-handlebars-template">
     {{#each exercises}}
     <option value="{{exerciseId}}">{{exerciseName}}</option>
     {{/each}}
-</script>
+  </script>
 
 
   <!-- Setting Modal -->

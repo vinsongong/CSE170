@@ -47,6 +47,11 @@ var exerciseData = {
 	]
 }
 
+var scheduleData = {
+	schedules : []
+}
+
 /* Store default exercises into localStorage */ 
 localStorage.clear();
 localStorage.setItem("exerciseData", JSON.stringify(exerciseData));
+localStorage.setItem("scheduleData", JSON.stringify(scheduleData));
