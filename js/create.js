@@ -6,7 +6,7 @@ $(document).ready(function(){
 function creatExercise(e) {
   e.preventDefault();
 
-  var id = lowercaseFirstLetter(this.exercise.value).replace(/\n/g, " ");
+  var id = lowercaseFirstLetter(this.exercise.value).replace(/\s/g, '');
 
   var exercise = {
   	exerciseId:id,
