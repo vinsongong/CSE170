@@ -47,9 +47,6 @@
       <label for="select-exercise">Exercise Name&#42;</label>
       <select id="select-exercise" class="form-control" required>
         <option value=""hidden selected disabled>Select Exercise</option>
-        <option value="1">Shoulder Raises</option>
-        <option value="2">Jumping Jacks</option>
-        <option value="3">Standing</option>
       </select>
     </div>
 
@@ -83,6 +80,13 @@
     </div>
   </form>
 
+<!--HandleBars List template --> 
+<script id="option-template" type="text/x-handlebars-template">
+    {{#each exercises}}
+    <option value="{{exerciseId}}">{{exerciseName}}</option>
+    {{/each}}
+</script>
+
 
   <!-- Setting Modal -->
   <div class="modal fade" id="settingModal" role="dialog">
@@ -97,12 +101,6 @@
           This is a setting page. Coming Soon:)
         </div>
         <div class="modal-footer">
-          <!-- <button class="btn btn-default pull-left modify">Modify</button>
-          <button class="btn btn-danger pull-left delete" style="display:none;">Delete</button>
-          <button class="btn btn-success pull-left save" style="display:none;">Save</button>
-          <button class="btn btn-default pull-left cancel" style="display:none;">Cancel</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        -->
         </div>
       </div>
     </div>
