@@ -2,17 +2,22 @@ $(document).ready(function(){
   /* Get iframe src attribute value i.e. YouTube video url
   and store it in a variable */
 
+  var retrievedObject = localStorage.getItem('exerciseData');
+  var exerciseArray = JSON.parse(retrievedObject);
+
   /* Handlers bar */
   var listSource = $("#list-item-template").html();
   var listTemplate = Handlebars.compile(listSource);
-  var listHtml = listTemplate(exerciseData);
+  var listHtml = listTemplate(exerciseArray);
   $("#discoverList").append(listHtml);
 
   var modalSource = $("#modal-template").html();
   var modalTemplate = Handlebars.compile(modalSource);
-  var modalHtml = modalTemplate(exerciseData);
+  var modalHtml = modalTemplate(exerciseArray);
   $("body").append(modalHtml);
-  
+
+
+
   var shoulderRaisesURL = $("#shoulderRaisesVideo").attr('src');
   var jumpingJacksURL = $("#jumpingJacksVideo").attr('src');
   var standingURL = $("#standingVideo").attr('src');

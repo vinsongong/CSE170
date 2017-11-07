@@ -46,3 +46,7 @@ var exerciseData = {
 	}
 	]
 }
+
+/* Store default exercises into localStorage */ 
+localStorage.clear();
+localStorage.setItem("exerciseData", JSON.stringify(exerciseData));
