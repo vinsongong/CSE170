@@ -1,210 +1,145 @@
 <html>
-    <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-      <link href="nav.css" rel="stylesheet">
-      <link href="css/modal.css" rel="stylesheet">
-      <link href="discover.css" rel="stylesheet">
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-      <script src="https://use.fontawesome.com/a42ce1c3c0.js"></script>
-      <script src="discover.js"></script>
-      <title>Discover Exercises - Personal Trainer</title>
-    </head>
-    <body>
-      <!-- Top navbar -->
-      <nav class="navbar navbar-inverse navbar-fixed-top" id="topNav">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#">
-                <i class="fa fa-search" aria-hidden="true"></i>
-                <br />
-                Discover Exercises
-              </a></li>
-              <li><a href="create.html">
-                <i class="fa fa-plus-circle" aria-hidden="true"> </i>
-                <br />
-                Create Exercises
-              </a></li>
-              <li><a href="schedule.html">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                <br />
-                Schedule Exercises
-              </a></li>
-              <li><a href="mySchedule.html">
-                <i class="fa fa-tasks" aria-hidden="true"></i>
-                <br />
-                My Schedule
-              </a></li>
-            </ul>
-      </nav>
-      <!-- END Top navbar -->
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="nav.css" rel="stylesheet">
+  <link href="css/modal.css" rel="stylesheet">
+  <link href="discover.css" rel="stylesheet">
 
-      <!-- Bottom navbar -->
-      <nav class="navbar navbar-default navbar-xs navbar-fixed-bottom" id="bottomNav">
-        <ul class="nav navbar-nav">
-          <li><a href="index.html">
-            <i class="fa fa-sign-out" aria-hidden="true"></i>
-            Logout
-          </a></li>
-          <li><a data-toggle="modal" href="#settingModal">
-            <i class="fa fa-cog" aria-hidden="true"></i>
-            Settings
-          </a></li>
-        </ul>
-      </nav>
-      <!-- END Bottom navbar -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+  <script src="https://use.fontawesome.com/a42ce1c3c0.js"></script>
+  <script src="discover.js"></script>
+  <title>Discover Exercises - Personal Trainer</title>
+</head>
+<body>
+  <!-- Top navbar -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" id="topNav">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">
+        <i class="fa fa-search" aria-hidden="true"></i>
+        <br />
+        Discover Exercises
+    </a></li>
+    <li><a href="create.html">
+        <i class="fa fa-plus-circle" aria-hidden="true"> </i>
+        <br />
+        Create Exercises
+    </a></li>
+    <li><a href="schedule.html">
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        <br />
+        Schedule Exercises
+    </a></li>
+    <li><a href="mySchedule.html">
+        <i class="fa fa-tasks" aria-hidden="true"></i>
+        <br />
+        My Schedule
+    </a></li>
+</ul>
+</nav>
+<!-- END Top navbar -->
 
-      <!-- Discover Exercises List -->
-      <div class="container">
-        <div class="list-group">
-          <a data-toggle="modal" href="#shoulderRaisesModal" class="list-group-item">
-            <span class="badge badge-default badge-pill">
-              Distraction: Medium<br />
-              Duration: 10 minutes
-            </span>
-            <h4 class="list-group-item-heading">Shoulder Raises</h4>
-            <p class="list-group-item-text">Recommended</p>
-          </a>
-          <a data-toggle="modal" href="#jumpingJacksModal" class="list-group-item">
-            <span class="badge badge-default badge-pill">
-              Distraction: High<br />
-              Duration: 15 minutes
-            </span>
-            <h4 class="list-group-item-heading">Jumping Jacks</h4>
-            <p class="list-group-item-text">Recommended</p>
-          </a>
-          <a data-toggle="modal" href="#standingModal" class="list-group-item">
-            <span class="badge badge-default badge-pill">
-              Distraction: Low<br />
-              Duration: 1 hours
-            </span>
-            <h4 class="list-group-item-heading">Standing</h4>
-            <p class="list-group-item-text">Custom</p>
-          </a>
-        </div>
-      </div>
-      <!-- END Discover Exercises List -->
+<!-- Bottom navbar -->
+<nav class="navbar navbar-default navbar-xs navbar-fixed-bottom" id="bottomNav">
+    <ul class="nav navbar-nav">
+      <li><a href="index.html">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+        Logout
+    </a></li>
+    <li><a data-toggle="modal" href="#settingModal">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+        Settings
+    </a></li>
+</ul>
+</nav>
+<!-- END Bottom navbar -->
 
-      <!-- Shoulder Raises Modal -->
-      <div class="modal fade discover" id="shoulderRaisesModal" role="dialog">
+<!-- Discover Exercises List -->
+<div class="container">
+    <div id="discoverList" class="list-group"></div>
+</div>
+<!-- END Discover Exercises List -->
+
+<!--HandleBars List template --> 
+<script id="list-item-template" type="text/x-handlebars-template">
+    {{#each exercises}}
+    <a data-toggle="modal" href="#{{exerciseId}}" class="list-group-item">
+        <span class="badge badge-default badge-pill">
+          Distraction: {{distraction}}<br />
+          Duration: {{duration.time}} {{duration.unit}}
+      </span>
+      <h4 class="list-group-item-heading">{{exerciseName}}</h4>
+      <p class="list-group-item-text">{{type}}</p>
+  </a>
+  {{/each}}
+</script>
+<!--END HandleBars List template --> 
+
+<!--HandleBars Modal template --> 
+<script id="modal-template" type="text/x-handlebars-template">
+    {{#each exercises}}
+    <div class="modal fade discover" id="{{exerciseId}}" role="dialog">
         <div class="modal-dialog">
           <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Shoulder Raises</h4>
-            </div>
-            <div class="modal-body">
-              <div class="youtube-vid">
-                <iframe id="shoulderRaisesVideo" src="https://www.youtube.com/embed/q5sNYB1Q6aM" frameborder="0" allowfullscreen></iframe>
-                <br />
-              </div>
-              <ul class="modal-ul">
-                <li>Do 2 sets of 10</li>
-                <li>Equipment: Weights or Dumbells</li>
-                <li>Can multitask with work</li>
-                <li>Takes: 10 minutes</li>
-              </ul>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+              <h4 class="modal-title">{{exerciseName}}</h4>
           </div>
-        </div>
-      </div>
-      <!--END Shoulder Raises Modal -->
-
-      <!-- Jumping Jacks Modal -->
-      <div class="modal fade discover" id="jumpingJacksModal" role="dialog">
-        <div class="modal-dialog">
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Jumping Jacks</h4>
-            </div>
-            <div class="modal-body">
+          <div class="modal-body">
               <div class="youtube-vid">
-                <iframe id="jumpingJacksVideo" src="https://www.youtube.com/embed/UpH7rm0cYbM" frameborder="0" allowfullscreen></iframe>
+                <iframe id="standingVideo" src="{{youtubeLink}}" frameborder="0" allowfullscreen></iframe>
                 <br />
-              </div>
-              <ul class="modal-ul">
-                <li>Do 3 sets of 15</li>
-                <li>Equipment: None</li>
-                <li>Requires full attention</li>
-                <li>Takes: 15 minutes</li>
-              </ul>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--END Jumping Jacks Modal -->
-
-      <!-- Standing Modal -->
-      <div class="modal fade discover" id="standingModal" role="dialog">
-        <div class="modal-dialog">
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Standing</h4>
-            </div>
-            <div class="modal-body">
-              <div class="youtube-vid">
-                <iframe id="standingVideo" src="" frameborder="0" allowfullscreen></iframe>
-                <br />
-              </div>
-              <div class="modal-details">
-                <p class="modal-distraction" style="display:none;">Low</p>
-                <h5 class="modal-interval">Interval: 1 hours</h5>
+            <div class="modal-details">
+                <p class="modal-distraction" style="display:none;">{{distraction}}</p>
+                <h5 class="modal-interval">Interval: {{duration.time}} {{duration.unit}}</h5>
                 <ul class="modal-ul">
-                  <li>Standing up while working</li>
-                  <li>Equipment: None</li>
-                  <li>Can work while studying</li>
-                </ul>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button class="btn btn-default pull-left modify">Modify</button>
-              <button class="btn btn-danger pull-left delete" style="display:none;">Delete</button>
-              <button class="btn btn-success pull-left save" style="display:none;">Save</button>
-              <button class="btn btn-default pull-left cancel" style="display:none;">Cancel</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+                  <li>Equipment: {{equipment}}</li>
+                  {{#each description}}
+                  <li>{{this}}</li>
+                  {{/each}}
+              </ul>
           </div>
-        </div>
       </div>
-      <!--END Standing Modal -->
-
-      <!-- Setting Modal -->
-      <div class="modal fade" id="settingModal" role="dialog">
-        <div class="modal-dialog">
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Setting</h4>
-            </div>
-            <div class="modal-body">
-              This is a setting page. Coming Soon:)
-            </div>
-            <div class="modal-footer">
-              <!-- <button class="btn btn-default pull-left modify">Modify</button>
-              <button class="btn btn-danger pull-left delete" style="display:none;">Delete</button>
-              <button class="btn btn-success pull-left save" style="display:none;">Save</button>
-              <button class="btn btn-default pull-left cancel" style="display:none;">Cancel</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            -->
-            </div>
-          </div>
-        </div>
+      <div class="modal-footer">
+          {{#if isCustom}}
+          <button class="btn btn-default pull-left modify">Modify</button>
+          {{/if}}
+          <button class="btn btn-danger pull-left delete" style="display:none;">Delete</button>
+          <button class="btn btn-success pull-left save" style="display:none;">Save</button>
+          <button class="btn btn-default pull-left cancel" style="display:none;">Cancel</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
-      <!--END Setting Modal -->
+  </div>
+</div>
+</div>
+{{/each}}
+</script>
+<!--END HandleBars Modal template --> 
 
-      </nav>
-    </body>
+<!-- Setting Modal -->
+<div class="modal fade" id="settingModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Setting</h4>
+      </div>
+      <div class="modal-body">
+          This is a setting page. Coming Soon:)
+      </div>
+      <div class="modal-footer">
+      </div>
+  </div>
+</div>
+</div>
+<!--END Setting Modal -->
+
+</nav>
+</body>
 </html>

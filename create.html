@@ -1,52 +1,55 @@
 <html>
-    <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-      <script src="https://use.fontawesome.com/a42ce1c3c0.js"></script>
-      <link href="nav.css" rel="stylesheet">
-      <link href="css/create.css" rel="stylesheet">
-      <link href="css/modal.css" rel="stylesheet">
-      <title>Create Exercises - Personal Trainer</title>
-    </head>
-    <body>
-      <nav class="navbar navbar-inverse navbar-fixed-top" id="topNav">
-            <ul class="nav navbar-nav">
-              <li><a href="discover.html">
-                <i class="fa fa-search" aria-hidden="true"></i>
-                <br />
-                Discover Exercises
-              </a></li>
-              <li class="active"><a href="#">
-                <i class="fa fa-plus-circle" aria-hidden="true"> </i>
-                <br />
-                Create Exercises
-              </a></li>
-              <li><a href="schedule.html">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                <br />
-                Schedule Exercises
-              </a></li>
-              <li><a href="mySchedule.html">
-                <i class="fa fa-tasks" aria-hidden="true"></i>
-                <br />
-                My Schedule
-              </a></li>
-            </ul>
-      </nav>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="nav.css" rel="stylesheet">
+  <link href="css/create.css" rel="stylesheet">
+  <link href="css/modal.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://use.fontawesome.com/a42ce1c3c0.js"></script>
+  <script src="js/bootbox.min.js"></script>
+  <script src="js/create.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+  <title>Create Exercises - Personal Trainer</title>
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top" id="topNav">
+    <ul class="nav navbar-nav">
+      <li><a href="discover.html">
+        <i class="fa fa-search" aria-hidden="true"></i>
+        <br />
+        Discover Exercises
+      </a></li>
+      <li class="active"><a href="#">
+        <i class="fa fa-plus-circle" aria-hidden="true"> </i>
+        <br />
+        Create Exercises
+      </a></li>
+      <li><a href="schedule.html">
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        <br />
+        Schedule Exercises
+      </a></li>
+      <li><a href="mySchedule.html">
+        <i class="fa fa-tasks" aria-hidden="true"></i>
+        <br />
+        My Schedule
+      </a></li>
+    </ul>
+  </nav>
 
   <form class="container" id="needs-validation" validate>
     <div class="form-group form-inline">
-      <label for="exercise">Exercise Name *</label>
+      <label for="exercise">Exercise Name&#42;</label>
       <input type="text" id="exercise" class="form-control" required>
     </div>
 
     <div class="form-group form-inline">
-      <label for="exercise-interval">Exercise Interval *</label>
-      <input class="form-control"  type="number" id="exercise-interval" min="1" max="60" required>
-      <select id ="exercise-timeUnit" class="form-control" required>
+      <label for="exercise-interval">Exercise Interval&#42;</label>
+      <input class="form-control"  type="number" id="exerciseInterval" min="1" max="60" required>
+      <select id ="exerciseTimeUnit" class="form-control" required>
         <option value='minutes'>Minutes</option>
         <option value='hours'>Hours</option>
         <option value='days'>Days</option>
@@ -54,23 +57,28 @@
     </div>
 
     <div class="form-group form-inline">
-      <label for="distraction-level">Distraction Level *</label>
-      <select id ="distraction-level" class="form-control" required>
-        <option value='low'>Low</option>
-        <option value='medium'>Medium</option>
-        <option value='high'>High</option>
+      <label for="distractionLevel">Distraction Level&#42;</label>
+      <select id ="distractionLevel" class="form-control" required>
+        <option value='Low'>Low</option>
+        <option value='Medium'>Medium</option>
+        <option value='High'>High</option>
       </select>
     </div>
 
 
     <div class="form-group form-inline">
-      <label for="description">Description *</label>
+      <label for="description">Description&#42;</label>
       <textarea class="form-control" id="description" required></textarea>
     </div>
 
     <div class="form-group form-inline">
-      <label for="youtube-link"><i class="fa fa-youtube-play"></i>&nbsp;Youtube Link (Optional)</label>
-      <input type="text" class="form-control" id="youtube-link"></textarea>
+      <label for="equipment">Equipment (Optional)</label>
+      <input type="text" class="form-control" id="equipment">
+    </div>
+
+    <div class="form-group form-inline">
+      <label for="youtubeLink"><i class="fa fa-youtube-play"></i>&nbsp;Youtube Link (Optional)</label>
+      <input type="text" class="form-control" id="youtubeLink">
     </div>
 
     <div class="text-center">
@@ -78,43 +86,37 @@
     </div>
   </form>
 
-      <!-- Setting Modal -->
-      <div class="modal fade" id="settingModal" role="dialog">
-        <div class="modal-dialog">
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Setting</h4>
-            </div>
-            <div class="modal-body">
-              This is a setting page. Coming Soon:)
-            </div>
-            <div class="modal-footer">
-              <!-- <button class="btn btn-default pull-left modify">Modify</button>
-              <button class="btn btn-danger pull-left delete" style="display:none;">Delete</button>
-              <button class="btn btn-success pull-left save" style="display:none;">Save</button>
-              <button class="btn btn-default pull-left cancel" style="display:none;">Cancel</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            -->
-            </div>
-          </div>
+  <!-- Setting Modal -->
+  <div class="modal fade" id="settingModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Setting</h4>
+        </div>
+        <div class="modal-body">
+          This is a setting page. Coming Soon:)
+        </div>
+        <div class="modal-footer">
         </div>
       </div>
-      <!--END Setting Modal -->
+    </div>
+  </div>
+  <!--END Setting Modal -->
 
-      <nav id="bottomNav" class="navbar navbar-default navbar-xs navbar-fixed-bottom">
-        <ul class="nav navbar-nav">
-          <li><a href="index.html">
-            <i class="fa fa-sign-out" aria-hidden="true"></i>
-            Logout
-          </a></li>
-          <li><a data-toggle="modal" href="#settingModal">
-            <i class="fa fa-cog" aria-hidden="true"></i>
-            Settings
-          </a></li>
-        </ul>
-      </nav>
+  <nav id="bottomNav" class="navbar navbar-default navbar-xs navbar-fixed-bottom">
+    <ul class="nav navbar-nav">
+      <li><a href="index.html">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+        Logout
+      </a></li>
+      <li><a data-toggle="modal" href="#settingModal">
+        <i class="fa fa-cog" aria-hidden="true"></i>
+        Settings
+      </a></li>
+    </ul>
+  </nav>
 
-    </body>
+</body>
 </html>
