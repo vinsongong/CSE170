@@ -1,8 +1,17 @@
 $(document).ready(function(){
   /* Get iframe src attribute value i.e. YouTube video url
   and store it in a variable */
- 
-  console.log(localStorage.getItem('exerciseName'));
+
+  /* Handlers bar */
+  var listSource = $("#list-item-template").html();
+  var listTemplate = Handlebars.compile(listSource);
+  var listHtml = listTemplate(exerciseData);
+  $("#discoverList").append(listHtml);
+
+  var modalSource = $("#modal-template").html();
+  var modalTemplate = Handlebars.compile(modalSource);
+  var modalHtml = modalTemplate(exerciseData);
+  $("body").append(modalHtml);
   
   var shoulderRaisesURL = $("#shoulderRaisesVideo").attr('src');
   var jumpingJacksURL = $("#jumpingJacksVideo").attr('src');
@@ -22,7 +31,7 @@ $(document).ready(function(){
     var timeUnit = timeStrArr[2];
     var distractionVal = $(this).find(".modal-distraction").text();
     $("a[href='#standingModal']").find(".badge")
-      .html("Distraction: " + distractionVal + "<br /> Duration: " + timeVal + " " + timeUnit);
+    .html("Distraction: " + distractionVal + "<br /> Duration: " + timeVal + " " + timeUnit);
     $("a[href='#standingModal']").find("h4").html($(this).find(".modal-title").text());
     standingURL = $("#standingVideo").attr('src');
     $("#standingVideo").attr('src', '');
@@ -68,15 +77,15 @@ function modifyDetails(e) {
   //Exercise Name
   var exerciseName = $(this).parents().eq(1).find(".modal-title").text();
   var exerciseCode = "<div class='exerciseNameDiv'>Exercise Name:<br /><input" +
-    " type='text' class='exerciseNameInput form-control' value='" +
-    exerciseName + "' autofocus required/></div>";
+  " type='text' class='exerciseNameInput form-control' value='" +
+  exerciseName + "' autofocus required/></div>";
   modalBody.append(exerciseCode);
 
   //Interval
   var timeText = $(this).parents().eq(1).find(".modal-interval").text();
   var timeBox = "<div class='timeDiv'>Interval:<br /><input type='number' class='timeDeets form-control' " +
-    "placeholder='' min='1' max='60' value='" +
-    parseInt(timeText.replace(/[^0-9\.]/g, ''), 10) + "' />";
+  "placeholder='' min='1' max='60' value='" +
+  parseInt(timeText.replace(/[^0-9\.]/g, ''), 10) + "' />";
   var timeDropdown = "<select class='timeDrop form-control'>" +
   "<option value='seconds'>seconds</option>" +
   "<option value='minutes'>minutes</option>" +
@@ -91,17 +100,17 @@ function modifyDetails(e) {
   //Distraction Level
   var distractionLevel = $(this).parents().eq(1).find(".modal-distraction").text();
   var distrationCode = "<div class='distractionDiv'>Distraction Level:" +
-    "<select class='distractionDrop form-control'>" +
-    "<option value='Low'>Low</option>" +
-    "<option value='Medium'>Medium</option>" +
-    "<option value='High'>High</option>" +
-    "</select></div>";
-    modalBody.append(distrationCode);
-    $(".distractionDrop option[value=" + distractionLevel+ "]").attr("selected", true);
+  "<select class='distractionDrop form-control'>" +
+  "<option value='Low'>Low</option>" +
+  "<option value='Medium'>Medium</option>" +
+  "<option value='High'>High</option>" +
+  "</select></div>";
+  modalBody.append(distrationCode);
+  $(".distractionDrop option[value=" + distractionLevel+ "]").attr("selected", true);
 
   //Textbox
   var textBox = "<div class='textBoxDiv'>Description:<textarea class='textBoxDeets form-control'rows='"+ (modalUL.length + 4) +"' cols='40'" +
-    " placeholder='Details about the exercise...' required>";
+  " placeholder='Details about the exercise...' required>";
   for(i = 0; i < modalUL.length; i++) {
     textBox += modalUL.eq(i).text() + "\n";
   }
@@ -111,8 +120,8 @@ function modifyDetails(e) {
   var youtubeLink = $(this).parents().eq(1).find("iframe").attr("src");
   $(this).parents().eq(1).find("iframe").attr('src', "#" + youtubeLink); //To stop video from playing
   var youtubeLinkCode = "<div class='youtubeLinkDiv'>Youtube Link:" +
-    "<input type='text' class='youtubeLinkInput form-control' value='" +
-    youtubeLink + "' /></div>";
+  "<input type='text' class='youtubeLinkInput form-control' value='" +
+  youtubeLink + "' /></div>";
   modalBody.append(youtubeLinkCode);
 }
 
@@ -233,7 +242,7 @@ function saveDetails(e) {
   var youtubeVideoID = getYoutubeId(newYoutubeLink);
   var embedYoutubeLink = youtubeVideoID;
   if(youtubeVideoID != "") {
-      embedYoutubeLink = embedYoutubeLink.replace(/^/,"https://www.youtube.com/embed/");
+    embedYoutubeLink = embedYoutubeLink.replace(/^/,"https://www.youtube.com/embed/");
   }
   $(this).parents().eq(1).find("iframe").attr("src", embedYoutubeLink);
 
@@ -257,12 +266,12 @@ function deleteExercise(e) {
 }
 
 function getYoutubeId(url) {
-    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    var match = url.match(regExp);
+  var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  var match = url.match(regExp);
 
-    if (match && match[2].length == 11) {
-        return match[2];
-    } else {
-        return "";
-    }
+  if (match && match[2].length == 11) {
+    return match[2];
+  } else {
+    return "";
+  }
 }
