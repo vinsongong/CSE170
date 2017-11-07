@@ -1,6 +1,9 @@
 $(document).ready(function(){
   /* Get iframe src attribute value i.e. YouTube video url
   and store it in a variable */
+ 
+  console.log(localStorage.getItem('exerciseName'));
+  
   var shoulderRaisesURL = $("#shoulderRaisesVideo").attr('src');
   var jumpingJacksURL = $("#jumpingJacksVideo").attr('src');
   var standingURL = $("#standingVideo").attr('src');
