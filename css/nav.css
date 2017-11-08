@@ -1,7 +1,7 @@
 body {
-  padding-top: 90px;
-  padding-bottom: 40px;
-  background-color: #eee;
+    padding-top: 90px;
+    padding-bottom: 40px;
+    background-color: #eee;
 }
 #topNav {
     border: none; /* 1px solid transparent */
@@ -22,8 +22,8 @@ body {
     padding-bottom: 15px;
 }
 #topNav > .nav > .active{
-  color:red;
-  border-bottom: 5px solid red;
+    color:red;
+    border-bottom: 5px solid red;
 }
 
 #bottomNav > .navbar-nav {
@@ -38,13 +38,13 @@ body {
 }
 
 @media (max-width: 768px) {
-  body {
-    padding-top: 90px;
-  }
+    body {
+        padding-top: 90px;
+    }
 }
 
 @media (max-width: 549px) {
-  body {
-    padding-top: 110px;
-  }
+    body {
+        padding-top: 110px;
+    }
 }

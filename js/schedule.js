@@ -38,7 +38,7 @@ function scheduleExercise(e) {
 
 	var index = findIndexOf(scheduleArray, exercise.exerciseId);
 	console.log(index);
-	//The same exercise exist 
+	//The same exercise exist
 	if (index != -1) {
 		bootbox.confirm({
 			title: "Confirm Message",
@@ -83,7 +83,7 @@ function scheduleExercise(e) {
 				window.location.replace("mySchedule.html");
 			}
 		});
-	}	
+	}
 }
 
 function findIndexOf(array, originalId){

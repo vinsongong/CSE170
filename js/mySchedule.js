@@ -1,4 +1,4 @@
-  $(document).ready(function(){
+$(document).ready(function(){
     /* Get iframe src attribute value i.e. YouTube video url
     and store it in a variable */
 
@@ -49,11 +49,11 @@
         start.setSeconds(0);
 
         while ((start.getTime() - currMillis) <= 0){
-         start.setTime(start.getTime() + timePeriodMillis);
-     }
+            start.setTime(start.getTime() + timePeriodMillis);
+        }
 
-     $(startTime).countdown({until: start, format: 'dHMS'});
- });
+        $(startTime).countdown({until: start, format: 'dHMS'});
+    });
 
     $("button.modify").click(modifyScheduleItem);
     $("button.cancel").click(cancelScheduleItem);
@@ -61,7 +61,7 @@
     $("button.delete").click(deleteScheduleItem);
 });
 
-  function modifyScheduleItem(e) {
+function modifyScheduleItem(e) {
     e.preventDefault();
     $(this).hide();
     $(this).parent().find(".delete").show();
@@ -125,78 +125,78 @@ function saveScheduleItem(e) {
     //Find the index of the array
     var index = findIndexOf(scheduleArray, originalId);
 
-  //Parse out new repeat every
-  var repeatVal = $(this).parents().eq(1).find(".repeatVal").val();
-  var repeatUnits = $(this).parents().eq(1).find(".repeatUnitsDrop option:selected").val();
+    //Parse out new repeat every
+    var repeatVal = $(this).parents().eq(1).find(".repeatVal").val();
+    var repeatUnits = $(this).parents().eq(1).find(".repeatUnitsDrop option:selected").val();
 
-  //Parse out new interval
-  var intervalVal = $(this).parents().eq(1).find(".intervalVal").val();
-  var intervalUnits = $(this).parents().eq(1).find(".intervalUnitsDrop option:selected").val();
+    //Parse out new interval
+    var intervalVal = $(this).parents().eq(1).find(".intervalVal").val();
+    var intervalUnits = $(this).parents().eq(1).find(".intervalUnitsDrop option:selected").val();
 
-  var oldExercise = scheduleArray.schedules[index];
+    var oldExercise = scheduleArray.schedules[index];
 
-  if(oldExercise != null){
-    oldExercise.repeatDuration.time = repeatVal;
-    oldExercise.repeatDuration.unit = repeatUnits;
-    oldExercise.exerciseDuration.time = intervalVal;
-    oldExercise.exerciseDuration.unit = intervalUnits;
-  }
+    if(oldExercise != null){
+        oldExercise.repeatDuration.time = repeatVal;
+        oldExercise.repeatDuration.unit = repeatUnits;
+        oldExercise.exerciseDuration.time = intervalVal;
+        oldExercise.exerciseDuration.unit = intervalUnits;
+    }
 
-  scheduleArray.schedules[index] = oldExercise;
-  /* Update the local storage */
-  localStorage.setItem("scheduleData", JSON.stringify(scheduleArray));
-  $(".modal .close").click();
+    scheduleArray.schedules[index] = oldExercise;
+    /* Update the local storage */
+    localStorage.setItem("scheduleData", JSON.stringify(scheduleArray));
+    $(".modal .close").click();
 
-  bootbox.alert({
-  size: "large",
-  message: "Updated Successfully.",
-  backdrop: true,
-  callback: function(){
-    window.location.replace("mySchedule.html");
-  }
-});
+    bootbox.alert({
+        size: "large",
+        message: "Updated Successfully.",
+        backdrop: true,
+        callback: function(){
+            window.location.replace("mySchedule.html");
+        }
+    });
 
 }
 
 function deleteScheduleItem(e) {
     e.preventDefault();
     if (confirm("Are you sure you want to delete this exercise?")) {
-      var modal = $(this).parents().eq(3);
-      var modalID = modal.attr('id');
-      modal.modal('hide').on('hidden.bs.modal', function() {
-        $(this).remove();
-    });
-      $("a[href='#" + modalID + "']").remove();
-  }
+        var modal = $(this).parents().eq(3);
+        var modalID = modal.attr('id');
+        modal.modal('hide').on('hidden.bs.modal', function() {
+            $(this).remove();
+        });
+        $("a[href='#" + modalID + "']").remove();
+    }
 
 
-  //Retrieve local storage items
-  var retrievedObject = localStorage.getItem('scheduleData');
-  var scheduleArray = JSON.parse(retrievedObject);
-  var index = findIndexOf(scheduleArray, modalID);
+    //Retrieve local storage items
+    var retrievedObject = localStorage.getItem('scheduleData');
+    var scheduleArray = JSON.parse(retrievedObject);
+    var index = findIndexOf(scheduleArray, modalID);
 
-  //Delete an item from the local storage array
-  if (index > -1) {
-      scheduleArray.schedules.splice(index, 1);
-  }
+    //Delete an item from the local storage array
+    if (index > -1) {
+        scheduleArray.schedules.splice(index, 1);
+    }
 
-  //Save the changes (Deletion)
-  localStorage.setItem("scheduleData", JSON.stringify(scheduleArray));
-  return false;
+    //Save the changes (Deletion)
+    localStorage.setItem("scheduleData", JSON.stringify(scheduleArray));
+    return false;
 }
 
 function findIndexOf(array, originalId){
-  var index = -1;
-  $.each(array.schedules, function() {
-    $this = $(this)[0];
-    var exerciseId = $this.exerciseId;
-    if(originalId === exerciseId){
-      index = array.schedules.indexOf($this);
-  }
-});
-  return index;
+    var index = -1;
+    $.each(array.schedules, function() {
+        $this = $(this)[0];
+        var exerciseId = $this.exerciseId;
+        if(originalId === exerciseId){
+            index = array.schedules.indexOf($this);
+        }
+    });
+    return index;
 }
 
 function lowercaseFirstLetter(str) {
-  return str.charAt(0).toLowerCase() + str.slice(1);
+    return str.charAt(0).toLowerCase() + str.slice(1);
 }

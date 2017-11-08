@@ -1,156 +1,156 @@
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link href="css/nav.css" rel="stylesheet">
-  <link href="css/settingsModal.css" rel="stylesheet">
-  <link href="css/modal.css" rel="stylesheet">
-  <link href="css/mySchedule.css" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script src="https://use.fontawesome.com/a42ce1c3c0.js"></script>
-  <script src="js/emailValidate.js" type="text/javascript"></script>
-  <script src="js/passwordValidate.js" type="text/javascript"></script>
-  <script src="js/bootbox.min.js"></script>
-  <script src="js/jquery.plugin.min.js" type="text/javascript"></script>
-  <script src="js/jquery.countdown.min.js" type="text/javascript"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-  <script src="js/mySchedule.js" type="text/javascript"></script>
-  <title>My Schedule - Personal Trainer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="css/nav.css" rel="stylesheet">
+    <link href="css/settingsModal.css" rel="stylesheet">
+    <link href="css/modal.css" rel="stylesheet">
+    <link href="css/mySchedule.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/a42ce1c3c0.js"></script>
+    <script src="js/emailValidate.js" type="text/javascript"></script>
+    <script src="js/passwordValidate.js" type="text/javascript"></script>
+    <script src="js/bootbox.min.js"></script>
+    <script src="js/jquery.plugin.min.js" type="text/javascript"></script>
+    <script src="js/jquery.countdown.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <script src="js/mySchedule.js" type="text/javascript"></script>
+    <title>My Schedule - Personal Trainer</title>
 </head>
 <body>
-  <nav class="navbar navbar-inverse navbar-fixed-top" id="topNav">
-    <ul class="nav navbar-nav">
-      <li><a href="discover.html">
-        <i class="fa fa-search" aria-hidden="true"></i>
-        <br />
-        Discover Exercises
-      </a></li>
-      <li><a href="create.html">
-        <i class="fa fa-plus-circle" aria-hidden="true"> </i>
-        <br />
-        Create Exercises
-      </a></li>
-      <li><a href="schedule.html">
-        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-        <br />
-        Schedule Exercises
-      </a></li>
-      <li class="active"><a href="#">
-        <i class="fa fa-tasks" aria-hidden="true"></i>
-        <br />
-        My Schedule
-      </a></li>
-    </ul>
-  </nav>
-
-<!-- Schedule Exercises List -->
-<div class="container">
-    <div id="scheduleList" class="list-group"></div>
-</div>
-<!-- END Schedule Exercises List -->
-
-<!--HandleBars List template -->
-<script id="list-item-template" type="text/x-handlebars-template">
-    {{#each schedules}}
-    <a data-toggle="modal" href="#{{exerciseId}}" class="list-group-item">
-      <h4 class="list-group-item-heading">{{exerciseName}}</h4>
-      <p class="list-group-item-text">Repeat Every: <span class="repeatTime">{{repeatDuration.time}}</span> <span class="repeatUnit">{{repeatDuration.unit}}</span></p>
-      <p class="list-group-item-text">Interval: {{exerciseDuration.time}} {{exerciseDuration.unit}}</p>
-      <p class="list-group-item-text">Starting at:  <span class="startTime">{{startTime}}</span></p>
-  </a>
-  {{/each}}
-</script>
-<!--END HandleBars List template -->
-
-<!--HandleBars Modal template -->
-<script id="modal-template" type="text/x-handlebars-template">
-    {{#each schedules}}
-    <div class="modal fade discover" id="{{exerciseId}}" role="dialog">
-        <div class="modal-dialog">
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">{{exerciseName}}</h4>
-          </div>
-          <div class="modal-body">
-            <div class="modal-details">
-                <h5 class="modal-repeat">Repeat Every: {{repeatDuration.time}} {{repeatDuration.unit}}</h5>
-                <h5 class="modal-interval">Interval: {{exerciseDuration.time}} {{exerciseDuration.unit}}</h5>
-              </ul>
-          </div>
-      </div>
-      <div class="modal-footer">
-          <button class="btn btn-default pull-left modify">Modify</button>
-          <button class="btn btn-danger pull-left delete" style="display:none;">Delete</button>
-          <button class="btn btn-success pull-left save" style="display:none;">Save</button>
-          <button class="btn btn-default pull-left cancel" style="display:none;">Cancel</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-  </div>
-</div>
-</div>
-{{/each}}
-</script>
-
-  <!-- Setting Modal -->
-  <div class="modal fade" id="settingModal" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Settings</h4>
-        </div>
-        <div class="modal-body">
-          <div class='settings_email'>
-            <h4><b>Change Email</b></h4>
-            <hr />
-            <form class="form-signup" onsubmit="alert('Email has successfully been changed.');">
-              <p class="alignleft">New Email:</p>
-              <input type='email' id="settings-newEmail" class='settings-input form-control' placeholder="Enter new email" value='test@test.com' autofocus required/>
-              <p class="alignleft">Confirm New Email:</p>
-              <input type='email' id="settings-newConfirmEmail" class='settings-input form-control' placeholder="Retype new email" required/>
-              <button class="btn btn-lg btn-primary btn-block" id="emailChangeBtn" type="submit">Submit Email Change</button>
-              <hr />
-            </form>
-          </div>
-          <div class='settings_password'>
-            <h4><b>Change Password</b></h4>
-            <hr />
-            <form class="form-signup" onsubmit="alert('Password has successfully been changed.');">
-              <p class="alignleft">Current Password:</p>
-              <input type='password' id="settings-oldPassword" class='settings-input form-control' placeholder="Enter current password" autofocus required/>
-              <p class="alignleft">New Password:</p>
-              <input type='password' id="inputPassword" class='settings-input form-control' placeholder="Enter new password" required/>
-              <p class="alignleft">Confirm New Password:</p>
-              <input type='password' id="inputPasswordConfirm" class='settings-input form-control' placeholder="Retype new password" required/>
-              <button class="btn btn-lg btn-primary btn-block" id="createBtn" type="submit">Submit Password Change</button>
-            </form>
-          </div>
-        </div>
-        <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--END Setting Modal -->
-
-    <nav id="bottomNav" class="navbar navbar-default navbar-xs navbar-fixed-bottom">
-      <ul class="nav navbar-nav">
-        <li><a href="index.html">
-          <i class="fa fa-sign-out" aria-hidden="true"></i>
-          Logout
-        </a></li>
-        <li><a data-toggle="modal" href="#settingModal">
-          <i class="fa fa-cog" aria-hidden="true"></i>
-          Settings
-        </a></li>
-      </ul>
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="topNav">
+        <ul class="nav navbar-nav">
+            <li><a href="discover.html">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <br />
+                Discover Exercises
+            </a></li>
+            <li><a href="create.html">
+                <i class="fa fa-plus-circle" aria-hidden="true"> </i>
+                <br />
+                Create Exercises
+            </a></li>
+            <li><a href="schedule.html">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                <br />
+                Schedule Exercises
+            </a></li>
+            <li class="active"><a href="#">
+                <i class="fa fa-tasks" aria-hidden="true"></i>
+                <br />
+                My Schedule
+            </a></li>
+        </ul>
     </nav>
 
-  </body>
-  </html>
+    <!-- Schedule Exercises List -->
+    <div class="container">
+        <div id="scheduleList" class="list-group"></div>
+    </div>
+    <!-- END Schedule Exercises List -->
+
+    <!--HandleBars List template -->
+    <script id="list-item-template" type="text/x-handlebars-template">
+        {{#each schedules}}
+        <a data-toggle="modal" href="#{{exerciseId}}" class="list-group-item">
+            <h4 class="list-group-item-heading">{{exerciseName}}</h4>
+            <p class="list-group-item-text">Repeat Every: <span class="repeatTime">{{repeatDuration.time}}</span> <span class="repeatUnit">{{repeatDuration.unit}}</span></p>
+            <p class="list-group-item-text">Interval: {{exerciseDuration.time}} {{exerciseDuration.unit}}</p>
+            <p class="list-group-item-text">Starting at:  <span class="startTime">{{startTime}}</span></p>
+        </a>
+        {{/each}}
+    </script>
+    <!--END HandleBars List template -->
+
+    <!--HandleBars Modal template -->
+    <script id="modal-template" type="text/x-handlebars-template">
+        {{#each schedules}}
+        <div class="modal fade discover" id="{{exerciseId}}" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{exerciseName}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-details">
+                            <h5 class="modal-repeat">Repeat Every: {{repeatDuration.time}} {{repeatDuration.unit}}</h5>
+                            <h5 class="modal-interval">Interval: {{exerciseDuration.time}} {{exerciseDuration.unit}}</h5>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default pull-left modify">Modify</button>
+                    <button class="btn btn-danger pull-left delete" style="display:none;">Delete</button>
+                    <button class="btn btn-success pull-left save" style="display:none;">Save</button>
+                    <button class="btn btn-default pull-left cancel" style="display:none;">Cancel</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</script>
+
+<!-- Setting Modal -->
+<div class="modal fade" id="settingModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Settings</h4>
+            </div>
+            <div class="modal-body">
+                <div class='settings_email'>
+                    <h4><b>Change Email</b></h4>
+                    <hr />
+                    <form class="form-signup" onsubmit="alert('Email has successfully been changed.');">
+                        <p class="alignleft">New Email:</p>
+                        <input type='email' id="settings-newEmail" class='settings-input form-control' placeholder="Enter new email" value='test@test.com' autofocus required/>
+                        <p class="alignleft">Confirm New Email:</p>
+                        <input type='email' id="settings-newConfirmEmail" class='settings-input form-control' placeholder="Retype new email" required/>
+                        <button class="btn btn-lg btn-primary btn-block" id="emailChangeBtn" type="submit">Submit Email Change</button>
+                        <hr />
+                    </form>
+                </div>
+                <div class='settings_password'>
+                    <h4><b>Change Password</b></h4>
+                    <hr />
+                    <form class="form-signup" onsubmit="alert('Password has successfully been changed.');">
+                        <p class="alignleft">Current Password:</p>
+                        <input type='password' id="settings-oldPassword" class='settings-input form-control' placeholder="Enter current password" autofocus required/>
+                        <p class="alignleft">New Password:</p>
+                        <input type='password' id="inputPassword" class='settings-input form-control' placeholder="Enter new password" required/>
+                        <p class="alignleft">Confirm New Password:</p>
+                        <input type='password' id="inputPasswordConfirm" class='settings-input form-control' placeholder="Retype new password" required/>
+                        <button class="btn btn-lg btn-primary btn-block" id="createBtn" type="submit">Submit Password Change</button>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END Setting Modal -->
+
+<nav id="bottomNav" class="navbar navbar-default navbar-xs navbar-fixed-bottom">
+    <ul class="nav navbar-nav">
+        <li><a href="index.html">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+            Logout
+        </a></li>
+        <li><a data-toggle="modal" href="#settingModal">
+            <i class="fa fa-cog" aria-hidden="true"></i>
+            Settings
+        </a></li>
+    </ul>
+</nav>
+
+</body>
+</html>
