@@ -51,10 +51,7 @@
         while ((start.getTime() - currMillis) <= 0){
              start.setTime(start.getTime() + timePeriodMillis);
         }
-
-        //If the timer has pass 
-        console.log(start);
-
+        
         $(startTime).countdown({until: start, format: 'dHMS'});
     });
 
