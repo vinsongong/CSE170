@@ -1,7 +1,7 @@
 var exerciseData = {
 	exercises : [
 	{
-		exerciseId:"shoudlerRaise",
+		exerciseId:"shoulderRaise",
 		exerciseName:"Shoulder Raises",
 		distraction:"Medium",
 		duration:{
@@ -22,7 +22,7 @@ var exerciseData = {
 		duration:{
 			time:"15",
 			unit:"minutes"
-		},	
+		},
 		type:"Recommended",
 		isCustom:false,
 		description:["Do 3 sets of 10", "Requires full attention"],
@@ -51,7 +51,7 @@ var scheduleData = {
 	schedules : []
 }
 
-/* Store default exercises into localStorage */ 
+/* Store default exercises into localStorage */
 localStorage.clear();
 localStorage.setItem("exerciseData", JSON.stringify(exerciseData));
 localStorage.setItem("scheduleData", JSON.stringify(scheduleData));

@@ -255,6 +255,18 @@ function saveDetails(e) {
   if($(this).parents().eq(1).find("iframe").attr("src").trim() != "") {
     $(this).parents().eq(1).find(".youtube-vid").show();
   }
+
+  var retrievedObject = localStorage.getItem('exerciseData');
+  var exerciseArray = JSON.parse(retrievedObject);
+  $.each(exerciseArray.exercises, function() {
+      $this = $(this)[0];
+
+      var exerciseId = $this.exerciseId;
+      console.log(exerciseId);
+
+
+      //onsole.log(key + " " + value);
+  });
 }
 
 function deleteExercise(e) {
@@ -279,4 +291,8 @@ function getYoutubeId(url) {
   } else {
     return "";
   }
+}
+
+function findExerciseName(exercise, exerciseId) {
+    return exercise.name === exerciseId;
 }
