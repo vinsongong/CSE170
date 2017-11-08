@@ -136,8 +136,18 @@ function saveScheduleItem(e) {
     var index = findIndexOf(scheduleArray, originalId);
 
 
-  //TODO: Parse out new exercise name
-  var newExerciseName;
+
+  //Parse out new exercise name
+  var newExerciseName = $(this).parents().eq(1).find(".scheduleExerciseNameInput").val();
+
+  //Parse out new repeat every
+  var repeatVal = $(this).parents().eq(1).find(".repeatVal").val();
+  var repeatUnits = $(this).parents().eq(1).find(".repeatUnitsDrop option:selected").val();
+
+  //Parse out new interval
+  var intervalVal = $(this).parents().eq(1).find(".intervalVal").val();
+  var intervalUnits = $(this).parents().eq(1).find(".intervalUnitsDrop option:selected").val();
+
   //Using the new name, genereate new ID
   var newId = lowercaseFirstLetter(newExerciseName).replace(/\s/g, '');
 
@@ -153,12 +163,12 @@ function saveScheduleItem(e) {
         time:this.exerciseInterval.value,
         unit:this.exerciseTimeUnit.value
     },
-    /*Military Time Format*/ 
+    /*Military Time Format*/
         //startTime:this.startTime.value
         startTime:this.startTime.value
     }
 
-    $(".modal .close").click(); 
+    $(".modal .close").click();
 
     /* Update the local storage */
     scheduleArray.schedules[index] = newExercise;
@@ -208,4 +218,3 @@ function findIndexOf(array, originalId){
 function lowercaseFirstLetter(str) {
   return str.charAt(0).toLowerCase() + str.slice(1);
 }
-
