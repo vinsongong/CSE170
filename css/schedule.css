@@ -1,8 +1,39 @@
 .container {
   text-align: center;
 }
-
 .modal-body {
     text-align: center;
     font-size: 1.1em;
+}
+#exercise {
+    display: inline;
+    width: 75%;
+    border: solid 2px;
+}
+#repeatInterval {
+    display: inline;
+    width: 30%;
+    border: solid 2px;
+}
+#repeatTimeUnit {
+    display: inline;
+    width: 45%;
+    border: solid 2px;
+    margin-left: 5px;
+}
+#exerciseInterval {
+    display: inline;
+    width: 30%;
+    border: solid 2px;
+}
+#exerciseTimeUnit {
+    display: inline;
+    width: 45%;
+    border: solid 2px;
+    margin-left: 5px;
+}
+#startTime {
+    display: inline;
+    width: 75%;
+    border: solid 2px;
 }

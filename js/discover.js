@@ -16,42 +16,18 @@ $(document).ready(function(){
   var modalHtml = modalTemplate(exerciseArray);
   $("body").append(modalHtml);
 
-
-
   var shoulderRaisesURL = $("#shoulderRaisesVideo").attr('src');
   var jumpingJacksURL = $("#jumpingJacksVideo").attr('src');
   var standingURL = $("#standingVideo").attr('src');
 
   /* Assign empty url value to the iframe src attribute when
   modal hide, which stop the video playing */
-  $("#shoulderRaisesModal").on('hide.bs.modal', function(){
-    $("#shoulderRaisesVideo").attr('src', '');
-  });
-  $("#jumpingJacksModal").on('hide.bs.modal', function(){
-    $("#jumpingJacksVideo").attr('src', '');
-  });
-  $("#standingModal").on('hide.bs.modal', function(){
-    var timeStrArr = $(this).find(".modal-interval").text().split(" ");
-    var timeVal = parseInt(timeStrArr[1], 10);
-    var timeUnit = timeStrArr[2];
-    var distractionVal = $(this).find(".modal-distraction").text();
-    $("a[href='#standingModal']").find(".badge")
-    .html("Distraction: " + distractionVal + "<br /> Duration: " + timeVal + " " + timeUnit);
-    $("a[href='#standingModal']").find("h4").html($(this).find(".modal-title").text());
-    standingURL = $("#standingVideo").attr('src');
-    $("#standingVideo").attr('src', '');
-  });
 
-  /* Assign the initially stored url back to the iframe src
-  attribute when modal is displayed again */
-  $("#shoulderRaisesModal").on('show.bs.modal', function(){
-    $("#shoulderRaisesVideo").attr('src', shoulderRaisesURL);
-  });
-  $("#jumpingJacksModal").on('show.bs.modal', function(){
-    $("#jumpingJacksVideo").attr('src', jumpingJacksURL);
-  });
-  $("#standingModal").on('show.bs.modal', function(){
-    $("#standingVideo").attr('src', standingURL);
+  $(".modal").on('hide.bs.modal', function(){
+    var videoIFrame = $(this).find("iframe");
+    var videoSrc = videoIFrame.attr('src');
+    videoIFrame.attr('src', '');
+    videoIFrame.attr('src', videoSrc);
   });
 
   $(".discover").on('show.bs.modal', function(){
@@ -297,7 +273,7 @@ function saveDetails(e) {
  exerciseArray.exercises[index] = newExercise;
  localStorage.setItem("exerciseData", JSON.stringify(exerciseArray));
 
- $(".modal .close").click(); 
+ $(".modal .close").click();
 
   bootbox.alert({
   size: "large",
