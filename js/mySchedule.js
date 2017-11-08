@@ -72,13 +72,6 @@
 
     var modalBody = $(this).parents().eq(1).find(".modal-body");
 
-    //Excercise Name
-    var exerciseName = $(this).parents().eq(1).find(".modal-title").text();
-    var exerciseCode = "<div class='scheduleExerciseNameDiv'>Exercise Name&#42;<br /><input" +
-    " type='text' class='scheduleExerciseNameInput form-control' value='" +
-    exerciseName + "' autofocus required/></div>";
-    modalBody.append(exerciseCode);
-
     //Repeats Every
     var repeatTimeAndUnits = modalDetailsDiv.find(".modal-repeat").text().split(" ");
     var repeatTime = repeatTimeAndUnits[2];
@@ -114,7 +107,6 @@ function cancelScheduleItem(e) {
     $(this).parent().find(".delete").hide();
     $(this).parent().find(".save").hide();
     $(this).parent().find(".modify").show();
-    $(this).parents().eq(1).find(".scheduleExerciseNameDiv").remove();
     $(this).parents().eq(1).find(".repeatDiv").remove();
     $(this).parents().eq(1).find(".intervalDiv").remove();
     $(this).parents().eq(1).find(".modal-details").show();
@@ -133,13 +125,6 @@ function saveScheduleItem(e) {
     //Find the index of the array
     var index = findIndexOf(scheduleArray, originalId);
 
-
-
-  //Parse out new exercise name
-  var newExerciseName = $(this).parents().eq(1).find(".scheduleExerciseNameInput").val();
-  //Using the new name, genereate new ID
-  var newId = lowercaseFirstLetter(newExerciseName).replace(/\s/g, '');
-
   //Parse out new repeat every
   var repeatVal = $(this).parents().eq(1).find(".repeatVal").val();
   var repeatUnits = $(this).parents().eq(1).find(".repeatUnitsDrop option:selected").val();
@@ -151,8 +136,6 @@ function saveScheduleItem(e) {
   var oldExercise = scheduleArray.schedules[index];
 
   if(oldExercise != null){
-    oldExercise.exerciseId = newId;
-    oldExercise.exerciseName = newExerciseName;
     oldExercise.repeatDuration.time = repeatVal;
     oldExercise.repeatDuration.unit = repeatUnits;
     oldExercise.exerciseDuration.time = intervalVal;
