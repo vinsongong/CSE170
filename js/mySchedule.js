@@ -17,7 +17,7 @@
     $("body").append(modalHtml);
 
 
-    /*counter*/
+    /* counter */
     $("#scheduleList a").each(function() {
         var schedule = $(this);
         var startTime = schedule.find("span.startTime");
@@ -48,8 +48,8 @@
         start.setMinutes(startArray[1]);
         start.setSeconds(0);
         
-        if((start.getTime() - currMillis) <= 0){
-             start.setTime(currMillis + timePeriodMillis);
+        while ((start.getTime() - currMillis) <= 0){
+             start.setTime(start.getTime() + timePeriodMillis);
         }
 
         //If the timer has pass 
@@ -59,23 +59,3 @@
     });
 
 }); 
-
-
-function convertToStandard(time){
-
-  time = time.split(':');
-  var hours = Number(time[0]);
-  var minutes = Number(time[1]);
-  var timeValue;
-
-  if (hours > 0 && hours <= 12){ 
-    timeValue= "" + hours;
-    } else if (hours > 12){
-    timeValue= "" + (hours - 12);
-    } else {
-    timeValue= "12";
-    }
-
-  timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
-  timeValue += (hours >= 12) ? " P.M." : " A.M.";  // get AM/PM
-}
