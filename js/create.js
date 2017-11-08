@@ -8,6 +8,14 @@ function creatExercise(e) {
 
   var id = lowercaseFirstLetter(this.exercise.value).replace(/\s/g, '');
 
+  //Insert Youtube link
+  var youtubeVideoID = getYoutubeId(this.youtubeLink.value);
+  var embedYoutubeLink = youtubeVideoID;
+  
+  if(youtubeVideoID != "") {
+   embedYoutubeLink = embedYoutubeLink.replace(/^/,"https://www.youtube.com/embed/");
+  }
+
   var exercise = {
   	exerciseId:id,
     exerciseName: this.exercise.value,
@@ -20,7 +28,7 @@ function creatExercise(e) {
    isCustom:true,
    description: (this.description.value).match(/[^\n]+/g),
    equipment: this.equipment.value,
-   youtubeLink: this.youtubeLink.value
+   youtubeLink: embedYoutubeLink
  }
 
  /* Append the item to exerciseData (localStorage) */
@@ -38,6 +46,17 @@ function creatExercise(e) {
   }
 });
 
+}
+
+function getYoutubeId(url) {
+  var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  var match = url.match(regExp);
+
+  if (match && match[2].length == 11) {
+    return match[2];
+  } else {
+    return "";
+  }
 }
 
 function lowercaseFirstLetter(str) {
