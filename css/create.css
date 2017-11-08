@@ -2,12 +2,46 @@
 	color: red;
 	font-size: 1.3em;
 }
-
 .container {
   text-align: center;
 }
-
 .modal-body {
     text-align: center;
     font-size: 1.1em;
+}
+#exercise {
+    display: inline;
+    width: 75%;
+    border: solid 2px;
+}
+#exerciseInterval {
+    display: inline;
+    width: 30%;
+    border: solid 2px;
+}
+#exerciseTimeUnit {
+    display: inline;
+    width: 45%;
+    border: solid 2px;
+    margin-left: 5px;
+}
+#distractionLevel {
+	display: inline;
+	width: 75%;
+	border: solid 2px;
+}
+#description {
+	display: inline;
+	width: 75%;
+	border: solid 2px;
+}
+#equipment {
+	display: inline;
+	width: 75%;
+	border: solid 2px;
+}
+#youtubeLink {
+	display: inline;
+	width: 75%;
+	border: solid 2px;
 }
