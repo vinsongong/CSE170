@@ -11,6 +11,7 @@
   <script src="https://use.fontawesome.com/a42ce1c3c0.js"></script>
   <script src="js/emailValidate.js" type="text/javascript"></script>
   <script src="js/passwordValidate.js" type="text/javascript"></script>
+  <script src="js/mySchedule.js" type="text/javascript"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
   <title>My Schedule - Personal Trainer</title>
 </head>
@@ -40,27 +41,60 @@
     </ul>
   </nav>
 
-<!-- Discover Exercises List -->
+<!-- Schedule Exercises List -->
 <div class="container">
-    <div id="discoverList" class="list-group"></div>
+    <div id="scheduleList" class="list-group"></div>
 </div>
-<!-- END Discover Exercises List -->
+<!-- END Schedule Exercises List -->
 
 <!--HandleBars List template --> 
 <script id="list-item-template" type="text/x-handlebars-template">
-    {{#each exercises}}
+    {{#each schedules}}
     <a data-toggle="modal" href="#{{exerciseId}}" class="list-group-item">
-        <span class="badge badge-default badge-pill">
-          Repeat Every: {{repeatDuration.time}} {{repeatDuration.unit}}<br />
-          Interval: {{exerciseDuration.time}} {{exerciseDuration.unit}}
-      </span>
       <h4 class="list-group-item-heading">{{exerciseName}}</h4>
+      <p class="list-group-item-text">Repeat Every: {{repeatDuration.time}} {{repeatDuration.unit}}</p>
+      <p class="list-group-item-text">Interval: {{exerciseDuration.time}} {{exerciseDuration.unit}}</p>
       <p class="list-group-item-text">Starting at: {{startTime}}</p>
   </a>
   {{/each}}
 </script>
 <!--END HandleBars List template --> 
 
+<!--HandleBars Modal template --> 
+<script id="modal-template" type="text/x-handlebars-template">
+    {{#each schedules}}
+    <div class="modal fade discover" id="{{exerciseId}}" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">{{exerciseName}}</h4>
+          </div>
+          <div class="modal-body">
+            <div class="modal-details">
+                <h5 class="modal-interval">Repeat Every: {{repeatDuration.time}} {{repeatDuration.unit}}</h5>
+                <h5 class="modal-interval">
+                  Interval: {{exerciseDuration.time}} {{exerciseDuration.unit}}
+                </h5>
+                 <h5 class="modal-interval">
+                  Start Time: {{startTime}} 
+                </h5>
+              </ul>
+          </div>
+      </div>
+      <div class="modal-footer">
+          <button class="btn btn-default pull-left modify">Modify</button>
+          <button class="btn btn-danger pull-left delete" style="display:none;">Delete</button>
+          <button class="btn btn-success pull-left save" style="display:none;">Save</button>
+          <button class="btn btn-default pull-left cancel" style="display:none;">Cancel</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+  </div>
+</div>
+</div>
+{{/each}}
+</script>
 
   <!-- Setting Modal -->
   <div class="modal fade" id="settingModal" role="dialog">

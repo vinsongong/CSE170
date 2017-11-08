@@ -31,8 +31,6 @@ function scheduleExercise(e) {
 		startTime:this.startTime.value
 	}
 
-	console.log(exercise);
-
 	/* Append the item to scheduleData (localStorage) */
 	var retrievedObject = localStorage.getItem('scheduleData');
 	var scheduleArray = JSON.parse(retrievedObject);
@@ -42,8 +40,9 @@ function scheduleExercise(e) {
 	bootbox.alert({
 		size: "large",
 		message: "Your new exercise has been scheduled!",
-		backdrop: true
+		backdrop: true,
+		callback: function(){
+			window.location.replace("mySchedule.html");
+ 		 }
 	});
-
-	//window.location.replace("mySchedule.html");
 }

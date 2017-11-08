@@ -32,10 +32,12 @@ function creatExercise(e) {
  bootbox.alert({
   size: "large",
   message: "Successfully created a new exercise!",
-  backdrop: true
+  backdrop: true,
+  callback: function(){
+    window.location.replace("discover.html");
+  }
 });
 
- window.location.replace("discover.html");
 }
 
 function lowercaseFirstLetter(str) {
