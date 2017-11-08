@@ -5,7 +5,7 @@
   <link href="css/nav.css" rel="stylesheet">
   <link href="css/modal.css" rel="stylesheet">
   <link href="css/discover.css" rel="stylesheet">
-
+  <link href="css/settingsModal.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -63,7 +63,7 @@
 </div>
 <!-- END Discover Exercises List -->
 
-<!--HandleBars List template --> 
+<!--HandleBars List template -->
 <script id="list-item-template" type="text/x-handlebars-template">
     {{#each exercises}}
     <a data-toggle="modal" href="#{{exerciseId}}" class="list-group-item">
@@ -76,9 +76,9 @@
   </a>
   {{/each}}
 </script>
-<!--END HandleBars List template --> 
+<!--END HandleBars List template -->
 
-<!--HandleBars Modal template --> 
+<!--HandleBars Modal template -->
 <script id="modal-template" type="text/x-handlebars-template">
     {{#each exercises}}
     <div class="modal fade discover" id="{{exerciseId}}" role="dialog">
@@ -119,26 +119,51 @@
 </div>
 {{/each}}
 </script>
-<!--END HandleBars Modal template --> 
+<!--END HandleBars Modal template -->
 
 <!-- Setting Modal -->
 <div class="modal fade" id="settingModal" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Setting</h4>
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Settings</h4>
       </div>
       <div class="modal-body">
-          This is a setting page. Coming Soon:)
+        <div class='settings_email'>
+          <h4><b>Change Email</b></h4>
+          <hr />
+          <form class="form-signup" onsubmit="alert('Email has successfully been changed.');">
+            <p class="alignleft">New Email:</p>
+            <input type='email' id="settings-newEmail" class='settings-input form-control' placeholder="Enter new email" value='test@test.com' autofocus required/>
+            <p class="alignleft">Confirm New Email:</p>
+            <input type='email' id="settings-newConfirmEmail" class='settings-input form-control' placeholder="Retype new email" required/>
+            <button class="btn btn-lg btn-primary btn-block" id="emailChangeBtn" type="submit">Submit Email Change</button>
+            <hr />
+          </form>
+        </div>
+        <div class='settings_password'>
+          <h4><b>Change Password</b></h4>
+          <hr />
+          <form class="form-signup" onsubmit="alert('Password has successfully been changed.');">
+            <p class="alignleft">Current Password:</p>
+            <input type='password' id="settings-oldPassword" class='settings-input form-control' placeholder="Enter current password" autofocus required/>
+            <p class="alignleft">New Password:</p>
+            <input type='password' id="inputPassword" class='settings-input form-control' placeholder="Enter new password" required/>
+            <p class="alignleft">Confirm New Password:</p>
+            <input type='password' id="inputPasswordConfirm" class='settings-input form-control' placeholder="Retype new password" required/>
+            <button class="btn btn-lg btn-primary btn-block" id="createBtn" type="submit">Submit Password Change</button>
+          </form>
+        </div>
       </div>
       <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
       </div>
+    </div>
   </div>
-</div>
-</div>
-<!--END Setting Modal -->
+  <!--END Setting Modal -->
 
 </nav>
 </body>
