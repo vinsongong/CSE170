@@ -297,7 +297,7 @@ function saveDetails(e) {
  exerciseArray.exercises[index] = newExercise;
  localStorage.setItem("exerciseData", JSON.stringify(exerciseArray));
 
- $(".modal .close").click()
+ $(".modal .close").click(); 
 
   bootbox.alert({
   size: "large",

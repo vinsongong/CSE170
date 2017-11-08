@@ -49,11 +49,11 @@
         start.setSeconds(0);
 
         while ((start.getTime() - currMillis) <= 0){
-             start.setTime(start.getTime() + timePeriodMillis);
-        }
+         start.setTime(start.getTime() + timePeriodMillis);
+     }
 
-        $(startTime).countdown({until: start, format: 'dHMS'});
-    });
+     $(startTime).countdown({until: start, format: 'dHMS'});
+ });
 
     $("button.modify").click(modifyScheduleItem);
     $("button.cancel").click(cancelScheduleItem);
@@ -61,7 +61,7 @@
     $("button.delete").click(deleteScheduleItem);
 });
 
-function modifyScheduleItem(e) {
+  function modifyScheduleItem(e) {
     e.preventDefault();
     $(this).hide();
     $(this).parent().find(".delete").show();
@@ -84,13 +84,13 @@ function modifyScheduleItem(e) {
     var repeatTime = repeatTimeAndUnits[2];
     var repeatUnits = repeatTimeAndUnits[3];
     var repeatTimeCode = "<div class='repeatDiv'>Repeat Every&#42;<br /><input type='number' class='repeatVal form-control' " +
-        "placeholder='' min='1' max='60' value='" + repeatTime + "' />";
+    "placeholder='' min='1' max='60' value='" + repeatTime + "' />";
     var repeatUnitsCode = "<select class='repeatUnitsDrop form-control'>" +
-        "<option value='seconds'>seconds</option>" +
-        "<option value='minutes'>minutes</option>" +
-        "<option value='hours'>hours</option>" +
-        "<option value='days'>days</option>" +
-        "</select></div>";
+    "<option value='seconds'>seconds</option>" +
+    "<option value='minutes'>minutes</option>" +
+    "<option value='hours'>hours</option>" +
+    "<option value='days'>days</option>" +
+    "</select></div>";
     modalBody.append(repeatTimeCode + repeatUnitsCode);
     $(".repeatUnitsDrop option[value=" + repeatUnits+ "]").attr("selected", true);
 
@@ -99,15 +99,15 @@ function modifyScheduleItem(e) {
     var intervalTime = intervalTimeAndUnit[1];
     var intervalUnit = intervalTimeAndUnit[2];
     var intervalTimeCode = "<div class='intervalDiv'>Interval&#42;<br /><input type='number' class='intervalVal form-control' " +
-        "placeholder='' min='1' max='60' value='" + intervalTime + "' />";
+    "placeholder='' min='1' max='60' value='" + intervalTime + "' />";
     var intervalUnitCode = "<select class='intervalUnitsDrop form-control'>" +
-        "<option value='seconds'>seconds</option>" +
-        "<option value='minutes'>minutes</option>" +
-        "<option value='hours'>hours</option>" +
-        "<option value='days'>days</option>" +
-        "</select></div>";
+    "<option value='seconds'>seconds</option>" +
+    "<option value='minutes'>minutes</option>" +
+    "<option value='hours'>hours</option>" +
+    "<option value='days'>days</option>" +
+    "</select></div>";
     modalBody.append(intervalTimeCode + intervalUnitCode);
-    $(".intervalUnitsDrop option[value=" + intervalUnits+ "]").attr("selected", true);
+    $(".intervalUnitsDrop option[value=" + intervalUnit+ "]").attr("selected", true);
 }
 
 function cancelScheduleItem(e) {
@@ -123,7 +123,47 @@ function cancelScheduleItem(e) {
 }
 
 function saveScheduleItem(e) {
+
+    var originalId = ($(this).parents().parents().parents().eq(1).attr('id'));
+    console.log(originalId);
     e.preventDefault();
+
+    /* Retrieve schedule data from local storage */
+    var retrievedObject = localStorage.getItem('scheduleData');
+    var scheduleArray = JSON.parse(retrievedObject);
+
+    //Find the index of the array
+    var index = findIndexOf(scheduleArray, originalId);
+
+
+  //TODO: Parse out new exercise name
+  var newExerciseName;
+  //Using the new name, genereate new ID
+  var newId = lowercaseFirstLetter(newExerciseName).replace(/\s/g, '');
+
+
+  var newExercise = {
+    exerciseId:this.exercise.value,
+    exerciseName: $(this.exercise).find(":selected").text(),
+    repeatDuration:{
+        time:this.repeatInterval.value,
+        unit:this.repeatTimeUnit.value
+    },
+    exerciseDuration:{
+        time:this.exerciseInterval.value,
+        unit:this.exerciseTimeUnit.value
+    },
+    /*Military Time Format*/ 
+        //startTime:this.startTime.value
+        startTime:this.startTime.value
+    }
+
+    $(".modal .close").click(); 
+
+    /* Update the local storage */
+    scheduleArray.schedules[index] = newExercise;
+    localStorage.setItem("scheduleData", JSON.stringify(scheduleArray));
+
 }
 
 function deleteScheduleItem(e) {
@@ -133,7 +173,39 @@ function deleteScheduleItem(e) {
       var modalID = modal.attr('id');
       modal.modal('hide').on('hidden.bs.modal', function() {
         $(this).remove();
-      });
+    });
       $("a[href='#" + modalID + "']").remove();
-    }
+  }
+
+
+  //Retrieve local storage items
+  var retrievedObject = localStorage.getItem('scheduleData');
+  var scheduleArray = JSON.parse(retrievedObject);
+  var index = findIndexOf(scheduleArray, modalID);
+
+  //Delete an item from the local storage array
+  if (index > -1) {
+      scheduleArray.schedules.splice(index, 1);
+  }
+
+  //Save the changes (Deletion)
+  localStorage.setItem("scheduleData", JSON.stringify(scheduleArray));
+  return false;
 }
+
+function findIndexOf(array, originalId){
+  var index = -1;
+  $.each(array.exercises, function() {
+    $this = $(this)[0];
+    var exerciseId = $this.exerciseId;
+    if(originalId === exerciseId){
+      index = array.exercises.indexOf($this);
+  }
+});
+  return index;
+}
+
+function lowercaseFirstLetter(str) {
+  return str.charAt(0).toLowerCase() + str.slice(1);
+}
+
