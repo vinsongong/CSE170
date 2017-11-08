@@ -81,14 +81,14 @@ function modifyDetails(e) {
 
   //Exercise Name
   var exerciseName = $(this).parents().eq(1).find(".modal-title").text();
-  var exerciseCode = "<div class='exerciseNameDiv'>Exercise Name:<br /><input" +
+  var exerciseCode = "<div class='exerciseNameDiv'>Exercise Name&#42;<br /><input" +
   " type='text' class='exerciseNameInput form-control' value='" +
   exerciseName + "' autofocus required/></div>";
   modalBody.append(exerciseCode);
 
   //Interval
   var timeText = $(this).parents().eq(1).find(".modal-interval").text();
-  var timeBox = "<div class='timeDiv'>Interval:<br /><input type='number' class='timeDeets form-control' " +
+  var timeBox = "<div class='timeDiv'>Interval&#42;<br /><input type='number' class='timeDeets form-control' " +
   "placeholder='' min='1' max='60' value='" +
   parseInt(timeText.replace(/[^0-9\.]/g, ''), 10) + "' />";
   var timeDropdown = "<select class='timeDrop form-control'>" +
@@ -104,7 +104,7 @@ function modifyDetails(e) {
 
   //Distraction Level
   var distractionLevel = $(this).parents().eq(1).find(".modal-distraction").text();
-  var distrationCode = "<div class='distractionDiv'>Distraction Level:" +
+  var distrationCode = "<div class='distractionDiv'>Distraction Level&#42;" +
   "<select class='distractionDrop form-control'>" +
   "<option value='Low'>Low</option>" +
   "<option value='Medium'>Medium</option>" +
@@ -115,13 +115,13 @@ function modifyDetails(e) {
 
   //Equipment
   var equipment = modalUL.eq(0).text().split(" ")[1];
-  var equipmentCode = "<div class='equipmentDiv'>Equipment:<br />" +
+  var equipmentCode = "<div class='equipmentDiv'>Equipment&#42;<br />" +
     "<input type='text' class='equipmentInput form-control' placeholder='Enter equipment needed'" +
     "value='" + equipment + "' />";
   modalBody.append(equipmentCode);
 
   //Textbox
-  var textBox = "<div class='textBoxDiv'>Description:<textarea class='textBoxDeets form-control'rows='"+ (modalUL.length + 4) +"' cols='40'" +
+  var textBox = "<div class='textBoxDiv'>Description&#42;<textarea class='textBoxDeets form-control'rows='"+ (modalUL.length + 4) +"' cols='40'" +
   " placeholder='Details about the exercise...' required>";
   for(i = 1; i < modalUL.length; i++) {
     textBox += modalUL.eq(i).text() + "\n";
@@ -131,7 +131,7 @@ function modifyDetails(e) {
   //Youtube Link
   var youtubeLink = $(this).parents().eq(1).find("iframe").attr("src");
   $(this).parents().eq(1).find("iframe").attr('src', "#" + youtubeLink); //To stop video from playing
-  var youtubeLinkCode = "<div class='youtubeLinkDiv'>Youtube Link:" +
+  var youtubeLinkCode = "<div class='youtubeLinkDiv'><i class='fa fa-youtube-play'></i>&nbsp;Youtube Link (Optional)" +
   "<input type='text' class='youtubeLinkInput form-control' value='" +
   youtubeLink + "' /></div>";
   modalBody.append(youtubeLinkCode);
