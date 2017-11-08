@@ -51,14 +51,14 @@
         while ((start.getTime() - currMillis) <= 0){
              start.setTime(start.getTime() + timePeriodMillis);
         }
-        
+
         $(startTime).countdown({until: start, format: 'dHMS'});
     });
 
     $("button.modify").click(modifyScheduleItem);
-    $("button.cancel").click();
-    $("button.save").click();
-    $("button.delete").click();
+    $("button.cancel").click(cancelScheduleItem);
+    $("button.save").click(saveScheduleItem);
+    $("button.delete").click(deleteScheduleItem);
 });
 
 function modifyScheduleItem(e) {
@@ -74,7 +74,7 @@ function modifyScheduleItem(e) {
 
     //Excercise Name
     var exerciseName = $(this).parents().eq(1).find(".modal-title").text();
-    var exerciseCode = "<div class='scheduleExerciseNameDiv'>Exercise Name:<br /><input" +
+    var exerciseCode = "<div class='scheduleExerciseNameDiv'>Exercise Name&#42;<br /><input" +
     " type='text' class='scheduleExerciseNameInput form-control' value='" +
     exerciseName + "' autofocus required/></div>";
     modalBody.append(exerciseCode);
@@ -83,15 +83,57 @@ function modifyScheduleItem(e) {
     var repeatTimeAndUnits = modalDetailsDiv.find(".modal-repeat").text().split(" ");
     var repeatTime = repeatTimeAndUnits[2];
     var repeatUnits = repeatTimeAndUnits[3];
-    var repeatTimeCode = "<div class='repeatDiv'>Repeat Every:<br /><input type='number' class='repeatVal form-control' " +
-    "placeholder='' min='1' max='60' value='" + repeatTime + "' />";
+    var repeatTimeCode = "<div class='repeatDiv'>Repeat Every&#42;<br /><input type='number' class='repeatVal form-control' " +
+        "placeholder='' min='1' max='60' value='" + repeatTime + "' />";
     var repeatUnitsCode = "<select class='repeatUnitsDrop form-control'>" +
-    "<option value='seconds'>seconds</option>" +
-    "<option value='minutes'>minutes</option>" +
-    "<option value='hours'>hours</option>" +
-    "<option value='days'>days</option>" +
-    "</select></div>";
+        "<option value='seconds'>seconds</option>" +
+        "<option value='minutes'>minutes</option>" +
+        "<option value='hours'>hours</option>" +
+        "<option value='days'>days</option>" +
+        "</select></div>";
     modalBody.append(repeatTimeCode + repeatUnitsCode);
     $(".repeatUnitsDrop option[value=" + repeatUnits+ "]").attr("selected", true);
 
+    //Interval
+    var intervalTimeAndUnit = modalDetailsDiv.find(".modal-interval").text().split(" ");
+    var intervalTime = intervalTimeAndUnit[1];
+    var intervalUnit = intervalTimeAndUnit[2];
+    var intervalTimeCode = "<div class='intervalDiv'>Interval&#42;<br /><input type='number' class='intervalVal form-control' " +
+        "placeholder='' min='1' max='60' value='" + intervalTime + "' />";
+    var intervalUnitCode = "<select class='intervalUnitsDrop form-control'>" +
+        "<option value='seconds'>seconds</option>" +
+        "<option value='minutes'>minutes</option>" +
+        "<option value='hours'>hours</option>" +
+        "<option value='days'>days</option>" +
+        "</select></div>";
+    modalBody.append(intervalTimeCode + intervalUnitCode);
+    $(".intervalUnitsDrop option[value=" + intervalUnits+ "]").attr("selected", true);
+}
+
+function cancelScheduleItem(e) {
+    e.preventDefault();
+    $(this).hide();
+    $(this).parent().find(".delete").hide();
+    $(this).parent().find(".save").hide();
+    $(this).parent().find(".modify").show();
+    $(this).parents().eq(1).find(".scheduleExerciseNameDiv").remove();
+    $(this).parents().eq(1).find(".repeatDiv").remove();
+    $(this).parents().eq(1).find(".intervalDiv").remove();
+    $(this).parents().eq(1).find(".modal-details").show();
+}
+
+function saveScheduleItem(e) {
+    e.preventDefault();
+}
+
+function deleteScheduleItem(e) {
+    e.preventDefault();
+    if (confirm("Are you sure you want to delete this exercise?")) {
+      var modal = $(this).parents().eq(3);
+      var modalID = modal.attr('id');
+      modal.modal('hide').on('hidden.bs.modal', function() {
+        $(this).remove();
+      });
+      $("a[href='#" + modalID + "']").remove();
+    }
 }
