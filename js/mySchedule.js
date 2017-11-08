@@ -139,6 +139,8 @@ function saveScheduleItem(e) {
 
   //Parse out new exercise name
   var newExerciseName = $(this).parents().eq(1).find(".scheduleExerciseNameInput").val();
+  //Using the new name, genereate new ID
+  var newId = lowercaseFirstLetter(newExerciseName).replace(/\s/g, '');
 
   //Parse out new repeat every
   var repeatVal = $(this).parents().eq(1).find(".repeatVal").val();
@@ -148,31 +150,30 @@ function saveScheduleItem(e) {
   var intervalVal = $(this).parents().eq(1).find(".intervalVal").val();
   var intervalUnits = $(this).parents().eq(1).find(".intervalUnitsDrop option:selected").val();
 
-  //Using the new name, genereate new ID
-  var newId = lowercaseFirstLetter(newExerciseName).replace(/\s/g, '');
+  var oldExercise = scheduleArray.schedules[index]; 
 
+  if(oldExercise != null){
+    oldExercise.exerciseId = newId;
+    oldExercise.exerciseName = newExerciseName;
+    oldExercise.repeatDuration.time = repeatVal;
+    oldExercise.repeatDuration.unit = repeatUnits;
+    oldExercise.exerciseDuration.time = intervalVal;
+    oldExercise.exerciseDuration.unit = intervalUnits;   
+  }
 
-  var newExercise = {
-    exerciseId:this.exercise.value,
-    exerciseName: $(this.exercise).find(":selected").text(),
-    repeatDuration:{
-        time:this.repeatInterval.value,
-        unit:this.repeatTimeUnit.value
-    },
-    exerciseDuration:{
-        time:this.exerciseInterval.value,
-        unit:this.exerciseTimeUnit.value
-    },
-    /*Military Time Format*/
-        //startTime:this.startTime.value
-        startTime:this.startTime.value
-    }
+  scheduleArray.schedules[index] = oldExercise;
+  /* Update the local storage */
+  localStorage.setItem("scheduleData", JSON.stringify(scheduleArray));
+  $(".modal .close").click();
 
-    $(".modal .close").click();
-
-    /* Update the local storage */
-    scheduleArray.schedules[index] = newExercise;
-    localStorage.setItem("scheduleData", JSON.stringify(scheduleArray));
+  bootbox.alert({
+  size: "large",
+  message: "Updated Successfully.",
+  backdrop: true,
+  callback: function(){
+    window.location.replace("mySchedule.html");
+  }
+});
 
 }
 
@@ -205,11 +206,11 @@ function deleteScheduleItem(e) {
 
 function findIndexOf(array, originalId){
   var index = -1;
-  $.each(array.exercises, function() {
+  $.each(array.schedules, function() {
     $this = $(this)[0];
     var exerciseId = $this.exerciseId;
     if(originalId === exerciseId){
-      index = array.exercises.indexOf($this);
+      index = array.schedules.indexOf($this);
   }
 });
   return index;
