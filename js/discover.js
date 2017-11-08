@@ -113,10 +113,17 @@ function modifyDetails(e) {
   modalBody.append(distrationCode);
   $(".distractionDrop option[value=" + distractionLevel+ "]").attr("selected", true);
 
+  //Equipment
+  var equipment = modalUL.eq(0).text().split(" ")[1];
+  var equipmentCode = "<div class='equipmentDiv'>Equipment:<br />" +
+    "<input type='text' class='equipmentInput form-control' placeholder='Enter equipment needed'" +
+    "value='" + equipment + "' />";
+  modalBody.append(equipmentCode);
+
   //Textbox
   var textBox = "<div class='textBoxDiv'>Description:<textarea class='textBoxDeets form-control'rows='"+ (modalUL.length + 4) +"' cols='40'" +
   " placeholder='Details about the exercise...' required>";
-  for(i = 0; i < modalUL.length; i++) {
+  for(i = 1; i < modalUL.length; i++) {
     textBox += modalUL.eq(i).text() + "\n";
   }
   modalBody.append(textBox + "</textarea></div>");
@@ -138,6 +145,7 @@ function cancelDetails(e) {
   $(this).parent().find(".modify").show();
   $(this).parents().eq(1).find(".exerciseNameDiv").remove();
   $(this).parents().eq(1).find(".textBoxDiv").remove();
+  $(this).parents().eq(1).find(".equipmentDiv").remove();
   $(this).parents().eq(1).find(".timeDiv").remove();
   $(this).parents().eq(1).find(".distractionDiv").remove();
   $(this).parents().eq(1).find(".youtubeLinkDiv").remove();
@@ -153,6 +161,8 @@ function cancelDetails(e) {
 
 function saveDetails(e) {
   e.preventDefault();
+
+  $(this).parents().eq(1).find(".equipmentDiv").remove();
 
   //Parse out new details line by line
   var newTextBox = $(this).parents().eq(1).find(".textBoxDeets");
@@ -261,11 +271,11 @@ function saveDetails(e) {
     $(this).parents().eq(1).find(".youtube-vid").show();
   }
 
-  //Retrieve local storage items 
+  //Retrieve local storage items
   var retrievedObject = localStorage.getItem('exerciseData');
   var exerciseArray = JSON.parse(retrievedObject);
 
-  //Find the index of the array 
+  //Find the index of the array
   var index = findIndexOf(exerciseArray, originalId);
 
   var newExercise = {
@@ -279,13 +289,15 @@ function saveDetails(e) {
    type:"Custom",
    isCustom:true,
    description: texts,
-   //TODO: new Equipment Field 
+   //TODO: new Equipment Field
    equipment: null,
    youtubeLink: embedYoutubeLink
- } 
+ }
 
- exerciseArray.exercises[index] = newExercise; 
+ exerciseArray.exercises[index] = newExercise;
  localStorage.setItem("exerciseData", JSON.stringify(exerciseArray));
+
+ $(".modal .close").click()
 
   bootbox.alert({
   size: "large",
@@ -322,7 +334,7 @@ function deleteExercise(e) {
     $("a[href='#" + modalID + "']").remove();
   }
 
-  //Retrieve local storage items 
+  //Retrieve local storage items
   var retrievedObject = localStorage.getItem('exerciseData');
   var exerciseArray = JSON.parse(retrievedObject);
   var index = findIndexOf(exerciseArray, modalID);
@@ -352,4 +364,3 @@ function getYoutubeId(url) {
 function lowercaseFirstLetter(str) {
   return str.charAt(0).toLowerCase() + str.slice(1);
 }
-

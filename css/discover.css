@@ -43,7 +43,7 @@ textarea {
   margin-bottom: 10px;
 }
 
-.distractionDrop {
+.distractionDrop{
   border: solid 2px;
 }
 
@@ -57,4 +57,8 @@ textarea {
 
 .youtubeLinkInput {
   border: solid 2px;
+}
+
+.equipmentInput {
+    border: solid 2px;
 }
