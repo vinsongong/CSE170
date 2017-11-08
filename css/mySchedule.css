@@ -30,6 +30,24 @@
 .settings-input {
   margin-bottom: 10px;
 }
+.repeatVal {
+  display: inline;
+  width: 20%;
+  border: solid 2px;
+}
+.repeatDiv {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.repeatUnitsDrop {
+  display: inline;
+  width: 35%;
+  border: solid 2px;
+  margin-left: 5px;
+}
+.scheduleExerciseNameInput {
+    border: solid 2px;
+}
 #inputPassword {
   margin-bottom: -1px;
   border-top-left-radius: 0;
