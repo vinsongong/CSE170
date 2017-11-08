@@ -11,8 +11,10 @@
   <script src="https://use.fontawesome.com/a42ce1c3c0.js"></script>
   <script src="js/emailValidate.js" type="text/javascript"></script>
   <script src="js/passwordValidate.js" type="text/javascript"></script>
-  <script src="js/mySchedule.js" type="text/javascript"></script>
+  <script src="js/jquery.plugin.min.js" type="text/javascript"></script>
+  <script src="js/jquery.countdown.min.js" type="text/javascript"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+  <script src="js/mySchedule.js" type="text/javascript"></script>
   <title>My Schedule - Personal Trainer</title>
 </head>
 <body>
@@ -52,9 +54,9 @@
     {{#each schedules}}
     <a data-toggle="modal" href="#{{exerciseId}}" class="list-group-item">
       <h4 class="list-group-item-heading">{{exerciseName}}</h4>
-      <p class="list-group-item-text">Repeat Every: {{repeatDuration.time}} {{repeatDuration.unit}}</p>
+      <p class="list-group-item-text">Repeat Every: <span class="repeatTime">{{repeatDuration.time}}</span> <span class="repeatUnit">{{repeatDuration.unit}}</span></p>
       <p class="list-group-item-text">Interval: {{exerciseDuration.time}} {{exerciseDuration.unit}}</p>
-      <p class="list-group-item-text">Starting at: {{startTime}}</p>
+      <p class="list-group-item-text">Starting at:  <span class="startTime">{{startTime}}</span></p>
   </a>
   {{/each}}
 </script>
@@ -76,9 +78,6 @@
                 <h5 class="modal-interval">Repeat Every: {{repeatDuration.time}} {{repeatDuration.unit}}</h5>
                 <h5 class="modal-interval">
                   Interval: {{exerciseDuration.time}} {{exerciseDuration.unit}}
-                </h5>
-                 <h5 class="modal-interval">
-                  Start Time: {{startTime}} 
                 </h5>
               </ul>
           </div>
