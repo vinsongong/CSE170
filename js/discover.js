@@ -153,6 +153,7 @@ function cancelDetails(e) {
 
 function saveDetails(e) {
   e.preventDefault();
+
   //Parse out new details line by line
   var newTextBox = $(this).parents().eq(1).find(".textBoxDeets");
   var lines = newTextBox.val().split(/\n/);
@@ -164,12 +165,16 @@ function saveDetails(e) {
     }
   }
 
+  var originalId = ($(this).parents().parents().parents().eq(1).attr('id'));
+
   //Parse out new time
   var timeVal = $(this).parents().eq(1).find(".timeDeets").val();
   var timeUnits = $(this).parents().eq(1).find(".timeDrop option:selected").val();
 
   //Parse out new exercise name
   var newExerciseName = $(this).parents().eq(1).find(".exerciseNameInput").val();
+  //Using the new name, genereate new ID
+  var newId = lowercaseFirstLetter(newExerciseName).replace(/\s/g, '');
 
   //Error Check
   if(!newExerciseName.length) {
@@ -256,17 +261,54 @@ function saveDetails(e) {
     $(this).parents().eq(1).find(".youtube-vid").show();
   }
 
+  //Retrieve local storage items 
   var retrievedObject = localStorage.getItem('exerciseData');
   var exerciseArray = JSON.parse(retrievedObject);
+
+  //Find the index of the array 
+  var index = findIndexOf(exerciseArray, originalId);
+
+  var newExercise = {
+    exerciseId: newId,
+    exerciseName: newExerciseName,
+    distraction: newDistractionLevel,
+    duration:{
+     time:timeVal,
+     unit:timeUnits
+   },
+   type:"Custom",
+   isCustom:true,
+   description: texts,
+   //TODO: new Equipment Field 
+   equipment: null,
+   youtubeLink: embedYoutubeLink
+ } 
+
+ exerciseArray.exercises[index] = newExercise; 
+ localStorage.setItem("exerciseData", JSON.stringify(exerciseArray));
+
+  bootbox.alert({
+  size: "large",
+  message: "Updated Successfully.",
+  backdrop: true,
+  callback: function(){
+    window.location.replace("discover.html");
+  }
+});
+
+}
+
+function findIndexOf(exerciseArray, originalId){
+
+  var index = -1;
   $.each(exerciseArray.exercises, function() {
-      $this = $(this)[0];
-
-      var exerciseId = $this.exerciseId;
-      console.log(exerciseId);
-
-
-      //onsole.log(key + " " + value);
+    $this = $(this)[0];
+    var exerciseId = $this.exerciseId;
+    if(originalId === exerciseId){
+      index = exerciseArray.exercises.indexOf($this);
+    }
   });
+  return index;
 }
 
 function deleteExercise(e) {
@@ -279,6 +321,20 @@ function deleteExercise(e) {
     });
     $("a[href='#" + modalID + "']").remove();
   }
+
+  //Retrieve local storage items 
+  var retrievedObject = localStorage.getItem('exerciseData');
+  var exerciseArray = JSON.parse(retrievedObject);
+  var index = findIndexOf(exerciseArray, modalID);
+
+  //Delete an item from the local storage array
+  if (index > -1) {
+      exerciseArray.exercises.splice(index, 1);
+  }
+
+  //Save the changes (Deletion)
+  localStorage.setItem("exerciseData", JSON.stringify(exerciseArray));
+
   return false;
 }
 
@@ -293,6 +349,7 @@ function getYoutubeId(url) {
   }
 }
 
-function findExerciseName(exercise, exerciseId) {
-    return exercise.name === exerciseId;
+function lowercaseFirstLetter(str) {
+  return str.charAt(0).toLowerCase() + str.slice(1);
 }
+
