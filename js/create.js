@@ -5,13 +5,13 @@ $(document).ready(function(){
 
 function creatExercise(e) {
   e.preventDefault();
-
+  
   var id = lowercaseFirstLetter(this.exercise.value).replace(/\s/g, '');
 
   //Insert Youtube link
   var youtubeVideoID = getYoutubeId(this.youtubeLink.value);
   var embedYoutubeLink = youtubeVideoID;
-  
+
   if(youtubeVideoID != "") {
    embedYoutubeLink = embedYoutubeLink.replace(/^/,"https://www.youtube.com/embed/");
   }
