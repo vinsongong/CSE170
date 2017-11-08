@@ -39,7 +39,7 @@ function scheduleExercise(e) {
 	var index = findIndexOf(scheduleArray, exercise.exerciseId);
 	console.log(index);
 	//The same exercise exist 
-	if (index => 0) {
+	if (index != -1) {
 		bootbox.confirm({
 			title: "Confirm Message",
 			message: "You already have a scheduled exercise for " + exercise.exerciseName + "." +
