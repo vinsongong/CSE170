@@ -58,7 +58,7 @@ function scheduleExercise(e) {
 					localStorage.setItem("scheduleData", JSON.stringify(scheduleArray));
 					bootbox.alert({
 						size: "large",
-						message: "Your new exercise has been scheduled!",
+						message: "Your " + exercise.exerciseName + " schedule has been updated!",
 						backdrop: true,
 						callback: function(){
 							window.location.replace("mySchedule.html");
