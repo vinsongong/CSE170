@@ -27,7 +27,7 @@ function scheduleExercise(e) {
 			time:this.exerciseInterval.value,
 			unit:this.exerciseTimeUnit.value
 		},
-		/*Military Time Format*/ 
+		/*Military Time Format*/
 		//startTime:this.startTime.value
 		startTime:this.startTime.value
 	}

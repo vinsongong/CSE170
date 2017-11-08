@@ -86,10 +86,9 @@
     var repeatTimeCode = "<div class='repeatDiv'>Repeat Every&#42;<br /><input type='number' class='repeatVal form-control' " +
     "placeholder='' min='1' max='60' value='" + repeatTime + "' />";
     var repeatUnitsCode = "<select class='repeatUnitsDrop form-control'>" +
-    "<option value='seconds'>seconds</option>" +
-    "<option value='minutes'>minutes</option>" +
-    "<option value='hours'>hours</option>" +
-    "<option value='days'>days</option>" +
+    "<option value='Minutes'>minutes</option>" +
+    "<option value='Hours'>hours</option>" +
+    "<option value='Days'>days</option>" +
     "</select></div>";
     modalBody.append(repeatTimeCode + repeatUnitsCode);
     $(".repeatUnitsDrop option[value=" + repeatUnits+ "]").attr("selected", true);
@@ -101,10 +100,9 @@
     var intervalTimeCode = "<div class='intervalDiv'>Interval&#42;<br /><input type='number' class='intervalVal form-control' " +
     "placeholder='' min='1' max='60' value='" + intervalTime + "' />";
     var intervalUnitCode = "<select class='intervalUnitsDrop form-control'>" +
-    "<option value='seconds'>seconds</option>" +
-    "<option value='minutes'>minutes</option>" +
-    "<option value='hours'>hours</option>" +
-    "<option value='days'>days</option>" +
+    "<option value='Minutes'>minutes</option>" +
+    "<option value='Hours'>hours</option>" +
+    "<option value='Days'>days</option>" +
     "</select></div>";
     modalBody.append(intervalTimeCode + intervalUnitCode);
     $(".intervalUnitsDrop option[value=" + intervalUnit+ "]").attr("selected", true);
@@ -150,7 +148,7 @@ function saveScheduleItem(e) {
   var intervalVal = $(this).parents().eq(1).find(".intervalVal").val();
   var intervalUnits = $(this).parents().eq(1).find(".intervalUnitsDrop option:selected").val();
 
-  var oldExercise = scheduleArray.schedules[index]; 
+  var oldExercise = scheduleArray.schedules[index];
 
   if(oldExercise != null){
     oldExercise.exerciseId = newId;
@@ -158,7 +156,7 @@ function saveScheduleItem(e) {
     oldExercise.repeatDuration.time = repeatVal;
     oldExercise.repeatDuration.unit = repeatUnits;
     oldExercise.exerciseDuration.time = intervalVal;
-    oldExercise.exerciseDuration.unit = intervalUnits;   
+    oldExercise.exerciseDuration.unit = intervalUnits;
   }
 
   scheduleArray.schedules[index] = oldExercise;
