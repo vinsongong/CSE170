@@ -138,8 +138,6 @@ function cancelDetails(e) {
 function saveDetails(e) {
     e.preventDefault();
 
-    $(this).parents().eq(1).find(".equipmentDiv").remove();
-
     //Parse out new details line by line
     var newTextBox = $(this).parents().eq(1).find(".textBoxDeets");
     var lines = newTextBox.val().split(/\n/);
@@ -208,6 +206,10 @@ function saveDetails(e) {
     var newYoutubeLink = $(this).parents().eq(1).find(".youtubeLinkInput").val();
     $(this).parents().eq(1).find(".youtubeLinkDiv").remove();
 
+    //Retrieves user input & removes equipmentDiv
+    var newEquipment = $(this).parents().eq(1).find(".equipmentInput").val();
+    $(this).parents().eq(1).find(".equipmentDiv").remove();
+
     var modalBody = $(this).parents().eq(1).find(".modal-details");
     modalBody.show();
 
@@ -265,8 +267,7 @@ function saveDetails(e) {
         type:"Custom",
         isCustom:true,
         description: texts,
-        //TODO: new Equipment Field
-        equipment: null,
+        equipment: newEquipment,
         youtubeLink: embedYoutubeLink
     }
 
