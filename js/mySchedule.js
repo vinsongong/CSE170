@@ -186,6 +186,11 @@ function deleteScheduleItem(e) {
 
     //Save the changes (Deletion)
     localStorage.setItem("scheduleData", JSON.stringify(scheduleArray));
+
+    if(scheduleArray.schedules.length == 0){
+         $("#noExercise").show();
+    }
+
     return false;
 }
 
