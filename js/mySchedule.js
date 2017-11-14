@@ -5,6 +5,10 @@ $(document).ready(function(){
     var retrievedObject = localStorage.getItem('scheduleData');
     var scheduleArray = JSON.parse(retrievedObject);
 
+    if(scheduleArray.schedules.length > 0){
+        $("#noExercise").hide();
+    }
+
     /* Handlers bar */
     var listSource = $("#list-item-template").html();
     var listTemplate = Handlebars.compile(listSource);
