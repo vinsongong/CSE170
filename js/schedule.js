@@ -11,7 +11,24 @@ $(document).ready(function(){
 
 	var form = $("form#needs-validation");
 	$(form).submit(scheduleExercise);
+
+	var checkbox = $("#startNow");
+
+	$(checkbox).change(function() {
+		var $input = $(this);
+
+		if (checkbox.prop('checked')) {
+			$("#startTime").val(null);
+			$("#startTime").prop("disabled", true);
+	    } 
+		else {
+		    $("#startTime").prop("disabled", false);
+		}
+
+	}).change();
+
 });
+
 
 function scheduleExercise(e) {
 	e.preventDefault();
@@ -19,6 +36,13 @@ function scheduleExercise(e) {
 	/* Append the item to scheduleData (localStorage) */
 	var retrievedObject = localStorage.getItem('scheduleData');
 	var scheduleArray = JSON.parse(retrievedObject);
+
+	var time = this.startTime.value;
+
+	if($("#startNow").prop('checked')){
+		var curr = new Date();
+		time = curr.getHours() + ":" + curr.getMinutes();
+	}
 
 	var exercise = {
 		exerciseId:this.exercise.value,
@@ -31,13 +55,10 @@ function scheduleExercise(e) {
 			time:this.exerciseInterval.value,
 			unit:this.exerciseTimeUnit.value
 		},
-		/*Military Time Format*/
-		//startTime:this.startTime.value
-		startTime:this.startTime.value
+		startTime:time
 	}
 
 	var index = findIndexOf(scheduleArray, exercise.exerciseId);
-	console.log(index);
 	//The same exercise exist
 	if (index != -1) {
 		bootbox.confirm({
