@@ -13,6 +13,20 @@ $(document).ready(function(){
 	$(form).submit(scheduleExercise);
 
 	var checkbox = $("#startNow");
+	var exerciseNameInput = $("#exercise");
+
+	$(exerciseNameInput).change(function() {
+		var $input = $(this);
+		var exerciseId = $input.val();
+
+		if(exerciseId != null){
+			var index = findIndexOf(exerciseArray.exercises, exerciseId);
+			var time = exerciseArray.exercises[index].duration.time;
+			var unit = exerciseArray.exercises[index].duration.unit;
+			$("#exerciseInterval").val(time);
+			$("#exerciseTimeUnit").val(unit);
+		}
+	}).change();
 
 	$(checkbox).change(function() {
 		var $input = $(this);
@@ -58,7 +72,7 @@ function scheduleExercise(e) {
 		startTime:time
 	}
 
-	var index = findIndexOf(scheduleArray, exercise.exerciseId);
+	var index = findIndexOf(scheduleArray.schedules, exercise.exerciseId);
 	//The same exercise exist
 	if (index != -1) {
 		bootbox.confirm({
@@ -109,11 +123,11 @@ function scheduleExercise(e) {
 
 function findIndexOf(array, originalId){
 	var index = -1;
-	$.each(array.schedules, function() {
+	$.each(array, function() {
 		$this = $(this)[0];
 		var exerciseId = $this.exerciseId;
 		if(originalId === exerciseId){
-			index = array.schedules.indexOf($this);
+			index = array.indexOf($this);
 		}
 	});
 	return index;

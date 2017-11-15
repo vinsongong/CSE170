@@ -31,10 +31,10 @@ $(document).ready(function(){
         var repeatUnit = schedule.find("span.repeatUnit").text();
 
         var timePeriodMillis;
-        if(repeatUnit === "Minutes"){
+        if(repeatUnit === "minutes"){
             timePeriodMillis = (parseInt(repeatTime, 10) * 60 * 1000);
         }
-        else if(repeatUnit === "Hours"){
+        else if(repeatUnit === "hours"){
             timePeriodMillis = (parseInt(repeatTime, 10) * 60 * 60 * 1000);
         }
         else {
