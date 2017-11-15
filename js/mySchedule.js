@@ -50,7 +50,6 @@ $(document).ready(function(){
 
         start.setHours(startArray[0]);
         start.setMinutes(startArray[1]);
-        start.setSeconds(0);
 
         while ((start.getTime() - currMillis) <= 0){
             start.setTime(start.getTime() + timePeriodMillis);
