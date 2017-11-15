@@ -56,7 +56,7 @@ $(document).ready(function(){
             start.setTime(start.getTime() + timePeriodMillis);
         }
 
-        $(startTime).countdown({until: start, format: 'dHMS'});
+        $(startTime).countdown({until: start, format: 'dHMS', onExpiry: notification});
     });
 
     $("button.modify").click(modifyScheduleItem);
@@ -208,4 +208,15 @@ function findIndexOf(array, originalId){
 
 function lowercaseFirstLetter(str) {
     return str.charAt(0).toLowerCase() + str.slice(1);
+}
+
+function notification() {
+    bootbox.alert({
+        size: "large",
+        message: "Time to exercise!",
+        backdrop: true,
+        callback: function(){
+            window.location.replace("mySchedule.html");
+        }
+    });
 }

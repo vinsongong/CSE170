@@ -34,7 +34,7 @@ $(document).ready(function(){
 		if (checkbox.prop('checked')) {
 			$("#startTime").val(null);
 			$("#startTime").prop("disabled", true);
-		} 
+		}
 		else {
 			$("#startTime").prop("disabled", false);
 		}
@@ -78,7 +78,7 @@ function scheduleExercise(e) {
 	if(parseInt(repeatMinute) < parseInt(exerciseMinute)){
 		bootbox.alert({
 			size: "large",
-			message: "Please use the repeat interval longer than the duration of the exercise.",
+			message: "The repeat interval must be longer than the exercise interval!",
 			backdrop: true,
 		});
 	}
@@ -154,7 +154,6 @@ function convertToMinutes(time, unit){
 	}
 	else if(unit == "days"){
 		repeatMinute = time * 60 * 24;
-	}	
+	}
 	return repeatMinute;
 }
-
