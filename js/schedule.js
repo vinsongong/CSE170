@@ -75,10 +75,7 @@ function scheduleExercise(e) {
 	var repeatMinute = convertToMinutes(exercise.repeatDuration.time, exercise.repeatDuration.unit);
 	var exerciseMinute = convertToMinutes(exercise.exerciseDuration.time, exercise.exerciseDuration.unit);
 
-	console.log(repeatMinute);
-	console.log(exerciseMinute);
-
-	if(repeatMinute < exerciseMinute){
+	if(parseInt(repeatMinute) < parseInt(exerciseMinute)){
 		bootbox.alert({
 			size: "large",
 			message: "Please use the repeat interval longer than the duration of the exercise.",
