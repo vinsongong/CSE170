@@ -34,9 +34,9 @@ $(document).ready(function(){
 		if (checkbox.prop('checked')) {
 			$("#startTime").val(null);
 			$("#startTime").prop("disabled", true);
-	    } 
+		} 
 		else {
-		    $("#startTime").prop("disabled", false);
+			$("#startTime").prop("disabled", false);
 		}
 
 	}).change();
@@ -72,52 +72,64 @@ function scheduleExercise(e) {
 		startTime:time
 	}
 
-	var index = findIndexOf(scheduleArray.schedules, exercise.exerciseId);
-	//The same exercise exist
-	if (index != -1) {
-		bootbox.confirm({
-			title: "Confirm Message",
-			message: "You already have a scheduled exercise for " + exercise.exerciseName + "." +
-			" Do you want to overwrite the existing reminder for " + exercise.exerciseName + "?",
-			buttons: {
-				cancel: {
-					label: '<i class="fa fa-times"></i> Cancel'
-				},
-				confirm: {
-					label: '<i class="fa fa-check"></i> Confirm'
-				}
-			},
-			callback: function (result) {
-				if(result === true){
-					scheduleArray.schedules[index] = exercise;
-					localStorage.setItem("scheduleData", JSON.stringify(scheduleArray));
-					bootbox.alert({
-						size: "large",
-						message: "Your " + exercise.exerciseName + " schedule has been updated!",
-						backdrop: true,
-						callback: function(){
-							window.location.replace("mySchedule.html");
-						}
-					});
-				}
-				else{
-					window.location.replace("schedule.html");
-				}
-			}
+	var repeatMinute = convertToMinutes(exercise.repeatDuration.time, exercise.repeatDuration.unit);
+	var exerciseMinute = convertToMinutes(exercise.exerciseDuration.time, exercise.exerciseDuration.unit);
+
+	if(repeatMinute < exerciseMinute){
+		bootbox.alert({
+			size: "large",
+			message: "Please use the repeat interval longer than the duration of the exercise.",
+			backdrop: true,
 		});
 	}
 	else{
-		scheduleArray.schedules.push(exercise);
-		localStorage.setItem("scheduleData", JSON.stringify(scheduleArray));
+		var index = findIndexOf(scheduleArray.schedules, exercise.exerciseId);
+		//The same exercise exist
+		if (index != -1) {
+			bootbox.confirm({
+				title: "Confirm Message",
+				message: "You already have a scheduled exercise for " + exercise.exerciseName + "." +
+				" Do you want to overwrite the existing reminder for " + exercise.exerciseName + "?",
+				buttons: {
+					cancel: {
+						label: '<i class="fa fa-times"></i> Cancel'
+					},
+					confirm: {
+						label: '<i class="fa fa-check"></i> Confirm'
+					}
+				},
+				callback: function (result) {
+					if(result === true){
+						scheduleArray.schedules[index] = exercise;
+						localStorage.setItem("scheduleData", JSON.stringify(scheduleArray));
+						bootbox.alert({
+							size: "large",
+							message: "Your " + exercise.exerciseName + " schedule has been updated!",
+							backdrop: true,
+							callback: function(){
+								window.location.replace("mySchedule.html");
+							}
+						});
+					}
+					else{
+						window.location.replace("schedule.html");
+					}
+				}
+			});
+		}
+		else{
+			scheduleArray.schedules.push(exercise);
+			localStorage.setItem("scheduleData", JSON.stringify(scheduleArray));
 
-		bootbox.alert({
-			size: "large",
-			message: "Your new exercise has been scheduled!",
-			backdrop: true,
-			callback: function(){
-				window.location.replace("mySchedule.html");
-			}
-		});
+			bootbox.alert({
+				size: "large",
+				message: "Your new exercise has been scheduled!",
+				backdrop: true,
+				callback: function(){
+					window.location.replace("mySchedule.html");
+				}
+			});
+		}
 	}
 }
 
@@ -132,3 +144,17 @@ function findIndexOf(array, originalId){
 	});
 	return index;
 }
+
+
+function convertToMinutes(time, unit){
+	var repeatMinute = time;
+
+	if(unit == "hours"){
+		repeatMinute = time * 60;
+	}
+	else if(unit == "days"){
+		repeatMinute = time * 60 * 24;
+	}	
+	return repeatMinute;
+}
+
