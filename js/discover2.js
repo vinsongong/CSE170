@@ -119,11 +119,12 @@ function modifyDetails(e) {
 function cancelDetails(e) {
     e.preventDefault();
     $(this).hide();
-    $(this).parent().find(".delete").hide();
-    $(this).parent().find(".save").hide();
-    $(this).parent().find(".scheduleSave").hide();
-    $(this).parent().find(".modify").show();
-    $(this).parent().find(".schedule").show();
+    var btnModalBar = $(this).parent();
+    btnModalBar.find(".delete").hide();
+    btnModalBar.find(".save").hide();
+    btnModalBar.find(".scheduleSave").hide();
+    btnModalBar.find(".modify").show();
+    btnModalBar.find(".schedule").show();
     var modalBody = $(this).parents().eq(1).find(".modal-body");
     modalBody.find(".exerciseNameDiv").remove();
     modalBody.find(".textBoxDiv").remove();
@@ -134,14 +135,14 @@ function cancelDetails(e) {
     modalBody.find(".repeatEveryDiv").remove();
     modalBody.find(".startTimeDiv").remove();
     //Show Youtube video
-    var stoppedYoutubeLink = $(this).parents().eq(1).find("iframe").attr("src").trim();
-    $(this).parents().eq(1).find("iframe").attr('src', stoppedYoutubeLink.substr(1)); //To add video back in
-    if($(this).parents().eq(1).find("iframe").attr("src").trim() != "") {
-        $(this).parents().eq(1).find(".youtube-vid").show();
+    var stoppedYoutubeLink = modalBody.find("iframe").attr("src").trim();
+    modalBody.find("iframe").attr('src', stoppedYoutubeLink.substr(1)); //To add video back in
+    if(modalBody.find("iframe").attr("src").trim() != "") {
+        modalBody.find(".youtube-vid").show();
     }
     //Show modal description
-    $(this).parents().eq(1).find(".modal-details").show();
-    $(this).parents().eq(1).find(".modal-ul").show();
+    modalBody.find(".modal-details").show();
+    modalBody.find(".modal-ul").show();
 }
 
 function saveDetails(e) {
@@ -343,10 +344,9 @@ function scheduleExercise(e) {
     $(this).parent().find(".scheduleSave").show();
     $(this).parent().find(".cancel").show();
 
-    var modal = $(this).parents().eq(3);
     var modalBody = $(this).parents().eq(1).find(".modal-body");
-    modal.find(".youtube-vid").hide();
-    modal.find(".modal-ul").hide();
+    modalBody.find(".youtube-vid").hide();
+    modalBody.find(".modal-ul").hide();
 
     var repeatEveryCode = '<div class="form-group form-inline repeatEveryDiv">' +
         '<label for="repeatInterval">Repeat Every&#42;</label><br />' +
@@ -368,7 +368,25 @@ function scheduleExercise(e) {
 
 function saveSchedule(e) {
     e.preventDefault();
-    //Fill save to my schedule function here
+    $(this).hide();
+    $(this).parent().find(".cancel").hide();
+    $(this).parent().find(".schedule").show();
+    $(this).parent().find(".modify").show();
+
+    var modalBody = $(this).parents().eq(1).find(".modal-body");
+    var repeatEveryDiv = modalBody.find('.repeatEveryDiv');
+    var startTimeDiv = modalBody.find('.startTimeDiv');
+    repeatEveryDiv.hide();
+    startTimeDiv.hide();
+    modalBody.find(".youtube-vid").show();
+    modalBody.find(".modal-ul").show();
+
+    var repeatEveryVal = repeatEveryDiv.find("#repeatInterval").val();
+    var repeatEveryUnit = repeatEveryDiv.find("#repeatTimeUnit option:selected").val();
+    var startTime = startTimeDiv.find("#startTime").val();
+    var startTimeChecked = startTimeDiv.find("#startNow").prop('checked');
+
+    //TODO:Fill save to my schedule function here
 }
 
 function getYoutubeId(url) {
