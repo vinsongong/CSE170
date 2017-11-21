@@ -36,6 +36,19 @@ $(document).ready(function(){
         }
     });
 
+
+    $(document).on('change', '#startNow', function (e) {
+            var $input = $("#startNow");
+
+            if ($input.prop('checked')) {
+                $("#startTime").val(null);
+                $("#startTime").prop("disabled", true);
+            }
+            else {
+                $("#startTime").prop("disabled", false);
+            }
+    });
+
     $("button.modify").click(modifyDetails);
     $("button.cancel").click(cancelDetails);
     $("button.save").click(saveDetails);
@@ -376,18 +389,131 @@ function saveSchedule(e) {
     var modalBody = $(this).parents().eq(1).find(".modal-body");
     var repeatEveryDiv = modalBody.find('.repeatEveryDiv');
     var startTimeDiv = modalBody.find('.startTimeDiv');
+    var intervalText = modalBody.find('.modal-interval').text();
+    var exerciseName = $(this).parents().siblings(".modal-header").find(".modal-title").text();
+    
     repeatEveryDiv.hide();
     startTimeDiv.hide();
     modalBody.find(".youtube-vid").show();
     modalBody.find(".modal-ul").show();
 
+    var retrievedObject = localStorage.getItem('scheduleData');
+    var scheduleArray = JSON.parse(retrievedObject);
+
     var repeatEveryVal = repeatEveryDiv.find("#repeatInterval").val();
     var repeatEveryUnit = repeatEveryDiv.find("#repeatTimeUnit option:selected").val();
     var startTime = startTimeDiv.find("#startTime").val();
     var startTimeChecked = startTimeDiv.find("#startNow").prop('checked');
+    var exerciseId = $(this).parents(".discover").attr('id');
+    var exerciseInterval = intervalText.split(": ")[1];
 
-    //TODO:Fill save to my schedule function here
+    if(startTimeChecked){
+        var curr = new Date();
+        startTime = curr.getHours() + ":" + curr.getMinutes();
+    }
+
+    var exercise = {
+        exerciseId:exerciseId,
+        exerciseName: exerciseName,
+        repeatDuration:{
+            time:repeatEveryVal,
+            unit:repeatEveryUnit
+        },
+        exerciseDuration:{
+            time:exerciseInterval.split(" ")[0],
+            unit:exerciseInterval.split(" ")[1]
+        },
+        startTime:startTime
+    }
+
+    console.log(exercise);
+
+    var repeatMinute = convertToMinutes(exercise.repeatDuration.time, exercise.repeatDuration.unit);
+    var exerciseMinute = convertToMinutes(exercise.exerciseDuration.time, exercise.exerciseDuration.unit);
+
+    if(parseInt(repeatMinute) < parseInt(exerciseMinute)){
+        bootbox.alert({
+            size: "large",
+            message: "The repeat interval must be longer than the exercise interval!",
+            backdrop: true,
+        });
+    }
+    else{
+        var index = findIndexOf(scheduleArray.schedules, exercise.exerciseId);
+        //The same exercise exist
+        if (index != -1) {
+            bootbox.confirm({
+                title: "Confirm Message",
+                message: "You already have a scheduled exercise for " + exercise.exerciseName + "." +
+                " Do you want to overwrite the existing reminder for " + exercise.exerciseName + "?",
+                buttons: {
+                    cancel: {
+                        label: '<i class="fa fa-times"></i> Cancel'
+                    },
+                    confirm: {
+                        label: '<i class="fa fa-check"></i> Confirm'
+                    }
+                },
+                callback: function (result) {
+                    if(result === true){
+                        scheduleArray.schedules[index] = exercise;
+                        localStorage.setItem("scheduleData", JSON.stringify(scheduleArray));
+                        bootbox.alert({
+                            size: "large",
+                            message: "Your " + exercise.exerciseName + " schedule has been updated!",
+                            backdrop: true,
+                            callback: function(){
+                                window.location.replace("mySchedule.html");
+                            }
+                        });
+                    }
+                    else{
+                        window.location.replace("discover2.html");
+                    }
+                }
+            });
+        }
+        else{
+            scheduleArray.schedules.push(exercise);
+            localStorage.setItem("scheduleData", JSON.stringify(scheduleArray));
+
+            bootbox.alert({
+                size: "large",
+                message: "Your new exercise has been scheduled!",
+                backdrop: true,
+                callback: function(){
+                    window.location.replace("mySchedule.html");
+                }
+            });
+        }
+    }
 }
+
+
+function findIndexOf(array, originalId){
+    var index = -1;
+    $.each(array, function() {
+        $this = $(this)[0];
+        var exerciseId = $this.exerciseId;
+        if(originalId === exerciseId){
+            index = array.indexOf($this);
+        }
+    });
+    return index;
+}
+
+function convertToMinutes(time, unit){
+    var repeatMinute = time;
+
+    if(unit == "hours"){
+        repeatMinute = time * 60;
+    }
+    else if(unit == "days"){
+        repeatMinute = time * 60 * 24;
+    }
+    return repeatMinute;
+}
+
 
 function getYoutubeId(url) {
     var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
