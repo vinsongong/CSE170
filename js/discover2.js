@@ -362,26 +362,19 @@ function scheduleExercise(e) {
         '<label for="startTime">Starting Time&#42;</label><br />' +
         '<input type="checkbox" id="startNow" name="startNow" checked>' +
         '<label for="startNow">Start Now</label> <br/>' +
-        '<input class="form-control"  type="time" id="startTime" required></div>';
+        '<input class="form-control" type="time" id="startTime" required disabled></div>';
     modalBody.append(startTimeCode);
 }
 
 function saveSchedule(e) {
     e.preventDefault();
-    $(this).hide();
-    $(this).parent().find(".cancel").hide();
-    $(this).parent().find(".schedule").show();
-    $(this).parent().find(".modify").show();
 
     var modalBody = $(this).parents().eq(1).find(".modal-body");
+    var modalID = "#" + camelize($(this).parents().eq(1).find("h4.modal-title").text());
     var repeatEveryDiv = modalBody.find('.repeatEveryDiv');
     var startTimeDiv = modalBody.find('.startTimeDiv');
     var intervalText = modalBody.find('.modal-interval').text();
     var exerciseName = $(this).parents().siblings(".modal-header").find(".modal-title").text();
-
-    repeatEveryDiv.hide();
-    startTimeDiv.hide();
-    modalBody.find(".modal-ul").show();
 
     //Show Youtube video
     var stoppedYoutubeLink = modalBody.find("iframe").attr("src").trim();
@@ -400,7 +393,9 @@ function saveSchedule(e) {
     var exerciseId = $(this).parents(".discover").attr('id');
     var exerciseInterval = intervalText.split(": ")[1];
 
-    $(".modal .close").click();
+
+    var currModal = $(modalID);
+    currModal.modal('toggle');
 
     if(startTimeChecked){
         var curr = new Date();
@@ -421,18 +416,15 @@ function saveSchedule(e) {
         startTime:startTime
     }
 
-    console.log(exercise);
-
     var repeatMinute = convertToMinutes(exercise.repeatDuration.time, exercise.repeatDuration.unit);
     var exerciseMinute = convertToMinutes(exercise.exerciseDuration.time, exercise.exerciseDuration.unit);
-
-    if(parseInt(repeatMinute) < parseInt(exerciseMinute)){
+    if(isNaN(parseInt(repeatMinute)) || parseInt(repeatMinute) < parseInt(exerciseMinute)){
         bootbox.alert({
             size: "large",
             message: "The repeat interval must be longer than the exercise interval!",
             backdrop: true,
             callback: function (result) {
-                window.location.replace("discover2.html");
+                currModal.modal('toggle');
             }
         });
     } else if(!startTimeChecked && !startTime){
@@ -441,7 +433,7 @@ function saveSchedule(e) {
             message: "The start time is invalid!",
             backdrop: true,
             callback: function (result) {
-                window.location.replace("discover2.html");
+                currModal.modal('toggle');
             }
         });
     }
@@ -470,12 +462,12 @@ function saveSchedule(e) {
                             message: "Your " + exercise.exerciseName + " schedule has been updated!",
                             backdrop: true,
                             callback: function(){
-                                window.location.replace("mySchedule.html");
+                                window.location.replace("mySchedule2.html");
                             }
                         });
                     }
                     else{
-                        window.location.replace("discover2.html");
+                        currModal.modal('toggle');
                     }
                 }
             });
@@ -489,7 +481,14 @@ function saveSchedule(e) {
                 message: "Your new exercise has been scheduled!",
                 backdrop: true,
                 callback: function(){
-                    window.location.replace("mySchedule.html");
+                    // repeatEveryDiv.hide();
+                    // startTimeDiv.hide();
+                    // modalBody.find(".modal-ul").show();
+                    $(this).hide();
+                    $(this).parent().find(".cancel").hide();
+                    $(this).parent().find(".schedule").show();
+                    $(this).parent().find(".modify").show();
+                    window.location.replace("mySchedule2.html");
                 }
             });
         }
@@ -535,4 +534,10 @@ function getYoutubeId(url) {
 
 function lowercaseFirstLetter(str) {
     return str.charAt(0).toLowerCase() + str.slice(1);
+}
+
+function camelize(str) {
+  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
+    return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
+  }).replace(/\s+/g, '');
 }
