@@ -391,11 +391,17 @@ function saveSchedule(e) {
     var startTimeDiv = modalBody.find('.startTimeDiv');
     var intervalText = modalBody.find('.modal-interval').text();
     var exerciseName = $(this).parents().siblings(".modal-header").find(".modal-title").text();
-    
+
     repeatEveryDiv.hide();
     startTimeDiv.hide();
-    modalBody.find(".youtube-vid").show();
     modalBody.find(".modal-ul").show();
+
+    //Show Youtube video
+    var stoppedYoutubeLink = modalBody.find("iframe").attr("src").trim();
+    modalBody.find("iframe").attr('src', stoppedYoutubeLink.substr(1)); //To add video back in
+    if(modalBody.find("iframe").attr("src").trim() != "") {
+        modalBody.find(".youtube-vid").show();
+    }
 
     var retrievedObject = localStorage.getItem('scheduleData');
     var scheduleArray = JSON.parse(retrievedObject);
@@ -406,6 +412,8 @@ function saveSchedule(e) {
     var startTimeChecked = startTimeDiv.find("#startNow").prop('checked');
     var exerciseId = $(this).parents(".discover").attr('id');
     var exerciseInterval = intervalText.split(": ")[1];
+
+    $(".modal .close").click();
 
     if(startTimeChecked){
         var curr = new Date();
@@ -436,6 +444,18 @@ function saveSchedule(e) {
             size: "large",
             message: "The repeat interval must be longer than the exercise interval!",
             backdrop: true,
+            callback: function (result) {
+                window.location.replace("discover2.html");
+            }
+        });
+    } else if(!startTimeChecked && !startTime){
+        bootbox.alert({
+            size: "large",
+            message: "The start time is invalid!",
+            backdrop: true,
+            callback: function (result) {
+                window.location.replace("discover2.html");
+            }
         });
     }
     else{
