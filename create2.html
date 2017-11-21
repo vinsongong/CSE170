@@ -1,0 +1,145 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="css/nav.css" rel="stylesheet">
+    <link href="css/create.css" rel="stylesheet">
+    <link href="css/modal.css" rel="stylesheet">
+    <link href="css/settingsModal.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/a42ce1c3c0.js"></script>
+    <script src="js/bootbox.min.js"></script>
+    <script src="js/create2.js"></script>
+    <script src="js/emailValidate.js" type="text/javascript"></script>
+    <script src="js/passwordValidate.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <title>Create Exercises - Personal Trainer</title>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="topNav">
+        <ul class="nav navbar-nav">
+            <li><a href="discover2.html">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <br />
+                Learn Exercises
+            </a></li>
+            <li class="active"><a href="#">
+                <i class="fa fa-plus-circle" aria-hidden="true"> </i>
+                <br />
+                Create Exercises
+            </a></li>
+            <li><a href="mySchedule2.html">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                <br />
+                My Schedule
+            </a></li>
+        </ul>
+    </nav>
+
+    <form class="container" id="needs-validation" validate>
+        <div class="form-group form-inline">
+            <label for="exercise">Exercise Name&#42;</label><br />
+            <input type="text" id="exercise" class="form-control" required>
+        </div>
+
+        <div class="form-group form-inline">
+            <label for="exercise-interval">Exercise Interval&#42;</label><br />
+            <input class="form-control"  type="number" id="exerciseInterval" min="1" max="60" required>
+            <select id ="exerciseTimeUnit" class="form-control" required>
+                <option value='minutes'>Minutes</option>
+                <option value='hours'>Hours</option>
+                <option value='days'>Days</option>
+            </select>
+        </div>
+
+        <div class="form-group form-inline">
+            <label for="distractionLevel">Distraction Level&#42;</label><br />
+            <select id ="distractionLevel" class="form-control" required>
+                <option value='Low'>Low</option>
+                <option value='Medium'>Medium</option>
+                <option value='High'>High</option>
+            </select>
+        </div>
+
+
+        <div class="form-group form-inline">
+            <label for="description">Description&#42;</label><br />
+            <textarea class="form-control" id="description" required></textarea>
+        </div>
+
+        <div class="form-group form-inline">
+            <label for="equipment">Equipment (Optional)</label><br />
+            <input type="text" class="form-control" id="equipment">
+        </div>
+
+        <div class="form-group form-inline">
+            <label for="youtubeLink"><i class="fa fa-youtube-play"></i>&nbsp;Youtube Link (Optional)</label><br />
+            <input type="text" class="form-control" id="youtubeLink">
+        </div>
+
+        <div class="text-center">
+            <button class="btn btn-success save" type="submit">Create</button>
+        </div>
+    </form>
+
+    <!-- Setting Modal -->
+    <div class="modal fade" id="settingModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Settings</h4>
+                </div>
+                <div class="modal-body">
+                    <div class='settings_email'>
+                        <h4><b>Change Email</b></h4>
+                        <hr />
+                        <form class="form-signup" onsubmit="alert('Email has successfully been changed.');">
+                            <p class="alignleft">New Email:</p>
+                            <input type='email' id="settings-newEmail" class='settings-input form-control' placeholder="Enter new email" value='test@test.com' autofocus required/>
+                            <p class="alignleft">Confirm New Email:</p>
+                            <input type='email' id="settings-newConfirmEmail" class='settings-input form-control' placeholder="Retype new email" required/>
+                            <button class="btn btn-lg btn-primary btn-block" id="emailChangeBtn" type="submit">Submit Email Change</button>
+                            <hr />
+                        </form>
+                    </div>
+                    <div class='settings_password'>
+                        <h4><b>Change Password</b></h4>
+                        <hr />
+                        <form class="form-signup" onsubmit="alert('Password has successfully been changed.');">
+                            <p class="alignleft">Current Password:</p>
+                            <input type='password' id="settings-oldPassword" class='settings-input form-control' placeholder="Enter current password" autofocus required/>
+                            <p class="alignleft">New Password:</p>
+                            <input type='password' id="inputPassword" class='settings-input form-control' placeholder="Enter new password" required/>
+                            <p class="alignleft">Confirm New Password:</p>
+                            <input type='password' id="inputPasswordConfirm" class='settings-input form-control' placeholder="Retype new password" required/>
+                            <button class="btn btn-lg btn-primary btn-block" id="createBtn" type="submit">Submit Password Change</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END Setting Modal -->
+
+    <nav id="bottomNav" class="navbar navbar-default navbar-xs navbar-fixed-bottom">
+        <ul class="nav navbar-nav">
+            <li><a href="index.html">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                Logout
+            </a></li>
+            <li><a data-toggle="modal" href="#settingModal">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+                Settings
+            </a></li>
+        </ul>
+    </nav>
+
+</body>
+</html>
