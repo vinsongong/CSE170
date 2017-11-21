@@ -277,7 +277,7 @@ function saveDetails(e) {
     var exerciseArray = JSON.parse(retrievedObject);
 
     //Find the index of the array
-    var index = findIndexOf(exerciseArray, originalId);
+    var index = findIndexOf(exerciseArray.exercises, originalId);
 
     var newExercise = {
         exerciseId: newId,
@@ -310,19 +310,6 @@ function saveDetails(e) {
 
 }
 
-function findIndexOf(exerciseArray, originalId){
-
-    var index = -1;
-    $.each(exerciseArray.exercises, function() {
-        $this = $(this)[0];
-        var exerciseId = $this.exerciseId;
-        if(originalId === exerciseId){
-            index = exerciseArray.exercises.indexOf($this);
-        }
-    });
-    return index;
-}
-
 function deleteExercise(e) {
     e.preventDefault();
     if (confirm("Are you sure you want to delete this exercise?")) {
@@ -337,7 +324,7 @@ function deleteExercise(e) {
     //Retrieve local storage items
     var retrievedObject = localStorage.getItem('exerciseData');
     var exerciseArray = JSON.parse(retrievedObject);
-    var index = findIndexOf(exerciseArray, modalID);
+    var index = findIndexOf(exerciseArray.exercises, modalID);
 
     //Delete an item from the local storage array
     if (index > -1) {
