@@ -462,7 +462,7 @@ function saveSchedule(e) {
                             message: "Your " + exercise.exerciseName + " schedule has been updated!",
                             backdrop: true,
                             callback: function(){
-                                window.location.replace("mySchedule.html");
+                                window.location.replace("mySchedule2.html");
                             }
                         });
                     }
@@ -488,7 +488,7 @@ function saveSchedule(e) {
                     $(this).parent().find(".cancel").hide();
                     $(this).parent().find(".schedule").show();
                     $(this).parent().find(".modify").show();
-                    window.location.replace("mySchedule.html");
+                    window.location.replace("mySchedule2.html");
                 }
             });
         }
