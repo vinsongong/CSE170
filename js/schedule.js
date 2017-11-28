@@ -10,7 +10,10 @@ $(document).ready(function(){
 	$("#exercise").append(optionHtml);
 
 	var form = $("form#needs-validation");
-	$(form).submit(scheduleExercise);
+	$(form).submit(
+		scheduleExercise,
+		sendTrackerData
+	);
 
 	var checkbox = $("#startNow");
 	var exerciseNameInput = $("#exercise");
@@ -43,6 +46,16 @@ $(document).ready(function(){
 
 });
 
+function sendTrackerData() {
+	console.log("Schedule Button Clicked");
+	tracker = ga.getAll()[0];
+	if(tracker){
+		tracker.send('event', 'schedule', 'click');
+	}
+	else{
+		console.log("Tracker is not found. Check your GA.")
+	}
+}
 
 function scheduleExercise(e) {
 	e.preventDefault();

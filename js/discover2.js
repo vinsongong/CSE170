@@ -54,7 +54,10 @@ $(document).ready(function(){
     $("button.save").click(saveDetails);
     $("button.delete").click(deleteExercise);
     $("button.schedule").click(scheduleExercise);
-    $("button.scheduleSave").click(saveSchedule);
+    $("button.scheduleSave").click(
+        saveSchedule
+
+        );
 });
 
 function modifyDetails(e) {
