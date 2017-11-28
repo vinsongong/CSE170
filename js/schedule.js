@@ -10,6 +10,7 @@ $(document).ready(function(){
 	$("#exercise").append(optionHtml);
 
 	var form = $("form#needs-validation");
+	
 	$(form).submit(
 		sendTrackerData,
 		scheduleExercise

@@ -54,11 +54,7 @@ $(document).ready(function(){
     $("button.save").click(saveDetails);
     $("button.delete").click(deleteExercise);
     $("button.schedule").click(scheduleExercise);
-    $("button.scheduleSave").click(
-        sendTrackerData,
-        saveSchedule
-    );
-    
+    $("button.scheduleSave").click(saveSchedule);
 });
 
 function modifyDetails(e) {
@@ -372,6 +368,7 @@ function scheduleExercise(e) {
 
 function saveSchedule(e) {
     e.preventDefault();
+    sendTrackerData();
 
     var modalBody = $(this).parents().eq(1).find(".modal-body");
     var modalID = "#" + camelize($(this).parents().eq(1).find("h4.modal-title").text());
