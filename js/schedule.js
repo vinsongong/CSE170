@@ -11,8 +11,8 @@ $(document).ready(function(){
 
 	var form = $("form#needs-validation");
 	$(form).submit(
-		scheduleExercise,
-		sendTrackerData
+		sendTrackerData,
+		scheduleExercise
 	);
 
 	var checkbox = $("#startNow");
