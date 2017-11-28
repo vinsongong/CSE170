@@ -55,9 +55,10 @@ $(document).ready(function(){
     $("button.delete").click(deleteExercise);
     $("button.schedule").click(scheduleExercise);
     $("button.scheduleSave").click(
+        sendTrackerData,
         saveSchedule
-
-        );
+    );
+    
 });
 
 function modifyDetails(e) {
@@ -543,4 +544,15 @@ function camelize(str) {
   return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter, index) {
     return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
   }).replace(/\s+/g, '');
+}
+
+function sendTrackerData() {
+    console.log("Schedule Button Clicked");
+    tracker = ga.getAll()[0];
+    if(tracker){
+        tracker.send('event', 'schedule', 'click');
+    }
+    else{
+        console.log("Tracker is not found. Check your GA.")
+    }
 }
