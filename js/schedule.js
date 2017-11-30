@@ -12,7 +12,6 @@ $(document).ready(function(){
 	var form = $("form#needs-validation");
 	
 	$(form).submit(
-		sendTrackerData,
 		scheduleExercise
 	);
 
@@ -59,6 +58,7 @@ function sendTrackerData() {
 }
 
 function scheduleExercise(e) {
+	sendTrackerData();
 	e.preventDefault();
 
 	/* Append the item to scheduleData (localStorage) */
