@@ -61,8 +61,6 @@ function scheduleExercise(e) {
 	sendTrackerData();
 	e.preventDefault();
 
-	console.log("HMMMM??");
-
 	/* Append the item to scheduleData (localStorage) */
 	var retrievedObject = localStorage.getItem('scheduleData');
 	var scheduleArray = JSON.parse(retrievedObject);
