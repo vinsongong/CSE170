@@ -304,7 +304,7 @@ function saveDetails(e) {
         message: "Updated Successfully.",
         backdrop: true,
         callback: function(){
-            window.location.replace("discover2.html");
+            window.location.replace("discover.html");
         }
     });
 
@@ -466,7 +466,7 @@ function saveSchedule(e) {
                                 if(modalBody.find("iframe").attr("src").trim() != "") {
                                     modalBody.find(".youtube-vid").show();
                                 }
-                                window.location.replace("mySchedule2.html");
+                                window.location.replace("mySchedule.html");
                             }
                         });
                     }
@@ -495,7 +495,7 @@ function saveSchedule(e) {
                     $(this).parent().find(".cancel").hide();
                     $(this).parent().find(".schedule").show();
                     $(this).parent().find(".modify").show();
-                    window.location.replace("mySchedule2.html");
+                    window.location.replace("mySchedule.html");
                 }
             });
         }
