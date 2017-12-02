@@ -29,6 +29,11 @@
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" id="topNav">
         <ul class="nav navbar-nav">
+            <li><a href="mySchedule.html">
+                <i class="fa fa-tasks" aria-hidden="true"></i>
+                <br />
+                My Schedule
+            </a></li>
             <li><a href="discover.html">
                 <i class="fa fa-search" aria-hidden="true"></i>
                 <br />
@@ -44,11 +49,6 @@
                 <br />
                 Schedule Exercises
             </a></li>
-            <li><a href="mySchedule.html">
-                <i class="fa fa-tasks" aria-hidden="true"></i>
-                <br />
-                My Schedule
-            </a></li>
         </ul>
     </nav>
 
@@ -59,7 +59,7 @@
         </div>
 
         <div class="form-group form-inline">
-            <label for="exercise-interval">Exercise Interval&#42;</label><br />
+            <label for="exercise-interval">Exercise Total Duration&#42;</label><br />
             <input class="form-control"  type="number" id="exerciseInterval" min="1" max="60" required>
             <select id ="exerciseTimeUnit" class="form-control" required>
                 <option value='minutes'>Minutes</option>

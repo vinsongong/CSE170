@@ -48,6 +48,11 @@
     <!-- Top navbar -->
     <nav class="navbar navbar-inverse navbar-fixed-top" id="topNav">
         <ul class="nav navbar-nav">
+            <li><a href="mySchedule.html">
+                <i class="fa fa-tasks" aria-hidden="true"></i>
+                <br />
+                My Schedule
+            </a></li>
             <li class="active"><a href="#">
                 <i class="fa fa-search" aria-hidden="true"></i>
                 <br />
@@ -62,11 +67,6 @@
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 <br />
                 Schedule Exercises
-            </a></li>
-            <li><a href="mySchedule.html">
-                <i class="fa fa-tasks" aria-hidden="true"></i>
-                <br />
-                My Schedule
             </a></li>
         </ul>
     </nav>
@@ -139,6 +139,8 @@
                         {{#if isCustom}}
                         <button class="btn btn-default pull-left modify">Modify</button>
                         {{/if}}
+                        <button class="btn btn-default pull-left schedule">Schedule</button>
+                        <button class="btn btn-default pull-left scheduleSave" style="display:none;">Save to My Schedule</button>
                         <button class="btn btn-danger pull-left delete" style="display:none;">Delete</button>
                         <button class="btn btn-success pull-left save" style="display:none;">Save</button>
                         <button class="btn btn-default pull-left cancel" style="display:none;">Cancel</button>
