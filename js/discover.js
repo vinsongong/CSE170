@@ -344,6 +344,9 @@ function scheduleExercise(e) {
     $(this).parent().find(".scheduleSave").show();
     $(this).parent().find(".cancel").show();
 
+    var youtubeLink = $(this).parents().eq(1).find("iframe").attr("src");
+    $(this).parents().eq(1).find("iframe").attr('src', "#" + youtubeLink); //To stop video from playing
+
     var modalBody = $(this).parents().eq(1).find(".modal-body");
     modalBody.find(".youtube-vid").hide();
     modalBody.find(".modal-ul").hide();
@@ -380,9 +383,6 @@ function saveSchedule(e) {
     //Show Youtube video
     var stoppedYoutubeLink = modalBody.find("iframe").attr("src").trim();
     modalBody.find("iframe").attr('src', stoppedYoutubeLink.substr(1)); //To add video back in
-    if(modalBody.find("iframe").attr("src").trim() != "") {
-        modalBody.find(".youtube-vid").show();
-    }
 
     var retrievedObject = localStorage.getItem('scheduleData');
     var scheduleArray = JSON.parse(retrievedObject);
@@ -463,6 +463,9 @@ function saveSchedule(e) {
                             message: "Your " + exercise.exerciseName + " schedule has been updated!",
                             backdrop: true,
                             callback: function(){
+                                if(modalBody.find("iframe").attr("src").trim() != "") {
+                                    modalBody.find(".youtube-vid").show();
+                                }
                                 window.location.replace("mySchedule2.html");
                             }
                         });
@@ -485,6 +488,9 @@ function saveSchedule(e) {
                     // repeatEveryDiv.hide();
                     // startTimeDiv.hide();
                     // modalBody.find(".modal-ul").show();
+                    if(modalBody.find("iframe").attr("src").trim() != "") {
+                        modalBody.find(".youtube-vid").show();
+                    }
                     $(this).hide();
                     $(this).parent().find(".cancel").hide();
                     $(this).parent().find(".schedule").show();
