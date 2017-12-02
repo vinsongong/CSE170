@@ -17,13 +17,18 @@ body {
     display:table-cell;
     text-align:center;
 }
-#topNav > .navbar-nav > li > a {
+#topNav > .navbar-nav > li:not(.active) > a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color:#CCCCCC;
+}
+#topNav > .navbar-nav > li.active > a {
     padding-top: 15px;
     padding-bottom: 15px;
 }
 #topNav > .nav > .active{
-    color:red;
-    border-bottom: 5px solid red;
+    color:#007BFF;
+    border-bottom: 10px solid #007BFF;
 }
 
 #bottomNav > .navbar-nav {
