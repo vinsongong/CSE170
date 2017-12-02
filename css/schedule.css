@@ -21,15 +21,18 @@
     border: solid 2px;
     margin-left: 5px;
 }
-#exerciseInterval {
+
+.exerciseTime{
     display: inline;
-    width: 30%;
-    border: solid 2px;
+    font-size: larger;
 }
+
+#exerciseInterval {
+    width: 30%;
+}
+
 #exerciseTimeUnit {
-    display: inline;
     width: 45%;
-    border: solid 2px;
     margin-left: 5px;
 }
 #startTime {

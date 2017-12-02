@@ -11,9 +11,7 @@ $(document).ready(function(){
 
 	var form = $("form#needs-validation");
 	
-	$(form).submit(
-		scheduleExercise
-	);
+	$(form).submit(scheduleExercise);
 
 	var checkbox = $("#startNow");
 	var exerciseNameInput = $("#exercise");
@@ -28,6 +26,8 @@ $(document).ready(function(){
 			var unit = exerciseArray.exercises[index].duration.unit;
 			$("#exerciseInterval").val(time);
 			$("#exerciseTimeUnit").val(unit);
+			$("#exerciseInterval").text(time);
+			$("#exerciseTimeUnit").text(capitalizeFirstLetter(unit));
 		}
 	}).change();
 
@@ -58,6 +58,7 @@ function sendTrackerData() {
 }
 
 function scheduleExercise(e) {
+	/* Google Analytics Tracker */
 	sendTrackerData();
 	e.preventDefault();
 
@@ -80,8 +81,8 @@ function scheduleExercise(e) {
 			unit:this.repeatTimeUnit.value
 		},
 		exerciseDuration:{
-			time:this.exerciseInterval.value,
-			unit:this.exerciseTimeUnit.value
+			time:document.getElementById('exerciseInterval').value,
+			unit:document.getElementById('exerciseTimeUnit').value
 		},
 		startTime:time
 	}
@@ -170,4 +171,8 @@ function convertToMinutes(time, unit){
 		repeatMinute = time * 60 * 24;
 	}
 	return repeatMinute;
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }

@@ -37,7 +37,7 @@
                 My Schedule
             </a></li>
             <li><a href="discover.html">
-                <i class="fa fa-search" aria-hidden="true"></i>
+                <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
                 <br />
                 Learn Exercises
             </a></li>
@@ -47,7 +47,7 @@
                 Create Exercises
             </a></li>
             <li class="active"><a href="#">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
                 <br />
                 Schedule Exercises
             </a></li>
@@ -56,26 +56,21 @@
 
     <form class="container" id="needs-validation" validate>
         <div class="form-group form-inline">
-            <label for="exercise">Exercise Name&#42;</label><br />
+            <label for="exercise">Name&#42;</label><br />
             <select id="exercise" class="form-control" required>
                 <option value="" hidden selected disabled>Select Exercise</option>
             </select>
         </div>
 
         <div class="form-group form-inline">
-            <label for="repeatInterval">Frequency&#42;</label><br />
-            <input class="form-control"  type="number" id="repeatInterval" min="1" max="60" required>
-            <select id ="repeatTimeUnit" class="form-control" required>
-                <option value='minutes'>Minutes</option>
-                <option value='hours'>Hours</option>
-                <option value='days'>Days</option>
-            </select>
+            <label for="exerciseInterval">Exercise Interval</label><br />
+            <p class="exerciseTime"><span id="exerciseInterval"></span><span id="exerciseTimeUnit"></span></p>
         </div>
 
         <div class="form-group form-inline">
-            <label for="exerciseInterval">Exercise Interval&#42;</label><br />
-            <input class="form-control"  type="number" id="exerciseInterval" min="1" max="60" required disabled>
-            <select id ="exerciseTimeUnit" class="form-control" required disabled>
+            <label for="repeatInterval">Frequency&#42;</label><br />
+            <input class="form-control" type="number" id="repeatInterval" min="1" max="60" maxlength = "2" required>
+            <select id ="repeatTimeUnit" class="form-control" required>
                 <option value='minutes'>Minutes</option>
                 <option value='hours'>Hours</option>
                 <option value='days'>Days</option>

@@ -31,10 +31,10 @@ $(document).ready(function(){
         var repeatUnit = schedule.find("span.repeatUnit").text();
 
         var timePeriodMillis;
-        if(repeatUnit === "Minutes"){
+        if(repeatUnit === "minutes"){
             timePeriodMillis = (parseInt(repeatTime, 10) * 60 * 1000);
         }
-        else if(repeatUnit === "Hours"){
+        else if(repeatUnit === "hours"){
             timePeriodMillis = (parseInt(repeatTime, 10) * 60 * 60 * 1000);
         }
         else {
@@ -83,9 +83,9 @@ function modifyScheduleItem(e) {
     var repeatTimeCode = "<div class='repeatDiv'>Repeat Every&#42;<br /><input type='number' class='repeatVal form-control' " +
     "placeholder='' min='1' max='60' value='" + repeatTime + "' />";
     var repeatUnitsCode = "<select class='repeatUnitsDrop form-control'>" +
-    "<option value='Minutes'>minutes</option>" +
-    "<option value='Hours'>hours</option>" +
-    "<option value='Days'>days</option>" +
+    "<option value='minutes'>Minutes</option>" +
+    "<option value='hours'>Hours</option>" +
+    "<option value='days'>Days</option>" +
     "</select></div>";
     modalBody.append(repeatTimeCode + repeatUnitsCode);
     $(".repeatUnitsDrop option[value=" + repeatUnits+ "]").attr("selected", true);
@@ -97,9 +97,9 @@ function modifyScheduleItem(e) {
     var intervalTimeCode = "<div class='intervalDiv'>Interval&#42;<br /><input type='number' class='intervalVal form-control' " +
     "placeholder='' min='1' max='60' value='" + intervalTime + "' />";
     var intervalUnitCode = "<select class='intervalUnitsDrop form-control'>" +
-    "<option value='Minutes'>minutes</option>" +
-    "<option value='Hours'>hours</option>" +
-    "<option value='Days'>days</option>" +
+    "<option value='minutes'>Minutes</option>" +
+    "<option value='hours'>Hours</option>" +
+    "<option value='days'>Days</option>" +
     "</select></div>";
     modalBody.append(intervalTimeCode + intervalUnitCode);
     $(".intervalUnitsDrop option[value=" + intervalUnit+ "]").attr("selected", true);
