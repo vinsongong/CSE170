@@ -24,6 +24,7 @@ $(document).ready(function(){
 			var index = findIndexOf(exerciseArray.exercises, exerciseId);
 			var time = exerciseArray.exercises[index].duration.time;
 			var unit = exerciseArray.exercises[index].duration.unit;
+			$(".exerciseTimeContainer").css("display", "block");
 			$("#exerciseInterval").val(time);
 			$("#exerciseTimeUnit").val(unit);
 			$("#exerciseInterval").text(time);

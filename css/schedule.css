@@ -1,6 +1,9 @@
 .container {
     text-align: center;
 }
+.exerciseTimeContainer{
+    display:none;
+}
 .modal-body {
     text-align: center;
     font-size: 1.1em;
