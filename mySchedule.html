@@ -75,7 +75,7 @@
             <h4 class="list-group-item-heading">{{exerciseName}}</h4>
             <p class="list-group-item-text">Frequency: <span class="repeatTime">{{repeatDuration.time}}</span> <span class="repeatUnit">{{repeatDuration.unit}}</span></p>
             <p class="list-group-item-text">Duration: {{exerciseDuration.time}} {{exerciseDuration.unit}}</p>
-            <p class="list-group-item-text">Starting at:  <span class="startTime">{{startTime}}</span></p>
+            <p class="list-group-item-text">Next Session: <span class="startTime">{{startTime}}</span></p>
         </a>
         {{/each}}
     </script>
@@ -102,7 +102,7 @@
                 <div class="modal-footer">
                     <button class="btn btn-default pull-left modify">Modify</button>
                     <button class="btn btn-danger pull-left delete" style="display:none;">Delete</button>
-                    <button class="btn btn-success pull-left save" style="display:none;">Save</button>
+                    <button class="btn btn-primary pull-left save" style="display:none;">Save</button>
                     <button class="btn btn-default pull-left cancel" style="display:none;">Cancel</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
