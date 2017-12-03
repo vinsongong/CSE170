@@ -5,6 +5,8 @@ $(document).ready(function(){
     var retrievedObject = localStorage.getItem('exerciseData');
     var exerciseArray = JSON.parse(retrievedObject);
 
+    console.log(exerciseArray.exercises);
+
     /* Handlers bar */
     var listSource = $("#list-item-template").html();
     var listTemplate = Handlebars.compile(listSource);
@@ -96,7 +98,7 @@ function modifyDetails(e) {
     //Distraction Level
     var distractionLevel = lowercaseFirstLetter($(this).parents().eq(1).find(".modal-distraction").text());
     var distrationCode = "<div class='distractionDiv'>Can Multi-task?&#42;" +
-    "<label class='radio-inline'><input type='radio' name='canMultiTask' value='yes'>Yes</label>" +
+    "<label class='radio-inline'><input type='radio' name='canMultiTask' value='yes' required>Yes</label>" +
     "<label class='radio-inline'><input type='radio' name='canMultiTask' value='no'>No</label>" +
     "</div>";
     modalBody.append(distrationCode);
