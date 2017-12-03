@@ -11,7 +11,7 @@ var exerciseData = {
 			},
 			type:"Recommended",
 			isCustom:false,
-			description:["Do 2 sets of 10", "Can multitask with work"],
+			description:["Do 2 sets of 10"],
 			equipment:"Weights or dumbells",
 			youtubeLink:"https://www.youtube.com/embed/q5sNYB1Q6aM"
 		},
@@ -26,7 +26,7 @@ var exerciseData = {
 			},
 			type:"Recommended",
 			isCustom:false,
-			description:["Do 2 sets of 20", "Can multitask with work"],
+			description:["Do 2 sets of 20"],
 			equipment:"Dumbells",
 			youtubeLink:"https://www.youtube.com/embed/48__FJHeBLk"
 		},
@@ -42,7 +42,7 @@ var exerciseData = {
 			},
 			type:"Recommended",
 			isCustom:false,
-			description:["Do 2 sets of 20", "Can multitask with work"],
+			description:["Do 2 sets of 20"],
 			equipment:"(Optional) Structure to hold onto for balance",
 			youtubeLink:"https://www.youtube.com/embed/z__UzseazqA"
 		},
@@ -58,7 +58,7 @@ var exerciseData = {
 			},
 			type:"Recommended",
 			isCustom:false,
-			description:["Do 3 sets of 30 seconds", "Take a minute break in between sets","Requires full attention"],
+			description:["Do 3 sets of 30 seconds", "Take a minute break in between sets"],
 			equipment:"Wall",
 			youtubeLink:"https://www.youtube.com/embed/-0Q7Lds7B8A"
 		},
@@ -74,7 +74,7 @@ var exerciseData = {
 			},
 			type:"Recommended",
 			isCustom:false,
-			description:["Do 2 sets of 10", "Take a 30 second break between sets", "Requires full attention"],
+			description:["Do 2 sets of 10", "Take a 30 second break between sets"],
 			equipment:"Desk",
 			youtubeLink:"https://www.youtube.com/embed/vsYtwHnXrPw"
 		},
@@ -90,7 +90,7 @@ var exerciseData = {
 			},
 			type:"Recommended",
 			isCustom:false,
-			description:["Do 3 sets of 10", "Requires full attention"],
+			description:["Do 3 sets of 10"],
 			equipment:"None",
 			youtubeLink:"https://www.youtube.com/embed/UpH7rm0cYbM"
 		},
@@ -106,7 +106,7 @@ var exerciseData = {
 			},
 			type:"Custom",
 			isCustom:true,
-			description:["Standing up while working", "Can do this while studying"],
+			description:["Standing up while working"],
 			equipment:"None",
 			youtubeLink:""
 		}
