@@ -114,7 +114,7 @@ function modifyDetails(e) {
     //Textbox
     var textBox = "<div class='textBoxDiv'>Description&#42;<textarea class='textBoxDeets form-control'rows='"+ (modalUL.length + 4) +"' cols='40'" +
     " placeholder='Details about the exercise...' required>";
-    for(i = 1; i < modalUL.length; i++) {
+    for(i = 0; i < modalUL.length; i++) {
         textBox += modalUL.eq(i).text() + "\n";
     }
     modalBody.append(textBox + "</textarea></div>");
@@ -225,8 +225,6 @@ function saveDetails(e) {
     $(this).parents().eq(1).find(".distractionDiv").remove();
     //Conver to Binary
     var newMultiTaskVal = newDistractionLevel === 'yes' ? true : false;
-
-    console.log(newMultiTaskVal);
 
     //Remove youtubeLinkDiv
     var newYoutubeLink = $(this).parents().eq(1).find(".youtubeLinkInput").val();

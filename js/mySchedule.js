@@ -5,6 +5,8 @@ $(document).ready(function(){
     var retrievedObject = localStorage.getItem('scheduleData');
     var scheduleArray = JSON.parse(retrievedObject);
 
+    console.log(scheduleArray.schedules);
+
     if(scheduleArray.schedules.length > 0){
         $("#noExercise").hide();
     }
@@ -78,8 +80,8 @@ function modifyScheduleItem(e) {
 
     //Repeats Every
     var repeatTimeAndUnits = modalDetailsDiv.find(".modal-repeat").text().split(" ");
-    var repeatTime = repeatTimeAndUnits[2];
-    var repeatUnits = repeatTimeAndUnits[3];
+    var repeatTime = repeatTimeAndUnits[1];
+    var repeatUnits = repeatTimeAndUnits[2];
     var repeatTimeCode = "<div class='repeatDiv'>Frequency&#42;<br /><input type='number' class='repeatVal form-control' " +
     "placeholder='' min='1' max='60' value='" + repeatTime + "' />";
     var repeatUnitsCode = "<select class='repeatUnitsDrop form-control'>" +
