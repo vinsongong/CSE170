@@ -95,18 +95,16 @@ function modifyDetails(e) {
     $(".timeDrop option[value=" + timeUnits+ "]").attr("selected", true);
 
     //Distraction Level
-    var distractionLevel = $(this).parents().eq(1).find(".modal-distraction").text();
-    var distrationCode = "<div class='distractionDiv'>Distraction Level&#42;" +
-    "<select class='distractionDrop form-control'>" +
-    "<option value='Low'>Low</option>" +
-    "<option value='Medium'>Medium</option>" +
-    "<option value='High'>High</option>" +
-    "</select></div>";
+    var distractionLevel = lowercaseFirstLetter($(this).parents().eq(1).find(".modal-distraction").text());
+    var distrationCode = "<div class='distractionDiv'>Can Multi-task?&#42;" +
+    "<label class='radio-inline'><input type='radio' name='canMultiTask' value='yes'>Yes</label>" +
+    "<label class='radio-inline'><input type='radio' name='canMultiTask' value='no'>No</label>" +
+    "</div>";
     modalBody.append(distrationCode);
-    $(".distractionDrop option[value=" + distractionLevel+ "]").attr("selected", true);
+    $("input[value=" + distractionLevel+ "]").attr("checked", true);
 
     //Equipment
-    var equipment = modalUL.eq(0).text().split(" ")[1];
+    var equipment = $(".equipment").text().split(" ")[1];
     var equipmentCode = "<div class='equipmentDiv'>Equipment&#42;<br />" +
     "<input type='text' class='equipmentInput form-control' placeholder='Enter equipment needed'" +
     "value='" + equipment + "' />";
@@ -123,7 +121,7 @@ function modifyDetails(e) {
     //Youtube Link
     var youtubeLink = $(this).parents().eq(1).find("iframe").attr("src");
     $(this).parents().eq(1).find("iframe").attr('src', "#" + youtubeLink); //To stop video from playing
-    var youtubeLinkCode = "<div class='youtubeLinkDiv'><i class='fa fa-youtube-play'></i>&nbsp;Youtube Link (Optional)" +
+    var youtubeLinkCode = "<div class='youtubeLinkDiv'><i class='fa fa-youtube-play'></i>&nbsp;Youtube Link" +
     "<input type='text' class='youtubeLinkInput form-control' value='" +
     youtubeLink + "' /></div>";
     modalBody.append(youtubeLinkCode);
@@ -222,8 +220,12 @@ function saveDetails(e) {
     $(this).parents().eq(1).find(".timeDiv").remove();
 
     //Remove distractionDiv
-    var newDistractionLevel = $(this).parents().eq(1).find(".distractionDrop option:selected").val();
+    var newDistractionLevel = $(this).parents().eq(1).find("input:checked").val();
     $(this).parents().eq(1).find(".distractionDiv").remove();
+    //Conver to Binary
+    var newMultiTaskVal = newDistractionLevel === 'yes' ? true : false;
+
+    console.log(newMultiTaskVal);
 
     //Remove youtubeLinkDiv
     var newYoutubeLink = $(this).parents().eq(1).find(".youtubeLinkInput").val();
@@ -231,6 +233,7 @@ function saveDetails(e) {
 
     //Retrieves user input & removes equipmentDiv
     var newEquipment = $(this).parents().eq(1).find(".equipmentInput").val();
+    console.log(newEquipment);
     $(this).parents().eq(1).find(".equipmentDiv").remove();
 
     var modalBody = $(this).parents().eq(1).find(".modal-details");
@@ -282,7 +285,7 @@ function saveDetails(e) {
     var newExercise = {
         exerciseId: newId,
         exerciseName: newExerciseName,
-        distraction: newDistractionLevel,
+        canMultiTask :newMultiTaskVal,
         duration:{
             time:timeVal,
             unit:timeUnits
@@ -304,7 +307,7 @@ function saveDetails(e) {
         message: "Updated Successfully.",
         backdrop: true,
         callback: function(){
-            window.location.replace("discover.html");
+           window.location.replace("discover.html");
         }
     });
 
@@ -352,7 +355,7 @@ function scheduleExercise(e) {
     modalBody.find(".modal-ul").hide();
 
     var repeatEveryCode = '<div class="form-group form-inline repeatEveryDiv">' +
-        '<label for="repeatInterval">Repeat Every&#42;</label><br />' +
+        '<label for="repeatInterval">Frequency&#42;</label><br />' +
         '<input class="form-control"  type="number" id="repeatInterval" min="1" max="60" required>' +
         '<select id ="repeatTimeUnit" class="form-control" required>' +
             '<option value="minutes">Minutes</option>' +

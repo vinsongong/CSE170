@@ -7,6 +7,10 @@ p.list-group-item-text {
     font-style: italic;
 }
 
+.badge p.list-group-item-text{
+    font-style: initial;
+}
+
 div.youtube-vid > iframe {
     display: block;
     width: 100%;

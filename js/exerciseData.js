@@ -4,6 +4,7 @@ var exerciseData = {
 			exerciseId:"shoulderRaise",
 			exerciseName:"Shoulder Raises",
 			distraction:"Medium",
+			canMultiTask:true,
 			duration:{
 				time:"10",
 				unit:"minutes"
@@ -18,6 +19,7 @@ var exerciseData = {
 			exerciseId:"shrugs",
 			exerciseName:"Shrugs",
 			distraction:"Medium",
+			canMultiTask:true,
 			duration:{
 				time:"3",
 				unit:"minutes"
@@ -33,6 +35,7 @@ var exerciseData = {
 			exerciseId:"calfRaises",
 			exerciseName:"Calf Raises",
 			distraction:"Low",
+			canMultiTask:true,
 			duration:{
 				time:"3",
 				unit:"minutes"
@@ -48,6 +51,7 @@ var exerciseData = {
 			exerciseId:"wallSit",
 			exerciseName:"Wall Sit",
 			distraction:"High",
+			canMultiTask:false,
 			duration:{
 				time:"5",
 				unit:"minutes"
@@ -63,6 +67,7 @@ var exerciseData = {
 			exerciseId:"deskPushUps",
 			exerciseName:"Desk Push Ups",
 			distraction:"High",
+			canMultiTask:false,
 			duration:{
 				time:"2",
 				unit:"minutes"
@@ -78,6 +83,7 @@ var exerciseData = {
 			exerciseId:"jumpingJacks",
 			exerciseName:"Jumping Jacks",
 			distraction:"High",
+			canMultiTask:false,
 			duration:{
 				time:"15",
 				unit:"minutes"
@@ -93,6 +99,7 @@ var exerciseData = {
 			exerciseId:"standing",
 			exerciseName:"Standing",
 			distraction:"Low",
+			canMultiTask:true,
 			duration:{
 				time:"1",
 				unit:"hours"

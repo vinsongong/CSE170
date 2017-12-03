@@ -97,12 +97,14 @@
     <script id="list-item-template" type="text/x-handlebars-template">
         {{#each exercises}}
         <a data-toggle="modal" href="#{{exerciseId}}" class="list-group-item">
-            <span class="badge badge-default badge-pill">
-                Distraction: {{distraction}}<br />
+            <span class="badge">
                 Duration: {{duration.time}} {{duration.unit}}
             </span>
             <h4 class="list-group-item-heading">{{exerciseName}}</h4>
             <p class="list-group-item-text">{{type}}</p>
+            {{#if canMultiTask}}
+                 <p class="list-group-item-text">Muti-task <i class="fa fa-check-circle-o" aria-hidden="true"></i></p>
+            {{/if}}
         </a>
         {{/each}}
     </script>
@@ -125,10 +127,14 @@
                             <br />
                         </div>
                         <div class="modal-details">
-                            <p class="modal-distraction" style="display:none;">{{distraction}}</p>
+                            {{#if canMultiTask}}
+                                <p class="modal-distraction" style="display:none;">Yes</p>
+                            {{else}}
+                                <p class="modal-distraction" style="display:none;">No</p>
+                            {{/if}}
                             <h5 class="modal-interval">Interval: {{duration.time}} {{duration.unit}}</h5>
+                            <h5 class="modal-interval equipment">Equipment: {{equipment}}</h5>
                             <ul class="modal-ul">
-                                <li>Equipment: {{equipment}}</li>
                                 {{#each description}}
                                 <li>{{this}}</li>
                                 {{/each}}

@@ -16,10 +16,11 @@ function creatExercise(e) {
         embedYoutubeLink = embedYoutubeLink.replace(/^/,"https://www.youtube.com/embed/");
     }
 
+    var canMultiTask = this.canMultiTask.value === "yes" ? true : false;
     var exercise = {
         exerciseId:id,
         exerciseName: this.exercise.value,
-        distraction: this.distractionLevel.value,
+        canMultiTask: canMultiTask,
         duration:{
             time:this.exerciseInterval.value,
             unit:this.exerciseTimeUnit.value

@@ -45,3 +45,7 @@
 	width: 75%;
 	border: solid 2px;
 }
+
+button.submitBtn{
+    width:75%;
+}
