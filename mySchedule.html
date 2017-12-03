@@ -73,8 +73,8 @@
         {{#each schedules}}
         <a data-toggle="modal" href="#{{exerciseId}}" class="list-group-item">
             <h4 class="list-group-item-heading">{{exerciseName}}</h4>
-            <p class="list-group-item-text">Repeat Every: <span class="repeatTime">{{repeatDuration.time}}</span> <span class="repeatUnit">{{repeatDuration.unit}}</span></p>
-            <p class="list-group-item-text">Interval: {{exerciseDuration.time}} {{exerciseDuration.unit}}</p>
+            <p class="list-group-item-text">Frequency: <span class="repeatTime">{{repeatDuration.time}}</span> <span class="repeatUnit">{{repeatDuration.unit}}</span></p>
+            <p class="list-group-item-text">Duration: {{exerciseDuration.time}} {{exerciseDuration.unit}}</p>
             <p class="list-group-item-text">Starting at:  <span class="startTime">{{startTime}}</span></p>
         </a>
         {{/each}}
@@ -94,8 +94,8 @@
                     </div>
                     <div class="modal-body">
                         <div class="modal-details">
-                            <h5 class="modal-repeat">Repeat Every: {{repeatDuration.time}} {{repeatDuration.unit}}</h5>
-                            <h5 class="modal-interval">Interval: {{exerciseDuration.time}} {{exerciseDuration.unit}}</h5>
+                            <h5 class="modal-repeat">Frequency: {{repeatDuration.time}} {{repeatDuration.unit}}</h5>
+                            <h5 class="modal-interval">Duration: {{exerciseDuration.time}} {{exerciseDuration.unit}}</h5>
                         </ul>
                     </div>
                 </div>

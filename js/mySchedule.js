@@ -80,7 +80,7 @@ function modifyScheduleItem(e) {
     var repeatTimeAndUnits = modalDetailsDiv.find(".modal-repeat").text().split(" ");
     var repeatTime = repeatTimeAndUnits[2];
     var repeatUnits = repeatTimeAndUnits[3];
-    var repeatTimeCode = "<div class='repeatDiv'>Repeat Every&#42;<br /><input type='number' class='repeatVal form-control' " +
+    var repeatTimeCode = "<div class='repeatDiv'>Frequency&#42;<br /><input type='number' class='repeatVal form-control' " +
     "placeholder='' min='1' max='60' value='" + repeatTime + "' />";
     var repeatUnitsCode = "<select class='repeatUnitsDrop form-control'>" +
     "<option value='minutes'>Minutes</option>" +
@@ -94,7 +94,7 @@ function modifyScheduleItem(e) {
     var intervalTimeAndUnit = modalDetailsDiv.find(".modal-interval").text().split(" ");
     var intervalTime = intervalTimeAndUnit[1];
     var intervalUnit = intervalTimeAndUnit[2];
-    var intervalTimeCode = "<div class='intervalDiv'>Interval&#42;<br /><input type='number' class='intervalVal form-control' " +
+    var intervalTimeCode = "<div class='intervalDiv'>Duration&#42;<br /><input type='number' class='intervalVal form-control' " +
     "placeholder='' min='1' max='60' value='" + intervalTime + "' />";
     var intervalUnitCode = "<select class='intervalUnitsDrop form-control'>" +
     "<option value='minutes'>Minutes</option>" +

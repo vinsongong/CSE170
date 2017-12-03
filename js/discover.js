@@ -81,7 +81,7 @@ function modifyDetails(e) {
     modalBody.append(exerciseCode);
 
     //Interval
-    var timeText = $(this).parents().eq(1).find(".modal-interval").text();
+    var timeText = $(this).parents().eq(1).find(".duration").text();
     var timeBox = "<div class='timeDiv'>Interval&#42;<br /><input type='number' class='timeDeets form-control' " +
     "placeholder='' min='1' max='60' value='" +
     parseInt(timeText.replace(/[^0-9\.]/g, ''), 10) + "' />";
@@ -208,7 +208,7 @@ function saveDetails(e) {
     modalExerciseNameDiv.remove();
 
     //Remove old interval
-    var modalInteval = $(this).parents().eq(1).find(".modal-interval");
+    var modalInteval = $(this).parents().eq(1).find(".duration");
     modalInteval.remove();
 
     //Remove old textarea and ul
@@ -382,7 +382,7 @@ function saveSchedule(e) {
     var modalID = "#" + camelize($(this).parents().eq(1).find("h4.modal-title").text());
     var repeatEveryDiv = modalBody.find('.repeatEveryDiv');
     var startTimeDiv = modalBody.find('.startTimeDiv');
-    var intervalText = modalBody.find('.modal-interval').text();
+    var intervalText = modalBody.find('.duration').text();
     var exerciseName = $(this).parents().siblings(".modal-header").find(".modal-title").text();
 
     //Show Youtube video
