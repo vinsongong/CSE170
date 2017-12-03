@@ -7,7 +7,7 @@ p.list-group-item-text {
     font-style: italic;
 }
 
-span.label-default{
+.badge-pill{
     font-size: 0.9em;
     text-align: center;
 }
