@@ -75,7 +75,7 @@ function modifyDetails(e) {
     var exerciseName = $(this).parents().eq(1).find(".modal-title").text();
     var exerciseCode = "<div class='exerciseNameDiv'>Exercise Name&#42;<br /><input" +
     " type='text' class='exerciseNameInput form-control' value='" +
-    exerciseName + "' autofocus required/></div>";
+    exerciseName + "' required/></div>";
     modalBody.append(exerciseCode);
 
     //Interval
