@@ -98,7 +98,7 @@
     <script id="list-item-template" type="text/x-handlebars-template">
         {{#each exercises}}
         <a data-toggle="modal" href="#{{exerciseId}}" class="list-group-item">
-            <span class="badge badge-info">
+            <span class="label label-default pull-right">
                 Duration: {{duration.time}} {{duration.unit}}
             </span>
             <h4 class="list-group-item-heading">{{exerciseName}}</h4>
@@ -133,7 +133,7 @@
                             {{else}}
                                 <p class="modal-distraction" style="display:none;">No</p>
                             {{/if}}
-                            <h5 class="modal-interval">Interval: {{duration.time}} {{duration.unit}}</h5>
+                            <h5 class="modal-interval">Duration: {{duration.time}} {{duration.unit}}</h5>
                             <h5 class="modal-interval equipment">Equipment: {{equipment}}</h5>
                             <ul class="modal-ul">
                                 {{#each description}}

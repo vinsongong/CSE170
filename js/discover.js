@@ -246,7 +246,7 @@ function saveDetails(e) {
     //Insert new interval
     var newInterval = document.createElement('h5');
     newInterval.className = "modal-interval";
-    newInterval.appendChild(document.createTextNode("Interval: " + newTimeVal + " " + newTimeUnits));
+    newInterval.appendChild(document.createTextNode("Duration: " + newTimeVal + " " + newTimeUnits));
     modalBody.append(newInterval);
 
     //Modify distraction level in badge of list

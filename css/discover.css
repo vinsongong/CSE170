@@ -7,6 +7,12 @@ p.list-group-item-text {
     font-style: italic;
 }
 
+span.label-default{
+    font-size: 0.9em;
+    min-width: 40%;
+    text-align: center;
+}
+
 div.youtube-vid > iframe {
     display: block;
     width: 100%;
