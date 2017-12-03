@@ -86,7 +86,6 @@ function modifyDetails(e) {
     "placeholder='' min='1' max='60' value='" +
     parseInt(timeText.replace(/[^0-9\.]/g, ''), 10) + "' />";
     var timeDropdown = "<select class='timeDrop form-control'>" +
-    "<option value='seconds'>seconds</option>" +
     "<option value='minutes'>minutes</option>" +
     "<option value='hours'>hours</option>" +
     "<option value='days'>days</option>" +
